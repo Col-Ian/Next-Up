@@ -1,7 +1,69 @@
+import { useContext, useEffect, useRef } from 'react';
 import SheetLabel from '../../labels/SheetLabel';
 import styles from './SavingThrowsBlock.module.css';
+import { CharacterSheetContext } from '../../../../states/CharacterSheet/CharacterSheet';
+import { useParams } from 'react-router-dom';
+import { classList } from '../../../../data/class-information/classList';
+import { getValue } from '../../../../utils/getValue';
+import {
+	badSaveBonus,
+	goodSaveBonus,
+} from '../../../../data/savingThrowValuesPerLevel';
+import { GetModifier } from '../../../../utils/GetModifier';
+import { useFormContext } from 'react-hook-form';
 
 function SavingThrowsBlock() {
+	const { characterID } = useParams();
+
+	const {
+		characterInfoObject,
+		dexterityAbility,
+		constitutionAbility,
+		wisdomAbility,
+		savingThrowMisc,
+	} = useContext(CharacterSheetContext);
+
+	const { register } = useFormContext();
+
+	const fortitudeBase = useRef<number>(0);
+	const reflexBase = useRef<number>(0);
+	const willBase = useRef<number>(0);
+
+	useEffect(() => {
+		fortitudeBase.current = getSavingThrowBonus('Fortitude');
+		reflexBase.current = getSavingThrowBonus('Reflex');
+		willBase.current = getSavingThrowBonus('Rill');
+	}, [characterID]);
+
+	function getSavingThrowBonus(SavingThrow: string) {
+		let savingThrowFound: boolean = false;
+
+		let savingThrowBonus: number = 0;
+
+		classList[
+			characterInfoObject.chClass
+		].classDefaults.goodSavingThrows.forEach((save) => {
+			if (save === SavingThrow) {
+				savingThrowBonus = goodSaveBonus[getValue(`Level${characterID}`)];
+				savingThrowFound = true;
+				console.log('Good Save');
+			}
+		});
+
+		if (!savingThrowFound) {
+			classList[
+				characterInfoObject.chClass
+			].classDefaults.badSavingThrows.forEach((save) => {
+				if (save === SavingThrow) {
+					savingThrowBonus = badSaveBonus[getValue(`Level${characterID}`)];
+					console.log('Bad Save');
+				}
+			});
+		}
+
+		return savingThrowBonus;
+	}
+
 	return (
 		<div className={styles.parentDiv}>
 			<SheetLabel sheetLabelText='SAVING THROWS' />
@@ -22,9 +84,33 @@ function SavingThrowsBlock() {
 				</div>
 				<div className={styles.inputColumn}>
 					<div className={styles.inputLabel}>TOTAL</div>
-					<input type='number' readOnly />
-					<input type='number' readOnly />
-					<input type='number' readOnly />
+					<input
+						type='number'
+						value={
+							fortitudeBase.current +
+							GetModifier(constitutionAbility) +
+							savingThrowMisc.fortitude
+						}
+						readOnly
+					/>
+					<input
+						type='number'
+						value={
+							reflexBase.current +
+							GetModifier(dexterityAbility) +
+							savingThrowMisc.reflex
+						}
+						readOnly
+					/>
+					<input
+						type='number'
+						value={
+							willBase.current +
+							GetModifier(wisdomAbility) +
+							savingThrowMisc.will
+						}
+						readOnly
+					/>
 				</div>
 				<div className={styles.plusEqualsColumn}>
 					<div className={styles.top}>=</div>
@@ -33,9 +119,9 @@ function SavingThrowsBlock() {
 				</div>
 				<div className={styles.inputColumn}>
 					<div className={styles.inputLabel}>BASE SAVE</div>
-					<input type='number' readOnly />
-					<input type='number' readOnly />
-					<input type='number' readOnly />
+					<input type='number' value={fortitudeBase.current} readOnly />
+					<input type='number' value={reflexBase.current} readOnly />
+					<input type='number' value={willBase.current} readOnly />
 				</div>
 				<div className={styles.plusEqualsColumn}>
 					<div className={styles.top}>+</div>
@@ -44,9 +130,13 @@ function SavingThrowsBlock() {
 				</div>
 				<div className={styles.inputColumn}>
 					<div className={styles.inputLabel}>ABILITY MOD</div>
-					<input type='number' readOnly />
-					<input type='number' readOnly />
-					<input type='number' readOnly />
+					<input
+						type='number'
+						value={GetModifier(constitutionAbility)}
+						readOnly
+					/>
+					<input type='number' value={GetModifier(dexterityAbility)} readOnly />
+					<input type='number' value={GetModifier(wisdomAbility)} readOnly />
 				</div>
 				<div className={styles.plusEqualsColumn}>
 					<div className={styles.top}>+</div>
@@ -55,9 +145,18 @@ function SavingThrowsBlock() {
 				</div>
 				<div className={styles.inputColumn}>
 					<div className={styles.inputLabel}>MISC MOD</div>
-					<input type='number' />
-					<input type='number' />
-					<input type='number' />
+					<input
+						type='number'
+						{...register('miscFortitude', { valueAsNumber: true })}
+					/>
+					<input
+						type='number'
+						{...register('miscReflex', { valueAsNumber: true })}
+					/>
+					<input
+						type='number'
+						{...register('miscWill', { valueAsNumber: true })}
+					/>
 				</div>
 			</div>
 		</div>

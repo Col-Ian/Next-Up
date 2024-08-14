@@ -3,19 +3,12 @@ import SheetLabel from '../../labels/SheetLabel';
 import styles from './ArmorClassBlock.module.css';
 import { CharacterSheetContext } from '../../../../states/CharacterSheet/CharacterSheet';
 import { GetModifier } from '../../../../utils/GetModifier';
-import { getValue } from '../../../../utils/getValue';
-import { useParams } from 'react-router-dom';
 import { useFormContext } from 'react-hook-form';
-import { useArmorClassBlock } from '../../../../hooks/useArmorClassBlock';
 
 function ArmorClassBlock() {
-	const { characterID } = useParams();
-
 	const { dexterityAbility, armorEquipped, armorMiscMods } = useContext(
 		CharacterSheetContext
 	);
-
-	// const { armorEquipped, armorMiscMods } = useArmorClassBlock();
 
 	const { register } = useFormContext();
 

@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import SheetLabel from '../../labels/SheetLabel';
 import styles from './WeaponsBlock.module.css';
+import ExpandComponent from '../../ExpandComponent/ExpandComponent';
 
 function WeaponsBlock() {
 	const [showArray, setShowArray] = useState<boolean>(false);
@@ -37,8 +38,9 @@ function WeaponsBlock() {
 		<div className={styles.parentDiv}>
 			<SheetLabel sheetLabelText='WEAPONS' />
 			<div className={styles.weaponsBlockContent}>
-				{showArray
-					? tempArray.map((weapon: WeaponType, index: number) => {
+				{showArray ? (
+					<div className={styles.weaponsWrapper}>
+						{tempArray.map((weapon: WeaponType, index: number) => {
 							return (
 								<div className={styles.individualWeapon} key={index}>
 									<div className={styles.delete}>&#128465;</div>
@@ -125,13 +127,15 @@ function WeaponsBlock() {
 									</div>
 								</div>
 							);
-					  })
-					: null}
+						})}
+					</div>
+				) : null}
+
 				<div
 					className={styles.dropDownWrapper}
 					onClick={() => setShowArray(!showArray)}
 				>
-					{showArray ? 'Hide' : 'Show'}
+					<ExpandComponent expanded={showArray} />
 				</div>
 			</div>
 		</div>

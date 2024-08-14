@@ -18,6 +18,7 @@ import { useCurrentID } from '../../hooks/useCurrentID.ts';
 import { GetModifier } from '../../utils/GetModifier.ts';
 import UnderSide from '../../components/character-sheet-components/under-side-components/UnderSide/UnderSide.tsx';
 import { useArmorClassBlock } from '../../hooks/useArmorClassBlock.ts';
+import { useSavingThrows } from '../../hooks/useSavingThrows.ts';
 // import { useAbilities } from '../../hooks/useAbilities.ts';
 
 type SkillBlockStatesListType = {
@@ -48,6 +49,11 @@ export const CharacterSheetContext = createContext<{
 	armorMiscMods: {
 		energy: number;
 		kenetic: number;
+	};
+	savingThrowMisc: {
+		fortitude: number;
+		reflex: number;
+		will: number;
 	};
 	// abilitiesArray: AbilityListTypes[];
 }>({} as any);
@@ -105,6 +111,8 @@ function CharacterSheet() {
 		updateArmorMiscMods,
 	} = useArmorClassBlock();
 
+	const { savingThrowMisc, updateSavingThrowMisc } = useSavingThrows();
+
 	// const { abilitiesArray, updateAbilityArray } = useAbilities();
 
 	// useEffect for all changes related to swapping characters
@@ -159,13 +167,18 @@ function CharacterSheet() {
 			// SkillNotesBlock registers
 			skillNotes: getValue(`SkillNotes${characterID}`),
 
-			// ArmorClassBlock register
+			// ArmorClassBlock registers
 			bonusEAC: armorEquipped.armorEAC,
 			miscModEAC: armorMiscMods.energy,
 			bonusKAC: armorEquipped.armorKAC,
 			miscModKAC: armorMiscMods.kenetic,
 			damageReduction: getValue(`DR${characterID}`),
 			resistances: getValue(`Resistances${characterID}`),
+
+			// SavingThrowsBlock registers
+			miscFortitude: savingThrowMisc.fortitude,
+			miscReflex: savingThrowMisc.reflex,
+			miscWill: savingThrowMisc.will,
 
 			// AbilitiesBlock, WeaponsBlock, and ArmorBlock registers will be done in their components since they use useFieldArray.
 			// abilities: abilitiesArray,
@@ -307,6 +320,13 @@ function CharacterSheet() {
 				kenetic: data.miscModKAC,
 			});
 
+			// SavingThrowsBlock registers
+			updateSavingThrowMisc({
+				fortitude: data.miscFortitude,
+				reflex: data.miscReflex,
+				will: data.miscWill,
+			});
+
 			// AbilitiesBlock registers
 			// updateAbilityArray(data.abilities);
 		});
@@ -391,6 +411,8 @@ function CharacterSheet() {
 
 				armorEquipped: armorEquipped,
 				armorMiscMods: armorMiscMods,
+
+				savingThrowMisc: savingThrowMisc,
 				// abilitiesArray: abilitiesArray,
 			}}
 		>

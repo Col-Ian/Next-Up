@@ -1,0 +1,25 @@
+.experienceBlockContent {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	align-content: end;
+	border: 2px solid black;
+	border-radius: 4px;
+	margin: -4px 0 0 10px;
+	padding: 0 10px 0 10px;
+}
+
+.inputDiv {
+	display: flex;
+	flex-direction: row;
+}
+
+.inputDiv input {
+	border-top: none;
+	border-left: none;
+	border-right: none;
+	margin-left: 16px;
+	width: 160px;
+	text-align: center;
+	font-size: 1.3em;
+}

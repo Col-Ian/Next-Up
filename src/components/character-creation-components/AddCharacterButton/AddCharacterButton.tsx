@@ -267,11 +267,11 @@ function AddCharacterButton() {
 		setValue(`Equipment${keyID}`, []);
 		setValue(`OtherWealth${keyID}`, '');
 		setValue(`Languages${keyID}`, '');
-		setValue(`XPEarned${keyID}`, '');
+		setValue(`Experience${keyID}`, { earned: '', needed: '' });
 
 		/*
-      Abilities
-    */
+      	Abilities
+    	*/
 		setValue(`Abilities${keyID}`, []);
 		// Abilities from Class will be added upon confirming 1st level.
 		// Add abilities from Race.

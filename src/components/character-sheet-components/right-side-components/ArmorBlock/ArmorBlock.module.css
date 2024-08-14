@@ -2,6 +2,28 @@
 	padding: 0;
 }
 
+.armorBlockContent {
+	position: absolute;
+	background-color: white;
+	z-index: 3;
+	max-width: 520px;
+	min-width: 520px;
+}
+
+.armorWrapper {
+	border-top-right-radius: 4px;
+	border-bottom-right-radius: 3%;
+	border-bottom-left-radius: 3%;
+	margin-top: -4px;
+	margin-left: 9px;
+	margin-bottom: -6px;
+	border-top: 2px solid hsl(206, 61%, 80%);
+	border-left: 2px solid hsl(206, 61%, 80%);
+	border-right: 2px solid hsl(206, 61%, 80%);
+	padding-top: 5px;
+	padding-bottom: 2px;
+}
+
 .individualArmor {
 	position: relative;
 	border: 2px solid black;
