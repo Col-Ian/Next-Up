@@ -6,20 +6,20 @@ import ExpandComponent from '../../ExpandComponent/ExpandComponent';
 function WeaponsBlock() {
 	const [showArray, setShowArray] = useState<boolean>(false);
 
-	const tempArray = [
-		{
-			weaponName: '',
-			weaponType: '',
-			weaponRange: '',
-			weaponCritical: '',
-			weaponAmmoTotal: 0,
-			weaponAmmoUsage: 0,
-			weaponProficiency: '',
-			weaponLevel: 0,
-			weaponToHit: 0,
-			weaponDamageType: '',
-			weaponDamageRoll: '',
-		},
+	const tempArray: WeaponType[] = [
+		// {
+		// 	weaponName: '',
+		// 	weaponType: '',
+		// 	weaponRange: '',
+		// 	weaponCritical: '',
+		// 	weaponAmmoTotal: 0,
+		// 	weaponAmmoUsage: 0,
+		// 	weaponProficiency: '',
+		// 	weaponLevel: 0,
+		// 	weaponToHit: 0,
+		// 	weaponDamageType: '',
+		// 	weaponDamageRoll: '',
+		// },
 		{
 			weaponName: '',
 			weaponType: '',

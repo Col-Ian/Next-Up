@@ -1,26 +1,33 @@
 import SheetLabel from '../../labels/SheetLabel';
 import styles from './AbilitiesBlock.module.css';
 import AddButtonLabel from '../../../character-creation-components/AddButtonLabel/AddButtonLabel';
-import { FieldValues, useFormContext } from 'react-hook-form';
+import { useForm } from 'react-hook-form';
 import { useEffect } from 'react';
 import { useAbilities } from '../../../../hooks/useAbilities';
-
-// Dylan: Works with no infinite render, but not updating dynamically.
-
-type FormValues = FieldValues & {
-	name: AbilityListTypes[];
-};
+import { useCurrentID } from '../../../../hooks/useCurrentID';
 
 function AbilitiesBlock() {
-	const { abilitiesArray } = useAbilities();
+	const {
+		abilitiesArray,
+		updateAbilityArray,
+		handleAddAbility,
+		handleDeleteAbility,
+	} = useAbilities();
 
-	const { handleAddAbility, handleDeleteAbility } = useAbilities();
+	const { currentID } = useCurrentID();
 
-	const { register } = useFormContext<FormValues>();
+	const { register, watch, reset } = useForm();
 
 	useEffect(() => {
-		console.log(abilitiesArray);
-	}, []);
+		reset(abilitiesArray);
+	}, [currentID]);
+
+	useEffect(() => {
+		const subscription = watch((data) => {
+			updateAbilityArray(data.abilities);
+		});
+		return () => subscription.unsubscribe();
+	}, [watch, currentID]);
 
 	return (
 		<div className={styles.parentDiv}>
@@ -58,6 +65,7 @@ function AbilitiesBlock() {
 										defaultValue={abilitiesArray[index].abilityName}
 										spellCheck={false}
 										className={styles.textInput}
+										placeholder='ABILITY NAME'
 									/>
 								</div>
 								<div className={styles.verticalBar} />
@@ -68,6 +76,7 @@ function AbilitiesBlock() {
 										defaultValue={abilitiesArray[index].abilitySource}
 										spellCheck={false}
 										className={styles.textInput}
+										placeholder='ABILITY SOURCE'
 									/>
 								</div>
 								<div className={styles.verticalBar} />

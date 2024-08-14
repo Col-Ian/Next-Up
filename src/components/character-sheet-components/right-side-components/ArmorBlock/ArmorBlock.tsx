@@ -74,7 +74,7 @@ function ArmorBlock() {
 										</div>
 									</div>
 									<div className={styles.bottomRow}>
-										<div className={styles.inputDiv}>
+										<div className={styles.inputDivEquip}>
 											<div className={styles.inputLabel}>EQUIP</div>
 											<input
 												type='checkbox'

@@ -19,7 +19,8 @@ import { GetModifier } from '../../utils/GetModifier.ts';
 import UnderSide from '../../components/character-sheet-components/under-side-components/UnderSide/UnderSide.tsx';
 import { useArmorClassBlock } from '../../hooks/useArmorClassBlock.ts';
 import { useSavingThrows } from '../../hooks/useSavingThrows.ts';
-// import { useAbilities } from '../../hooks/useAbilities.ts';
+import { useExperience } from '../../hooks/useExperience.ts';
+import { useAttackBonuses } from '../../hooks/useAttackBonuses.ts';
 
 type SkillBlockStatesListType = {
 	[key: string]: {
@@ -55,7 +56,11 @@ export const CharacterSheetContext = createContext<{
 		reflex: number;
 		will: number;
 	};
-	// abilitiesArray: AbilityListTypes[];
+	attackBonuses: {
+		melee: number;
+		ranged: number;
+		thrown: number;
+	};
 }>({} as any);
 
 function CharacterSheet() {
@@ -113,7 +118,9 @@ function CharacterSheet() {
 
 	const { savingThrowMisc, updateSavingThrowMisc } = useSavingThrows();
 
-	// const { abilitiesArray, updateAbilityArray } = useAbilities();
+	const { attackBonuses, updateAttackBonuses } = useAttackBonuses();
+
+	const { experience, updateExperience } = useExperience();
 
 	// useEffect for all changes related to swapping characters
 	useEffect(() => {
@@ -180,8 +187,25 @@ function CharacterSheet() {
 			miscReflex: savingThrowMisc.reflex,
 			miscWill: savingThrowMisc.will,
 
-			// AbilitiesBlock, WeaponsBlock, and ArmorBlock registers will be done in their components since they use useFieldArray.
-			// abilities: abilitiesArray,
+			// AttackBonusesBlock registers
+
+			// Weapon/Armor Proficiencies Block registers
+			weaponProficiencies: getValue(`WeaponProficiencies${characterID}`),
+			armorProficiencies: getValue(`ArmorProficiencies${characterID}`),
+
+			// LanguagesBlock registers
+			languages: getValue(`Languages${characterID}`),
+
+			// AttackBonusesBlock registers
+			meleeMisc: attackBonuses.melee,
+			rangedMisc: attackBonuses.ranged,
+			thrownMisc: attackBonuses.thrown,
+
+			// ExperienceBlock registers
+			xpEarned: experience.earned,
+			nextLevel: experience.needed,
+
+			// AbilitiesBlock, WeaponsBlock, and ArmorBlock registers will be done in their components since they use add and delete dynamically.
 		};
 
 		// Reset the defaultValues.
@@ -203,7 +227,6 @@ function CharacterSheet() {
 		tempSP,
 		tempHP,
 		tempRP,
-		// abilitiesArray,
 	]);
 
 	// useEffect to save data to local storage.
@@ -327,8 +350,22 @@ function CharacterSheet() {
 				will: data.miscWill,
 			});
 
-			// AbilitiesBlock registers
-			// updateAbilityArray(data.abilities);
+			// AttackBonusesBlock register
+			updateAttackBonuses({
+				melee: data.meleeMisc,
+				ranged: data.rangedMisc,
+				thrown: data.thrownMisc,
+			});
+
+			// Weapon/Armor Proficiencies Block registers
+			setValue(`WeaponProficiencies${characterID}`, data.weaponProficiencies);
+			setValue(`ArmorProficiencies${characterID}`, data.armorProficiencies);
+
+			// LanguagesBlock registers
+			setValue(`Languages${characterID}`, data.languages);
+
+			// ExperienceBlock registers
+			updateExperience({ earned: data.xpEarned, needed: data.nextLevel });
 		});
 		return () => subscription.unsubscribe();
 	}, [
@@ -360,8 +397,6 @@ function CharacterSheet() {
 		updateTempHP,
 		tempRP,
 		updateTempRP,
-		// abilitiesArray,
-		// updateAbilityArray,
 	]);
 
 	const characterInfoDynamicObject: CharacterBasicInfoDynamicType = useMemo(
@@ -413,7 +448,8 @@ function CharacterSheet() {
 				armorMiscMods: armorMiscMods,
 
 				savingThrowMisc: savingThrowMisc,
-				// abilitiesArray: abilitiesArray,
+
+				attackBonuses: attackBonuses,
 			}}
 		>
 			<FormProvider {...methods}>

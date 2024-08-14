@@ -39,7 +39,19 @@ export function useAbilities() {
 		const filteredArray = abilitiesArray.filter(
 			(ability) => abilitiesArray.indexOf(ability) != index
 		);
-		updateAbilityArray(filteredArray);
+		if (filteredArray.length > 0) {
+			updateAbilityArray(filteredArray);
+		} else {
+			updateAbilityArray([
+				{
+					abilityName: '',
+					abilityDescription: '',
+					abilitySource: '',
+					actionType: [''],
+					usesResolve: 0,
+				},
+			]);
+		}
 	}
 
 	return {

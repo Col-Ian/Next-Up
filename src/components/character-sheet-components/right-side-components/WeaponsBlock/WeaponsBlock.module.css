@@ -4,7 +4,6 @@
 
 .weaponsBlockContent {
 	position: absolute;
-	background-color: white;
 	z-index: 4;
 	max-width: 520px;
 	min-width: 520px;
@@ -22,6 +21,7 @@
 	border-right: 2px solid hsl(206, 61%, 80%);
 	padding-top: 5px;
 	padding-bottom: 2px;
+	background-color: rgb(241, 241, 241);
 }
 
 .individualWeapon {
@@ -37,17 +37,20 @@
 	display: grid;
 	grid-template-columns: 1fr 0fr 0.6fr 0fr 0.1fr;
 	border-bottom: 2px solid black;
+	padding-left: 2px;
 }
 
 .middleRow {
 	display: grid;
 	grid-template-columns: 0.4fr 1fr 0.7fr 0.7fr;
 	border-bottom: 2px solid black;
+	padding-left: 2px;
 }
 
 .bottomRow {
 	display: grid;
 	grid-template-columns: 0.8fr 0fr 0.3fr 0fr 1fr;
+	padding-left: 2px;
 }
 
 .numberInput {
