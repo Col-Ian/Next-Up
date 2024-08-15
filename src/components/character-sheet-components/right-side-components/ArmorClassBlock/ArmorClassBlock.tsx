@@ -43,7 +43,12 @@ function ArmorClassBlock() {
 						<div className={styles.inputLabel}>TOTAL</div>
 						<input
 							type='number'
-							value={10 + maxDexBonus.current + armorMiscMods.energy}
+							value={
+								10 +
+								maxDexBonus.current +
+								armorMiscMods.energy +
+								armorEquipped.armorEAC
+							}
 							readOnly
 						/>
 					</div>
@@ -85,7 +90,12 @@ function ArmorClassBlock() {
 					<div className={styles.inputDiv}>
 						<input
 							type='number'
-							value={10 + maxDexBonus.current + armorMiscMods.kenetic}
+							value={
+								10 +
+								maxDexBonus.current +
+								armorMiscMods.kenetic +
+								armorEquipped.armorKAC
+							}
 							readOnly
 						/>
 					</div>

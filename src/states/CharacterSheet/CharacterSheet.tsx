@@ -47,6 +47,7 @@ export const CharacterSheetContext = createContext<{
 	characterInfoObject: CharacterInfoObjectType;
 	characterInfoDynamicObject: CharacterBasicInfoDynamicType;
 	armorEquipped: ArmorType;
+	updateArmorEquipped: (newArmorEquipped: ArmorType) => void;
 	armorMiscMods: {
 		energy: number;
 		kenetic: number;
@@ -397,6 +398,8 @@ function CharacterSheet() {
 		updateTempHP,
 		tempRP,
 		updateTempRP,
+		armorEquipped,
+		updateArmorEquipped,
 	]);
 
 	const characterInfoDynamicObject: CharacterBasicInfoDynamicType = useMemo(
@@ -445,6 +448,7 @@ function CharacterSheet() {
 				characterInfoDynamicObject: characterInfoDynamicObject,
 
 				armorEquipped: armorEquipped,
+				updateArmorEquipped: updateArmorEquipped,
 				armorMiscMods: armorMiscMods,
 
 				savingThrowMisc: savingThrowMisc,

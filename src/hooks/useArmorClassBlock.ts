@@ -24,6 +24,7 @@ export function useArmorClassBlock() {
 		(newArmorEquipped: ArmorType) => {
 			setArmorEquipped(newArmorEquipped);
 			setValue(`EquippedArmor${characterID}`, newArmorEquipped);
+			console.log("It's been updated");
 		},
 		[characterID]
 	);
