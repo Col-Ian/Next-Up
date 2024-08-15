@@ -2,28 +2,18 @@ import SheetLabel from '../../labels/SheetLabel';
 import styles from './AbilitiesBlock.module.css';
 import { useEffect } from 'react';
 import AddButtonLabel from '../../../character-creation-components/AddButtonLabel/AddButtonLabel';
-import {
-	FieldValues,
-	useFieldArray,
-	useForm,
-	// useFormContext,
-} from 'react-hook-form';
+import { FieldValues, useFieldArray, useForm } from 'react-hook-form';
 import { useAbilities } from '../../../../hooks/useAbilities';
-import { useCurrentID } from '../../../../hooks/useCurrentID';
 
 type FormValues = FieldValues & {
 	name: AbilityListTypes[];
 };
 
-// Dylan: Updates dynamically, but doesn't change between characters.
-
 function AbilitiesBlockTemp() {
-	const { currentID } = useCurrentID();
-
-	const { abilitiesArray, updateAbilityArray } = useAbilities();
+	const { abilitiesArray, updateAbilityArray, currentCharacterID } =
+		useAbilities();
 
 	const { control, register, watch, reset } = useForm<FormValues>();
-	// const { control, register } = useFormContext<FormValues>();
 
 	const { fields, append, remove } = useFieldArray<
 		FormValues,
@@ -41,14 +31,29 @@ function AbilitiesBlockTemp() {
 		};
 
 		reset({ ...defaultValues });
-	}, [currentID]);
+	}, [currentCharacterID]);
 
 	useEffect(() => {
 		const subscription = watch((data) => {
 			updateAbilityArray(data.abilities);
 		});
 		return () => subscription.unsubscribe();
-	}, [watch, currentID]);
+	}, [watch, currentCharacterID]);
+
+	function handleRemove(index: number) {
+		if (abilitiesArray.length > 1) {
+			remove(index);
+		} else {
+			remove(index);
+			append({
+				abilityName: '',
+				abilityDescription: '',
+				abilitySource: '',
+				actionType: [''],
+				usesResolve: 0,
+			});
+		}
+	}
 
 	return (
 		<div className={styles.parentDiv}>
@@ -73,7 +78,10 @@ function AbilitiesBlockTemp() {
 				{fields.map((field, index) => {
 					return (
 						<div className={styles.individualAbility} key={field.id}>
-							<div className={styles.delete} onClick={() => remove(index)}>
+							<div
+								className={styles.delete}
+								onClick={() => handleRemove(index)}
+							>
 								&#128465;
 							</div>
 							<div className={styles.topRow}>
@@ -81,7 +89,6 @@ function AbilitiesBlockTemp() {
 									<input
 										type='text'
 										{...register(`abilities.${index}.abilityName`)}
-										// value={abilitiesArray[index].abilityName}
 										spellCheck={false}
 										className={styles.textInput}
 									/>
@@ -91,7 +98,6 @@ function AbilitiesBlockTemp() {
 									<input
 										type='text'
 										{...register(`abilities.${index}.abilitySource`)}
-										// defaultValue={abilitiesArray[index].abilitySource}
 										spellCheck={false}
 										className={styles.textInput}
 									/>
@@ -104,7 +110,6 @@ function AbilitiesBlockTemp() {
 									<input
 										type='number'
 										{...register(`abilities.${index}.usesResolve`)}
-										// defaultValue={abilitiesArray[index].usesResolve}
 										className={styles.numberInput}
 									/>
 								</div>
@@ -112,7 +117,6 @@ function AbilitiesBlockTemp() {
 							<div className={styles.abilityDescription}>
 								<textarea
 									{...register(`abilities.${index}.abilityDescription`)}
-									// defaultValue={abilitiesArray[index].abilityDescription}
 									className={styles.abilityTextarea}
 									spellCheck={false}
 								/>

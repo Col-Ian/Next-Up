@@ -1,39 +1,58 @@
 import SheetLabel from '../../labels/SheetLabel';
 import styles from './AbilitiesBlock.module.css';
-import AddButtonLabel from '../../../character-creation-components/AddButtonLabel/AddButtonLabel';
-import { useForm } from 'react-hook-form';
 import { useEffect } from 'react';
+import AddButtonLabel from '../../../character-creation-components/AddButtonLabel/AddButtonLabel';
+import { FieldValues, useFieldArray, useForm } from 'react-hook-form';
 import { useAbilities } from '../../../../hooks/useAbilities';
-import { useCurrentID } from '../../../../hooks/useCurrentID';
 
-function AbilitiesBlock() {
-	const {
-		abilitiesArray,
-		updateAbilityArray,
-		handleAddAbility,
-		handleDeleteAbility,
-	} = useAbilities();
+type FormValues = FieldValues & {
+	name: AbilityListTypes[];
+};
 
-	const { currentID } = useCurrentID();
+function AbilitiesBlockTemp() {
+	const { abilitiesArray, updateAbilityArray, currentCharacterID } =
+		useAbilities();
 
-	const { register, watch, reset } = useForm();
+	const { control, register, watch, reset } = useForm<FormValues>();
+
+	const { fields, append, remove } = useFieldArray<
+		FormValues,
+		'abilities',
+		'id'
+	>({
+		control,
+		name: 'abilities',
+		keyName: 'id',
+	});
 
 	useEffect(() => {
-		reset(abilitiesArray);
-	}, [currentID]);
+		let defaultValues = {
+			abilities: abilitiesArray,
+		};
+
+		reset({ ...defaultValues });
+	}, [currentCharacterID]);
 
 	useEffect(() => {
 		const subscription = watch((data) => {
 			updateAbilityArray(data.abilities);
 		});
 		return () => subscription.unsubscribe();
-	}, [watch, currentID]);
+	}, [watch, currentCharacterID]);
 
-	function handleAddWithScroll() {
-		handleAddAbility();
-
-		const scrollTarget = document.getElementById('scrollTargetAbilities');
-		scrollTarget?.scrollIntoView({ behavior: 'smooth' });
+	function handleRemove(index: number) {
+		if (abilitiesArray.length > 1) {
+			remove(index);
+		} else {
+			remove(index);
+			append({
+				abilityName: '',
+				abilityDescription: '',
+				abilitySource: '',
+				actionType: [''],
+				usesResolve: 0,
+			});
+		}
 	}
 
 	return (
@@ -43,24 +62,25 @@ function AbilitiesBlock() {
 				<div
 					className={styles.addAbilityButton}
 					onClick={() => {
-						handleAddWithScroll();
+						append({
+							abilityName: '',
+							abilityDescription: '',
+							abilitySource: '',
+							actionType: [''],
+							usesResolve: 0,
+						});
 					}}
 				>
 					<AddButtonLabel itemToAdd='ABILITY' />
 				</div>
 			</div>
-			<div className={styles.abilitiesBlockContent}>
-				{abilitiesArray.map((ability, index) => {
+			<div className={styles.abilitiesBlockTempContent}>
+				{fields.map((field, index) => {
 					return (
-						<div
-							className={styles.individualAbility}
-							key={`${ability.abilityName}${index}`}
-						>
+						<div className={styles.individualAbility} key={field.id}>
 							<div
 								className={styles.delete}
-								onClick={() => {
-									handleDeleteAbility(index);
-								}}
+								onClick={() => handleRemove(index)}
 							>
 								&#128465;
 							</div>
@@ -69,10 +89,8 @@ function AbilitiesBlock() {
 									<input
 										type='text'
 										{...register(`abilities.${index}.abilityName`)}
-										defaultValue={ability.abilityName}
 										spellCheck={false}
 										className={styles.textInput}
-										placeholder='ABILITY NAME'
 									/>
 								</div>
 								<div className={styles.verticalBar} />
@@ -80,10 +98,8 @@ function AbilitiesBlock() {
 									<input
 										type='text'
 										{...register(`abilities.${index}.abilitySource`)}
-										defaultValue={ability.abilitySource}
 										spellCheck={false}
 										className={styles.textInput}
-										placeholder='ABILITY SOURCE'
 									/>
 								</div>
 								<div className={styles.verticalBar} />
@@ -94,7 +110,6 @@ function AbilitiesBlock() {
 									<input
 										type='number'
 										{...register(`abilities.${index}.usesResolve`)}
-										defaultValue={ability.usesResolve}
 										className={styles.numberInput}
 									/>
 								</div>
@@ -102,7 +117,6 @@ function AbilitiesBlock() {
 							<div className={styles.abilityDescription}>
 								<textarea
 									{...register(`abilities.${index}.abilityDescription`)}
-									defaultValue={ability.abilityDescription}
 									className={styles.abilityTextarea}
 									spellCheck={false}
 								/>
@@ -110,10 +124,9 @@ function AbilitiesBlock() {
 						</div>
 					);
 				})}
-				<div id='scrollTargetAbilities' />
 			</div>
 		</div>
 	);
 }
 
-export default AbilitiesBlock;
+export default AbilitiesBlockTemp;

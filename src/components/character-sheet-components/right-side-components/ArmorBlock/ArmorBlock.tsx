@@ -3,30 +3,57 @@ import SheetLabel from '../../labels/SheetLabel';
 import styles from './ArmorBlock.module.css';
 import ExpandComponent from '../../ExpandComponent/ExpandComponent';
 import { useArmor } from '../../../../hooks/useArmor';
-import { useCurrentID } from '../../../../hooks/useCurrentID';
-import { useForm } from 'react-hook-form';
+import { FieldValues, useFieldArray, useForm } from 'react-hook-form';
 import AddButtonLabel from '../../../character-creation-components/AddButtonLabel/AddButtonLabel';
 
+type FormValues = FieldValues & {
+	name: ArmorType[];
+};
+
 function ArmorBlock() {
-	const { armorArray, updateArmorArray, handleAddArmor, handleDeleteArmor } =
-		useArmor();
+	const { armorArray, updateArmorArray, currentCharacterID } = useArmor();
 
-	const { currentID } = useCurrentID();
+	const { control, register, watch, reset } = useForm<FormValues>();
 
-	const { register, watch, reset } = useForm();
+	const { fields, append, remove } = useFieldArray<FormValues, 'armors', 'id'>({
+		control,
+		name: 'armors',
+		keyName: 'id',
+	});
 
 	const [showArray, setShowArray] = useState<boolean>(false);
 
 	useEffect(() => {
-		reset(armorArray);
-	}, [currentID]);
+		let defaultValues = {
+			armors: armorArray,
+		};
+		reset({ ...defaultValues });
+	}, [currentCharacterID]);
 
 	useEffect(() => {
 		const subscription = watch((data) => {
 			updateArmorArray(data.armors);
 		});
 		return () => subscription.unsubscribe();
-	}, [watch, currentID, armorArray, updateArmorArray]);
+	}, [watch, currentCharacterID]);
+
+	function handleRemove(index: number) {
+		if (armorArray.length > 1) {
+			remove(index);
+		} else {
+			remove(index);
+			append({
+				armorName: '',
+				armorType: '',
+				armorProficiency: '',
+				armorLevel: 0,
+				armorEAC: 0,
+				armorKAC: 0,
+				maxDexBonus: 0,
+				isEquipped: false,
+			});
+		}
+	}
 
 	// Temp function to mimic what will be final
 	function handleEquip(index: number) {
@@ -43,12 +70,20 @@ function ArmorBlock() {
 		<div className={styles.parentDiv}>
 			<div className={styles.labelDiv}>
 				<SheetLabel sheetLabelText='ARMOR' />
-				{/* List will be too small to add a scroll. It looks weird. */}
 				{showArray ? (
 					<div
 						className={styles.addAbilityButton}
 						onClick={() => {
-							handleAddArmor();
+							append({
+								armorName: '',
+								armorType: '',
+								armorProficiency: '',
+								armorLevel: 0,
+								armorEAC: 0,
+								armorKAC: 0,
+								maxDexBonus: 0,
+								isEquipped: false,
+							});
 						}}
 					>
 						<AddButtonLabel itemToAdd='ARMOR' />
@@ -58,15 +93,14 @@ function ArmorBlock() {
 			<div className={styles.armorBlockContent}>
 				{showArray ? (
 					<div className={styles.armorWrapper}>
-						{armorArray.map((armor: ArmorType, index: number) => {
+						{fields.map((armor, index) => {
 							return (
-								<div
-									className={styles.individualArmor}
-									key={`${armorArray[index].armorName}${index}`}
-								>
+								<div className={styles.individualArmor} key={armor.id}>
 									<div
 										className={styles.delete}
-										onClick={() => handleDeleteArmor(index)}
+										onClick={() => {
+											handleRemove(index);
+										}}
 									>
 										&#128465;
 									</div>
@@ -78,7 +112,7 @@ function ArmorBlock() {
 												className={styles.textInput}
 												spellCheck={false}
 												{...register(`armors.${index}.armorName`)}
-												defaultValue={armor.armorName}
+												// defaultValue={armor.armorName}
 											/>
 										</div>
 										<div className={styles.verticalBar} />
@@ -89,7 +123,7 @@ function ArmorBlock() {
 												className={styles.textInput}
 												spellCheck={false}
 												{...register(`armors.${index}.armorType`)}
-												defaultValue={armor.armorType}
+												// defaultValue={armor.armorType}
 											/>
 										</div>
 										<div className={styles.verticalBar} />
@@ -99,7 +133,7 @@ function ArmorBlock() {
 												type='number'
 												className={styles.numberInput}
 												{...register(`armors.${index}.armorLevel`)}
-												defaultValue={armor.armorLevel}
+												// defaultValue={armor.armorLevel}
 											/>
 										</div>
 									</div>
@@ -111,7 +145,7 @@ function ArmorBlock() {
 												className={styles.checkboxInput}
 												onClick={() => handleEquip(index)}
 												{...register(`armors.${index}.isEquipped`)}
-												defaultChecked={armor.isEquipped ? true : false}
+												// checked={armorArray[index].isEquipped ? true : false}
 											/>
 										</div>
 										<div className={styles.inputDiv}>
@@ -120,7 +154,7 @@ function ArmorBlock() {
 												type='number'
 												className={styles.numberInput}
 												{...register(`armors.${index}.armorEAC`)}
-												defaultValue={armor.armorEAC}
+												// defaultValue={armor.armorEAC}
 											/>
 										</div>
 										<div className={styles.inputDiv}>
@@ -129,7 +163,7 @@ function ArmorBlock() {
 												type='number'
 												className={styles.numberInput}
 												{...register(`armors.${index}.armorKAC`)}
-												defaultValue={armor.armorKAC}
+												// defaultValue={armor.armorKAC}
 											/>
 										</div>
 										<div className={styles.inputDiv}>
@@ -138,7 +172,7 @@ function ArmorBlock() {
 												type='number'
 												className={styles.numberInput}
 												{...register(`armors.${index}.maxDexBonus`)}
-												defaultValue={armor.maxDexBonus}
+												// defaultValue={armor.maxDexBonus}
 											/>
 										</div>
 										<div className={styles.inputDiv}>
@@ -148,7 +182,7 @@ function ArmorBlock() {
 												className={styles.textInput}
 												spellCheck={false}
 												{...register(`armors.${index}.armorProficiency`)}
-												defaultValue={armor.armorProficiency}
+												// defaultValue={armor.armorProficiency}
 											/>
 										</div>
 									</div>

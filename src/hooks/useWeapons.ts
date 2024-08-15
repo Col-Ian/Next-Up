@@ -10,8 +10,11 @@ export function useWeapons() {
 		getValue(`Weapons${characterID}`)
 	);
 
+	const [currentCharacterID, setCurrentCharacterID] = useState(characterID);
+
 	useEffect(() => {
 		setWeaponsArray(getValue(`Weapons${characterID}`));
+		setCurrentCharacterID(characterID);
 	}, [characterID]);
 
 	const updateWeaponsArray = useCallback(
@@ -22,54 +25,9 @@ export function useWeapons() {
 		[characterID]
 	);
 
-	function handleAddWeapon() {
-		updateWeaponsArray([
-			...weaponsArray,
-			{
-				weaponName: '',
-				weaponType: '',
-				weaponRange: '',
-				weaponCritical: '',
-				weaponAmmoTotal: 0,
-				weaponAmmoUsage: 0,
-				weaponProficiency: '',
-				weaponLevel: 0,
-				weaponToHit: 0,
-				weaponDamageType: '',
-				weaponDamageRoll: '',
-			},
-		]);
-	}
-
-	function handleDeleteWeapon(index: number) {
-		const filteredArray = weaponsArray.filter(
-			(weapon) => weaponsArray.indexOf(weapon) != index
-		);
-		if (filteredArray.length > 0) {
-			updateWeaponsArray(filteredArray);
-		} else {
-			updateWeaponsArray([
-				{
-					weaponName: '',
-					weaponType: '',
-					weaponRange: '',
-					weaponCritical: '',
-					weaponAmmoTotal: 0,
-					weaponAmmoUsage: 0,
-					weaponProficiency: '',
-					weaponLevel: 0,
-					weaponToHit: 0,
-					weaponDamageType: '',
-					weaponDamageRoll: '',
-				},
-			]);
-		}
-	}
-
 	return {
 		weaponsArray,
 		updateWeaponsArray,
-		handleAddWeapon,
-		handleDeleteWeapon,
+		currentCharacterID,
 	};
 }

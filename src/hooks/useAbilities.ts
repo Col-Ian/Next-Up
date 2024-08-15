@@ -10,8 +10,11 @@ export function useAbilities() {
 		getValue(`Abilities${characterID}`)
 	);
 
+	const [currentCharacterID, setCurrentCharacterID] = useState(characterID);
+
 	useEffect(() => {
 		setAbilitiesArray(getValue(`Abilities${characterID}`));
+		setCurrentCharacterID(characterID);
 	}, [characterID]);
 
 	const updateAbilityArray = useCallback(
@@ -22,42 +25,9 @@ export function useAbilities() {
 		[characterID]
 	);
 
-	function handleAddAbility() {
-		updateAbilityArray([
-			...abilitiesArray,
-			{
-				abilityName: '',
-				abilityDescription: '',
-				abilitySource: '',
-				actionType: [''],
-				usesResolve: 0,
-			},
-		]);
-	}
-
-	function handleDeleteAbility(index: number) {
-		const filteredArray = abilitiesArray.filter(
-			(ability) => abilitiesArray.indexOf(ability) != index
-		);
-		if (filteredArray.length > 0) {
-			updateAbilityArray(filteredArray);
-		} else {
-			updateAbilityArray([
-				{
-					abilityName: '',
-					abilityDescription: '',
-					abilitySource: '',
-					actionType: [''],
-					usesResolve: 0,
-				},
-			]);
-		}
-	}
-
 	return {
 		abilitiesArray,
 		updateAbilityArray,
-		handleAddAbility,
-		handleDeleteAbility,
+		currentCharacterID,
 	};
 }

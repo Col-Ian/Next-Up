@@ -2,46 +2,85 @@ import { useEffect, useState } from 'react';
 import SheetLabel from '../../labels/SheetLabel';
 import styles from './WeaponsBlock.module.css';
 import ExpandComponent from '../../ExpandComponent/ExpandComponent';
-import { useCurrentID } from '../../../../hooks/useCurrentID';
 import { useWeapons } from '../../../../hooks/useWeapons';
-import { useForm } from 'react-hook-form';
+import { FieldValues, useFieldArray, useForm } from 'react-hook-form';
 import AddButtonLabel from '../../../character-creation-components/AddButtonLabel/AddButtonLabel';
 
+type FormValues = FieldValues & {
+	name: WeaponType[];
+};
+
 function WeaponsBlock() {
-	const {
-		weaponsArray,
-		updateWeaponsArray,
-		handleAddWeapon,
-		handleDeleteWeapon,
-	} = useWeapons();
+	const { weaponsArray, updateWeaponsArray, currentCharacterID } = useWeapons();
 
-	const { currentID } = useCurrentID();
+	const { control, register, watch, reset } = useForm<FormValues>();
 
-	const { register, watch, reset } = useForm();
+	const { fields, append, remove } = useFieldArray<FormValues, 'weapons', 'id'>(
+		{
+			control,
+			name: 'weapons',
+			keyName: 'id',
+		}
+	);
 
 	const [showArray, setShowArray] = useState<boolean>(false);
 
 	useEffect(() => {
-		reset(weaponsArray);
-	}, [currentID]);
+		let defaultValues = {
+			weapons: weaponsArray,
+		};
+		reset({ ...defaultValues });
+	}, [currentCharacterID]);
 
 	useEffect(() => {
 		const subscription = watch((data) => {
 			updateWeaponsArray(data.weapons);
 		});
 		return () => subscription.unsubscribe();
-	}, [watch, currentID]);
+	}, [watch, currentCharacterID]);
+
+	function handleRemove(index: number) {
+		if (weaponsArray.length > 1) {
+			remove(index);
+		} else {
+			remove(index);
+			append({
+				weaponName: '',
+				weaponType: '',
+				weaponRange: '',
+				weaponCritical: '',
+				weaponAmmoTotal: 0,
+				weaponAmmoUsage: 0,
+				weaponProficiency: '',
+				weaponLevel: 0,
+				weaponToHit: 0,
+				weaponDamageType: '',
+				weaponDamageRoll: '',
+			});
+		}
+	}
 
 	return (
 		<div className={styles.parentDiv}>
 			<div className={styles.labelDiv}>
 				<SheetLabel sheetLabelText='WEAPONS' />
-				{/* List will be too small to add a scroll. It looks weird. */}
 				{showArray ? (
 					<div
 						className={styles.addAbilityButton}
 						onClick={() => {
-							handleAddWeapon();
+							append({
+								weaponName: '',
+								weaponType: '',
+								weaponRange: '',
+								weaponCritical: '',
+								weaponAmmoTotal: 0,
+								weaponAmmoUsage: 0,
+								weaponProficiency: '',
+								weaponLevel: 0,
+								weaponToHit: 0,
+								weaponDamageType: '',
+								weaponDamageRoll: '',
+							});
 						}}
 					>
 						<AddButtonLabel itemToAdd='WEAPON' />
@@ -51,16 +90,13 @@ function WeaponsBlock() {
 			<div className={styles.weaponsBlockContent}>
 				{showArray ? (
 					<div className={styles.weaponsWrapper}>
-						{weaponsArray.map((weapon: WeaponType, index: number) => {
+						{fields.map((weapon, index) => {
 							return (
-								<div
-									className={styles.individualWeapon}
-									key={`${weapon.weaponName}${index}`}
-								>
+								<div className={styles.individualWeapon} key={weapon.id}>
 									<div
 										className={styles.delete}
 										onClick={() => {
-											handleDeleteWeapon(index);
+											handleRemove(index);
 										}}
 									>
 										&#128465;
@@ -73,7 +109,6 @@ function WeaponsBlock() {
 												className={styles.textInput}
 												spellCheck={false}
 												{...register(`weapons.${index}.weaponName`)}
-												defaultValue={weapon.weaponName}
 											/>
 										</div>
 										<div className={styles.verticalBar} />
@@ -84,7 +119,6 @@ function WeaponsBlock() {
 												className={styles.textInput}
 												spellCheck={false}
 												{...register(`weapons.${index}.weaponType`)}
-												defaultValue={weapon.weaponType}
 											/>
 										</div>
 										<div className={styles.verticalBar} />
@@ -94,7 +128,6 @@ function WeaponsBlock() {
 												type='number'
 												className={styles.numberInput}
 												{...register(`weapons.${index}.weaponLevel`)}
-												defaultValue={weapon.weaponLevel}
 											/>
 										</div>
 									</div>
@@ -105,7 +138,6 @@ function WeaponsBlock() {
 												type='number'
 												className={styles.numberInput}
 												{...register(`weapons.${index}.weaponToHit`)}
-												defaultValue={weapon.weaponToHit}
 											/>
 										</div>
 										<div className={styles.inputDiv}>
@@ -115,7 +147,6 @@ function WeaponsBlock() {
 												className={styles.textInput}
 												spellCheck={false}
 												{...register(`weapons.${index}.weaponDamageRoll`)}
-												defaultValue={weapon.weaponDamageRoll}
 											/>
 										</div>
 										<div className={styles.inputDiv}>
@@ -125,7 +156,6 @@ function WeaponsBlock() {
 												className={styles.textInput}
 												spellCheck={false}
 												{...register(`weapons.${index}.weaponDamageType`)}
-												defaultValue={weapon.weaponDamageType}
 											/>
 										</div>
 										<div className={styles.inputDiv}>
@@ -135,7 +165,6 @@ function WeaponsBlock() {
 												className={styles.textInput}
 												spellCheck={false}
 												{...register(`weapons.${index}.weaponRange`)}
-												defaultValue={weapon.weaponRange}
 											/>
 										</div>
 									</div>
@@ -147,7 +176,6 @@ function WeaponsBlock() {
 												className={styles.textInput}
 												spellCheck={false}
 												{...register(`weapons.${index}.weaponCritical`)}
-												defaultValue={weapon.weaponCritical}
 											/>
 										</div>
 										<div className={styles.verticalBar} />
@@ -157,14 +185,12 @@ function WeaponsBlock() {
 												type='number'
 												className={styles.ammoInput}
 												{...register(`weapons.${index}.weaponAmmoTotal`)}
-												defaultValue={weapon.weaponAmmoTotal}
 											/>
 											<div className={styles.inputLabel}>USAGE</div>
 											<input
 												type='number'
 												className={styles.ammoInput}
 												{...register(`weapons.${index}.weaponAmmoUsage`)}
-												defaultValue={weapon.weaponAmmoUsage}
 											/>
 										</div>
 										<div className={styles.verticalBar} />
@@ -175,7 +201,6 @@ function WeaponsBlock() {
 												className={styles.textInput}
 												spellCheck={false}
 												{...register(`weapons.${index}.weaponProficiency`)}
-												defaultValue={weapon.weaponProficiency}
 											/>
 										</div>
 									</div>

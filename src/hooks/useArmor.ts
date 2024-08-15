@@ -10,8 +10,11 @@ export function useArmor() {
 		getValue(`Armor${characterID}`)
 	);
 
+	const [currentCharacterID, setCurrentCharacterID] = useState(characterID);
+
 	useEffect(() => {
 		setArmorArray(getValue(`Armor${characterID}`));
+		setCurrentCharacterID(characterID);
 	}, [characterID]);
 
 	const updateArmorArray = useCallback(
@@ -22,43 +25,5 @@ export function useArmor() {
 		[characterID]
 	);
 
-	function handleAddArmor() {
-		updateArmorArray([
-			...armorArray,
-			{
-				armorName: '',
-				armorType: '',
-				armorProficiency: '',
-				armorLevel: 0,
-				armorEAC: 0,
-				armorKAC: 0,
-				maxDexBonus: 0,
-				isEquipped: false,
-			},
-		]);
-	}
-
-	function handleDeleteArmor(index: number) {
-		const filteredArray = armorArray.filter(
-			(armor) => armorArray.indexOf(armor) != index
-		);
-		if (filteredArray.length > 0) {
-			updateArmorArray(filteredArray);
-		} else {
-			updateArmorArray([
-				{
-					armorName: '',
-					armorType: '',
-					armorProficiency: '',
-					armorLevel: 0,
-					armorEAC: 0,
-					armorKAC: 0,
-					maxDexBonus: 0,
-					isEquipped: false,
-				},
-			]);
-		}
-	}
-
-	return { armorArray, updateArmorArray, handleAddArmor, handleDeleteArmor };
+	return { armorArray, updateArmorArray, currentCharacterID };
 }
