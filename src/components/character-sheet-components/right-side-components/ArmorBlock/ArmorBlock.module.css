@@ -2,6 +2,27 @@
 	padding: 0;
 }
 
+.parentDiv:hover .addAbilityButton {
+	display: block;
+}
+
+.labelDiv {
+	display: flex;
+	flex-direction: row;
+}
+
+.addAbilityButton {
+	display: none;
+	margin: 4px;
+	align-content: end;
+	opacity: 0.3;
+}
+
+.addAbilityButton:hover {
+	opacity: 1;
+	cursor: pointer;
+}
+
 .armorBlockContent {
 	position: absolute;
 	z-index: 3;

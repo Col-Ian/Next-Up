@@ -12,7 +12,6 @@ body {
 
 .appParent {
 	display: flex;
-	/* flex-direction: row; */
 	flex-direction: column;
 }
 
@@ -77,15 +76,16 @@ input[type='text'] {
 <weight>: Use a value from 400 to 900 
 */
 
-/* .backgroundDiv::before{
-    content: '';
-    background-image: url('./assets/starfinder-pact-worlds.jpeg');
-    background-size: cover;
-    position: absolute;
-    top: 0px;
-    right: 0px;
-    bottom: 0px;
-    left: 0px;
-    opacity: 1;
-    transform: opacity 2s;
+/* .backgroundDiv {
+	content: '';
+	background-image: url('./assets/starfinder-pact-worlds.jpeg');
+	background-size: cover;
+	position: absolute;
+	background-attachment: fixed;
+	top: 0px;
+	right: 0px;
+	bottom: 0px;
+	left: 0px;
+	opacity: 1;
+	transform: opacity 2s;
 } */

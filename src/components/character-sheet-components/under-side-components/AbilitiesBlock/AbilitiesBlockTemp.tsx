@@ -46,11 +46,9 @@ function AbilitiesBlockTemp() {
 	useEffect(() => {
 		const subscription = watch((data) => {
 			updateAbilityArray(data.abilities);
-			console.log(data);
-			console.log(currentID);
 		});
 		return () => subscription.unsubscribe();
-	}, [currentID, watch]);
+	}, [watch, currentID]);
 
 	return (
 		<div className={styles.parentDiv}>

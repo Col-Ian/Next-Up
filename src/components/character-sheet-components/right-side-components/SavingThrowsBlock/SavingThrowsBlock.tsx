@@ -46,7 +46,6 @@ function SavingThrowsBlock() {
 			if (save === SavingThrow) {
 				savingThrowBonus = goodSaveBonus[getValue(`Level${characterID}`)];
 				savingThrowFound = true;
-				console.log('Good Save');
 			}
 		});
 
@@ -56,7 +55,6 @@ function SavingThrowsBlock() {
 			].classDefaults.badSavingThrows.forEach((save) => {
 				if (save === SavingThrow) {
 					savingThrowBonus = badSaveBonus[getValue(`Level${characterID}`)];
-					console.log('Bad Save');
 				}
 			});
 		}

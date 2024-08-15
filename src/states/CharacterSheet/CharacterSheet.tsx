@@ -463,27 +463,29 @@ function CharacterSheet() {
 					// Once character has confirmed choices, move on to sheet.
 					<div className={styles.parentDiv}>
 						<div className={styles.characterSheetMainDiv}>
-							<div className={styles.characterInfoDescriptionBlock}>
-								<div className={styles.characterInfoBlock}>
-									<CharacterInfo />
-								</div>
+							<div className={styles.characterSheetWrapper}>
+								<div className={styles.characterInfoDescriptionBlock}>
+									<div className={styles.characterInfoBlock}>
+										<CharacterInfo />
+									</div>
 
-								<div className={styles.characterDescriptionBlock}>
-									<DescriptionBlock />
+									<div className={styles.characterDescriptionBlock}>
+										<DescriptionBlock />
+									</div>
 								</div>
-							</div>
-							<div className={styles.statArea}>
-								<div className={styles.leftSide}>
-									<LeftSide />
-								</div>
+								<div className={styles.statArea}>
+									<div className={styles.leftSide}>
+										<LeftSide />
+									</div>
 
-								<div className={styles.rightSide}>
-									<RightSide />
+									<div className={styles.rightSide}>
+										<RightSide />
+									</div>
 								</div>
-							</div>
-							<div className={styles.underWrapper}>
-								<div className={styles.underSide}>
-									<UnderSide />
+								<div className={styles.underWrapper}>
+									<div className={styles.underSide}>
+										<UnderSide />
+									</div>
 								</div>
 							</div>
 						</div>

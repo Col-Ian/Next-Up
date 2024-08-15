@@ -29,6 +29,13 @@ function AbilitiesBlock() {
 		return () => subscription.unsubscribe();
 	}, [watch, currentID]);
 
+	function handleAddWithScroll() {
+		handleAddAbility();
+
+		const scrollTarget = document.getElementById('scrollTargetAbilities');
+		scrollTarget?.scrollIntoView({ behavior: 'smooth' });
+	}
+
 	return (
 		<div className={styles.parentDiv}>
 			<div className={styles.labelDiv}>
@@ -36,7 +43,7 @@ function AbilitiesBlock() {
 				<div
 					className={styles.addAbilityButton}
 					onClick={() => {
-						handleAddAbility();
+						handleAddWithScroll();
 					}}
 				>
 					<AddButtonLabel itemToAdd='ABILITY' />
@@ -62,7 +69,7 @@ function AbilitiesBlock() {
 									<input
 										type='text'
 										{...register(`abilities.${index}.abilityName`)}
-										defaultValue={abilitiesArray[index].abilityName}
+										defaultValue={ability.abilityName}
 										spellCheck={false}
 										className={styles.textInput}
 										placeholder='ABILITY NAME'
@@ -73,7 +80,7 @@ function AbilitiesBlock() {
 									<input
 										type='text'
 										{...register(`abilities.${index}.abilitySource`)}
-										defaultValue={abilitiesArray[index].abilitySource}
+										defaultValue={ability.abilitySource}
 										spellCheck={false}
 										className={styles.textInput}
 										placeholder='ABILITY SOURCE'
@@ -87,7 +94,7 @@ function AbilitiesBlock() {
 									<input
 										type='number'
 										{...register(`abilities.${index}.usesResolve`)}
-										defaultValue={abilitiesArray[index].usesResolve}
+										defaultValue={ability.usesResolve}
 										className={styles.numberInput}
 									/>
 								</div>
@@ -95,7 +102,7 @@ function AbilitiesBlock() {
 							<div className={styles.abilityDescription}>
 								<textarea
 									{...register(`abilities.${index}.abilityDescription`)}
-									defaultValue={abilitiesArray[index].abilityDescription}
+									defaultValue={ability.abilityDescription}
 									className={styles.abilityTextarea}
 									spellCheck={false}
 								/>
@@ -103,6 +110,7 @@ function AbilitiesBlock() {
 						</div>
 					);
 				})}
+				<div id='scrollTargetAbilities' />
 			</div>
 		</div>
 	);
