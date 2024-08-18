@@ -1,5 +1,5 @@
 import { useContext } from 'react';
-import SheetLabel from '../../labels/SheetLabel';
+import SheetLabel from '../../labels/BlueLabel/SheetLabel';
 import styles from './InitiativeBlock.module.css';
 import { CharacterSheetContext } from '../../../../states/CharacterSheet/CharacterSheet';
 import { useFormContext } from 'react-hook-form';

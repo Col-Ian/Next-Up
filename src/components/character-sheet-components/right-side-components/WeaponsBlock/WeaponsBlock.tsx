@@ -1,10 +1,10 @@
 import { useEffect, useState } from 'react';
-import SheetLabel from '../../labels/SheetLabel';
+import SheetLabel from '../../labels/BlueLabel/SheetLabel';
 import styles from './WeaponsBlock.module.css';
 import ExpandComponent from '../../ExpandComponent/ExpandComponent';
 import { useWeapons } from '../../../../hooks/useWeapons';
 import { FieldValues, useFieldArray, useForm } from 'react-hook-form';
-import AddButtonLabel from '../../../character-creation-components/AddButtonLabel/AddButtonLabel';
+import AddButtonLabel from '../../AddButtonLabel/AddButtonLabel';
 
 type FormValues = FieldValues & {
 	name: WeaponType[];

@@ -1,23 +1,42 @@
 .plusCircle {
-  font-weight: bold;
-  font-size: 30px;
+	font-weight: bold;
+	font-size: 30px;
+}
+
+.navBarItem {
+	padding: 4px;
 }
 
 .navBarItem a {
-  text-decoration: none;
-  color: rgb(59, 4, 47);
+	text-decoration: none;
+	color: hsl(206, 71%, 9%);
 }
 .navBarItem a:hover {
-  color: rgba(59, 4, 47, 0.555);
+	color: hsl(206, 71%, 9%, 0.555);
 }
 
 .createCharacter a {
-  color: rgb(179, 27, 0);
+	color: rgb(179, 27, 0);
+}
+
+.createCharacter a:hover {
+	color: rgba(179, 27, 0, 0.555);
 }
 
 .navBarParent {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
+	text-align: center;
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
+}
+
+@media screen and (min-width: 1480px) {
+	.navBarParent {
+		max-width: 170px;
+		overflow: hidden;
+		display: flex;
+		flex-direction: column;
+		text-overflow: ellipsis;
+	}
 }

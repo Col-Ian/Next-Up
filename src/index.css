@@ -1,6 +1,6 @@
 body {
-	/* background-image: url('./assets/starfinder-pact-worlds.jpeg'); */
-	/* background-color: #051626; */
+	background-image: url('./assets/starry-sky.jpg');
+	background-color: #051626;
 	background-position: center;
 	background-repeat: no-repeat;
 	background-size: cover;
@@ -16,16 +16,13 @@ body {
 }
 
 .outletBody {
-	width: 50%;
-	margin: auto;
+	display: flex;
 	justify-content: center;
-	align-items: center;
-	align-content: center;
 }
 
 .navBar {
 	margin: 0;
-	background-color: hsl(182, 48%, 62%);
+	background-color: hsl(206, 61%, 80%);
 	/* top: 0;
   left: 0;
   bottom: 0;
@@ -89,3 +86,14 @@ input[type='text'] {
 	opacity: 1;
 	transform: opacity 2s;
 } */
+
+@media screen and (min-width: 1480px) {
+	.navBar {
+		position: fixed;
+		height: 100%;
+		max-width: 180px;
+		min-width: 180px;
+		text-overflow: ellipsis;
+		border-radius: 0 16px 16px 0;
+	}
+}

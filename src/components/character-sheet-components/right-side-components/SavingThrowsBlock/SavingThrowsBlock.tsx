@@ -1,5 +1,5 @@
 import { useContext, useEffect, useRef } from 'react';
-import SheetLabel from '../../labels/SheetLabel';
+import SheetLabel from '../../labels/BlueLabel/SheetLabel';
 import styles from './SavingThrowsBlock.module.css';
 import { CharacterSheetContext } from '../../../../states/CharacterSheet/CharacterSheet';
 import { useParams } from 'react-router-dom';

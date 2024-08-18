@@ -1,0 +1,30 @@
+.parentDiv {
+	margin: 2px;
+}
+
+.nextButtonFalse {
+	text-align: center;
+	padding: 8px;
+	border: 2px solid #3a5d83;
+	background-color: #2c659a75;
+	color: #6b6b6b;
+	width: 70px;
+}
+
+.nextButtonFalse:hover {
+	cursor: pointer;
+}
+
+.nextButton {
+	text-align: center;
+	padding: 8px;
+	border: 2px solid hsl(211, 39%, 37%);
+	background-color: hsl(209, 88%, 61%);
+	color: hsl(209, 77%, 7%);
+	width: 70px;
+}
+
+.nextButton:hover {
+	background-color: hsl(209, 68%, 55%);
+	cursor: pointer;
+}

@@ -1,5 +1,5 @@
 import styles from './CharacterInfo.module.css';
-import SheetLabel from '../labels/SheetLabel.tsx';
+import SheetLabel from '../labels/BlueLabel/SheetLabel.tsx';
 import { useContext } from 'react';
 import { CharacterSheetContext } from '../../../states/CharacterSheet/CharacterSheet.tsx';
 import { getValue } from '../../../utils/getValue.ts';

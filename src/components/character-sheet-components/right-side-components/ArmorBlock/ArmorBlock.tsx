@@ -1,10 +1,10 @@
 import { useCallback, useContext, useEffect, useState } from 'react';
-import SheetLabel from '../../labels/SheetLabel';
+import SheetLabel from '../../labels/BlueLabel/SheetLabel';
 import styles from './ArmorBlock.module.css';
 import ExpandComponent from '../../ExpandComponent/ExpandComponent';
 import { useArmor } from '../../../../hooks/useArmor';
 import { FieldValues, useFieldArray, useForm } from 'react-hook-form';
-import AddButtonLabel from '../../../character-creation-components/AddButtonLabel/AddButtonLabel';
+import AddButtonLabel from '../../AddButtonLabel/AddButtonLabel';
 import { CharacterSheetContext } from '../../../../states/CharacterSheet/CharacterSheet';
 
 type FormValues = FieldValues & {

@@ -1,5 +1,5 @@
 import styles from './DescriptionBlock.module.css';
-import SheetLabel from '../labels/SheetLabel.tsx';
+import SheetLabel from '../labels/BlueLabel/SheetLabel.tsx';
 import { useFormContext } from 'react-hook-form';
 
 function DescriptionBlock() {

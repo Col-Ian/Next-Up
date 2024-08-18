@@ -1,0 +1,27 @@
+.parentDiv {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+
+.classDescription {
+	font-size: 1.2em;
+	font-weight: bold;
+}
+
+.otherClassInfoParent {
+	display: flex;
+	flex-direction: column;
+}
+
+.otherClassInfoSubHeader {
+	font-size: 1.4em;
+	font-weight: bold;
+}
+
+.classSkillsList {
+	margin-top: 24px;
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+}

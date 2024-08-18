@@ -1,0 +1,23 @@
+.parentDiv a {
+	text-decoration: none;
+	color: hsl(209, 77%, 7%);
+}
+
+.navBarItem {
+	margin-top: 2px;
+	display: flex;
+	padding: 8px;
+	justify-content: center;
+	align-content: center;
+	text-align: center;
+	border: 2px solid hsl(211, 39%, 37%);
+	background-color: hsl(209, 88%, 61%);
+	color: #04121f;
+	width: 70px;
+	height: fit-content;
+}
+
+.navBarItem:hover {
+	background-color: hsl(209, 68%, 55%);
+	cursor: pointer;
+}

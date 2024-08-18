@@ -1,0 +1,21 @@
+.parentDiv {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+
+.confirmOptionsHead {
+	margin-top: 8px;
+	font-weight: bold;
+}
+
+.confirmOptions {
+	margin-left: 8px;
+}
+
+.confirmName {
+	text-align: center;
+	font-size: 2em;
+	font-weight: bold;
+}

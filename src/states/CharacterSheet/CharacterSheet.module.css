@@ -1,11 +1,10 @@
 .parentDiv {
-	/* min-width: 1120px;
-	max-width: 1120px; */
-	width: 50%;
-	margin: auto;
+	background-color: white;
 	margin-top: 8px;
-	position: absolute;
 	justify-content: center;
+	border: 5px solid hsl(206, 61%, 80%);
+	padding: 2px;
+	border-radius: 8px;
 }
 
 .characterSheetMainDiv {

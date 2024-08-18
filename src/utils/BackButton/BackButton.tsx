@@ -1,25 +1,27 @@
-import { Dispatch, SetStateAction } from 'react'
-import styles from './BackButton.module.css'
+import { Dispatch, SetStateAction } from 'react';
+import styles from './BackButton.module.css';
 
-type BackButtonTypes={
-    arrayPosition: number,
-    setArrayPosition: Dispatch<SetStateAction<number>>
+type BackButtonTypes = {
+	arrayPosition: number;
+	setArrayPosition: Dispatch<SetStateAction<number>>;
+};
+
+function BackButton({ arrayPosition, setArrayPosition }: BackButtonTypes) {
+	function handleBack() {
+		setArrayPosition(arrayPosition - 1);
+	}
+
+	return (
+		<div className={styles.parentDiv}>
+			{arrayPosition > 0 ? (
+				<div className={styles.backButton} onClick={handleBack}>
+					Back
+				</div>
+			) : (
+				<div className={styles.backButtonFalse}>Back</div>
+			)}
+		</div>
+	);
 }
 
-function BackButton({
-    arrayPosition,
-    setArrayPosition
-}:BackButtonTypes){
-
-    function handleBack(){
-        if(arrayPosition > 0){
-            setArrayPosition(arrayPosition-1)
-        }
-    }
-
-  return (
-    <button className={styles.backButton} onClick={handleBack}>Back</button>
-  )
-}
-
-export default BackButton
+export default BackButton;

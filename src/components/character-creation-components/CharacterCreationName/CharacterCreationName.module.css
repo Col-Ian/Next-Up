@@ -1,6 +1,22 @@
 .parentDiv {
-  justify-content: center;
-  align-items: center;
-  display: flex;
-  flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	display: flex;
+	flex-direction: column;
+}
+
+.characterNameInputWrap {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	text-align: center;
+}
+
+.inputDiv {
+	display: flex;
+	justify-content: center;
+}
+
+.inputDiv input {
+	width: 300px;
 }

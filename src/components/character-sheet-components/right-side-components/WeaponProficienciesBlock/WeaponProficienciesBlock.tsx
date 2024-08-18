@@ -1,5 +1,5 @@
 import { useFormContext } from 'react-hook-form';
-import SheetLabel from '../../labels/SheetLabel';
+import SheetLabel from '../../labels/BlueLabel/SheetLabel';
 import styles from './WeaponProficienciesBlock.module.css';
 
 function WeaponProficienciesBlock() {

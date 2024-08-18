@@ -4,7 +4,7 @@ import { CharacterSheetContext } from '../../../../states/CharacterSheet/Charact
 import { skillList } from '../../../../data/skillList';
 import { getValue } from '../../../../utils/getValue';
 import { useParams } from 'react-router-dom';
-import SheetLabel from '../../labels/SheetLabel';
+import SheetLabel from '../../labels/BlueLabel/SheetLabel';
 import { GetModifier } from '../../../../utils/GetModifier';
 import { classList } from '../../../../data/class-information/classList';
 import { useFormContext } from 'react-hook-form';

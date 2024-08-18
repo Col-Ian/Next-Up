@@ -1,6 +1,6 @@
 import { useFormContext } from 'react-hook-form';
 import styles from './ExperienceBlock.module.css';
-import SheetLabel from '../../labels/SheetLabel';
+import SheetLabel from '../../labels/BlueLabel/SheetLabel';
 
 function ExperienceBlock() {
 	const { register } = useFormContext();

@@ -1,7 +1,7 @@
-import SheetLabel from '../../labels/SheetLabel';
+import SheetLabel from '../../labels/BlueLabel/SheetLabel';
 import styles from './AbilitiesBlock.module.css';
 import { useEffect } from 'react';
-import AddButtonLabel from '../../../character-creation-components/AddButtonLabel/AddButtonLabel';
+import AddButtonLabel from '../../AddButtonLabel/AddButtonLabel';
 import { FieldValues, useFieldArray, useForm } from 'react-hook-form';
 import { useAbilities } from '../../../../hooks/useAbilities';
 

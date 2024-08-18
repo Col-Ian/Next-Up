@@ -1,4 +1,4 @@
-import SheetLabel from '../../../labels/SheetLabel.tsx';
+import SheetLabel from '../../../labels/BlueLabel/SheetLabel.tsx';
 import styles from './AbilityScoreBlock.module.css';
 import AbilityScoreType from '../AbilityScoreType/AbilityScoreType.tsx';
 import { useFormContext } from 'react-hook-form';

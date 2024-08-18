@@ -1,5 +1,5 @@
 import { useParams } from 'react-router-dom';
-import SheetLabel from '../../labels/SheetLabel';
+import SheetLabel from '../../labels/BlueLabel/SheetLabel';
 import styles from './HealthAndResolveBlock.module.css';
 import { useFormContext } from 'react-hook-form';
 import { useContext } from 'react';

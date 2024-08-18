@@ -1,5 +1,5 @@
 import { useContext, useEffect, useRef } from 'react';
-import SheetLabel from '../../labels/SheetLabel';
+import SheetLabel from '../../labels/BlueLabel/SheetLabel';
 import styles from './ArmorClassBlock.module.css';
 import { CharacterSheetContext } from '../../../../states/CharacterSheet/CharacterSheet';
 import { GetModifier } from '../../../../utils/GetModifier';

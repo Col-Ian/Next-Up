@@ -349,12 +349,13 @@ function AddCharacterButton() {
 	}
 
 	return (
-		<div className={styles.navBarItem}>
+		<div className={styles.parentDiv}>
 			<Link
+				className={styles.addButton}
 				onClick={addCharacterhandler}
 				to={`/Next-Up/charactersheet/${keyID}`}
 			>
-				Add Character
+				<div className={styles.navBarItem}>Add</div>
 			</Link>
 		</div>
 	);

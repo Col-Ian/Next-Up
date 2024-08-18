@@ -1,0 +1,61 @@
+.parentDiv {
+	text-align: center;
+	position: relative;
+	z-index: 2;
+}
+.dropDownButton {
+	text-align: center;
+	padding: 8px;
+	border: 2px solid hsl(211, 39%, 37%);
+	background-color: hsl(209, 88%, 61%);
+	color: #04121f;
+	width: max-content;
+}
+
+.dropDownButton:hover {
+	background-color: hsl(209, 68%, 55%);
+	cursor: pointer;
+}
+
+.dropDownOptions {
+	position: absolute;
+	color: #04121f;
+	background-color: hsl(209, 88%, 61%);
+}
+
+.dropDown {
+	display: flex;
+	flex-direction: column;
+	max-height: 250px;
+	overflow: scroll;
+	overflow-x: hidden;
+}
+
+.individualOption {
+	padding: 6px;
+}
+
+.individualOption:hover {
+	background-color: hsl(209, 68%, 55%);
+	cursor: pointer;
+}
+
+/* Scrollbar */
+.dropDown::-webkit-scrollbar {
+	width: 8px;
+}
+.dropDown::-webkit-scrollbar-track {
+	margin: 2px;
+	background: none;
+	border-radius: 5px;
+}
+.dropDown::-webkit-scrollbar-thumb {
+	border: 1px solid #555;
+	border-radius: 0.5em;
+}
+.dropDown::-webkit-scrollbar-thumb:hover {
+	background: #555;
+}
+.dropDown::-webkit-scrollbar-thumb {
+	background: #888;
+}

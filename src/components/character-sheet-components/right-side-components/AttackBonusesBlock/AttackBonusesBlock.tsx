@@ -1,5 +1,5 @@
 import { useContext } from 'react';
-import SheetLabel from '../../labels/SheetLabel';
+import SheetLabel from '../../labels/BlueLabel/SheetLabel';
 import styles from './AttackBonusesBlock.module.css';
 import { CharacterSheetContext } from '../../../../states/CharacterSheet/CharacterSheet';
 import { getValue } from '../../../../utils/getValue';
