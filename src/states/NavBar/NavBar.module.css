@@ -4,7 +4,12 @@
 }
 
 .navBarItem {
-	padding: 4px;
+	padding: 8px;
+	text-decoration: underline 4px hsl(206, 71%, 9%);
+}
+
+.navBarItem:hover {
+	text-decoration: underline 4px hsl(206, 71%, 9%, 0.555);
 }
 
 .navBarItem a {
@@ -13,6 +18,14 @@
 }
 .navBarItem a:hover {
 	color: hsl(206, 71%, 9%, 0.555);
+}
+
+.createCharacter {
+	text-decoration: none;
+}
+
+.createCharacter:hover {
+	text-decoration: none;
 }
 
 .createCharacter a {
@@ -26,17 +39,23 @@
 .navBarParent {
 	text-align: center;
 	display: flex;
-	flex-direction: row;
+	flex-direction: column;
 	justify-content: center;
 	align-items: center;
+}
+.navBarWrapper {
+	display: flex;
+	flex-direction: row;
 }
 
 @media screen and (min-width: 1480px) {
 	.navBarParent {
 		max-width: 170px;
 		overflow: hidden;
-		display: flex;
-		flex-direction: column;
 		text-overflow: ellipsis;
+	}
+
+	.navBarWrapper {
+		flex-direction: column;
 	}
 }

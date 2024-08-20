@@ -23,18 +23,6 @@ body {
 .navBar {
 	margin: 0;
 	background-color: hsl(206, 61%, 80%);
-	/* top: 0;
-  left: 0;
-  bottom: 0;
-  max-width: 180px;
-  min-width: 180px;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  transform: translate(0, 0);
-  border-radius: 0 16px 16px 0; */
 	display: flex;
 	flex-direction: row;
 	align-items: center;

@@ -27,7 +27,7 @@
 	position: absolute;
 	z-index: 3;
 	max-width: 520px;
-	min-width: 520px;
+	width: 100%;
 }
 
 .armorWrapper {

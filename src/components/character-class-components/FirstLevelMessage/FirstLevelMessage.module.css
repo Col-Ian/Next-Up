@@ -5,19 +5,20 @@
 
 .singleAttributeDivParent {
 	display: grid;
-	grid-template-columns: 1fr 0.5fr 0.5fr 0.5fr;
+	grid-template-columns: 1fr 0.2fr 0.1fr 0.2fr;
 	justify-content: center;
 	align-items: center;
 	font-weight: bold;
 	border: 2px solid hsl(208, 51%, 56%);
 	border-radius: 8px;
 	margin: 4px;
-	padding-left: 4px;
+	padding: 0px 12px;
 }
 
 .rightArrow {
 	font-size: 2em;
 	padding-bottom: 6px;
+	margin: 0px 12px;
 }
 
 .abilitiesDescription {

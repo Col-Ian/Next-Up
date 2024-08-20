@@ -15,6 +15,7 @@
 
 .characterInfoDescriptionBlock {
 	display: flex;
+	flex-direction: column;
 	justify-content: center;
 }
 .characterInfoDescriptionBlock input {
@@ -31,6 +32,7 @@ textarea {
 
 .statArea {
 	display: flex;
+	flex-direction: column;
 	justify-content: center;
 }
 
@@ -41,7 +43,7 @@ textarea {
 
 .underSide {
 	max-width: 1050px;
-	min-width: 1050px;
+	width: 100%;
 }
 
 .firstLevelMessageParentDiv {
@@ -58,4 +60,14 @@ textarea {
 	border: 5px solid hsl(208, 51%, 56%);
 	padding: 16px;
 	border-radius: 8px;
+}
+
+@media screen and (min-width: 1120px) {
+	.characterInfoDescriptionBlock {
+		flex-direction: row;
+	}
+
+	.statArea {
+		flex-direction: row;
+	}
 }

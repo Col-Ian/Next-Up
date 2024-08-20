@@ -11,10 +11,9 @@
 }
 
 .parentDiv textarea {
-	resize: none;
 	width: 480px;
-	height: 170px;
-	margin-left: 2px;
+	height: 100%;
+	margin-right: -5px;
 	padding: 4px;
 	border: none;
 	outline: none;
