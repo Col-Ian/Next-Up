@@ -1,3 +1,33 @@
-.parentDiv {
-	background-color: white;
+.attributesHeading {
+	font-weight: bold;
+	font-size: 1.2em;
+}
+
+.singleAttributeDivParent {
+	display: grid;
+	grid-template-columns: 1fr 0.5fr 0.5fr 0.5fr;
+	justify-content: center;
+	align-items: center;
+	font-weight: bold;
+	border: 2px solid hsl(208, 51%, 56%);
+	border-radius: 8px;
+	margin: 4px;
+	padding-left: 4px;
+}
+
+.rightArrow {
+	font-size: 2em;
+	padding-bottom: 6px;
+}
+
+.abilitiesDescription {
+	font-weight: bold;
+	font-size: 1.2em;
+	text-shadow: -1px -1px 0 hsl(9, 77%, 44%), 1px -1px 0 hsl(9, 77%, 44%),
+		1px 1px 0 hsl(9, 77%, 44%), 1px 1px 0 hsl(9, 77%, 44%);
+}
+
+.parentDiv input:read-only {
+	border: 3px solid hsl(208, 51%, 56%);
+	height: 28px;
 }

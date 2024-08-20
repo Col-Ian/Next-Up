@@ -1,14 +1,16 @@
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { operativeAbilityList } from '../../../../data/class-information/operative/abilities/operativeAbilityList.ts';
 import { specializationList } from '../../../../data/class-information/operative/abilities/specializationsList.ts';
 import DropDownList from '../../../DropDownList/DropDownList.tsx';
 import styles from './OperativeLevelComponents.module.css';
+import stylesGeneral from '../../../../states/CreateCharacter/CreateCharacter.module.css';
 import { setValue } from '../../../../utils/setValue.ts';
 import { Link } from 'react-router-dom';
 import { AddAbility } from '../../../../utils/AddAbility.ts';
 import { OperativesEdgeSkillBonus } from '../../../../data/class-information/operative/functions/OperativesEdgeSkillBonus.ts';
-import confirmLevelUpAttributes from '../../confirmLevelUpAttributes.ts';
 import { getValue } from '../../../../utils/getValue.ts';
+import RedLabel from '../../../labels/RedLabel/RedLabel.tsx';
+import { CharacterSheetContext } from '../../../../states/CharacterSheet/CharacterSheet.tsx';
 
 function OperativeFirstLevel({ keyID }: { keyID: string }) {
 	const specializationArray = Object.keys(specializationList).map(
@@ -16,6 +18,21 @@ function OperativeFirstLevel({ keyID }: { keyID: string }) {
 			return key;
 		}
 	);
+
+	const {
+		strengthAbility,
+		updateStrength,
+		dexterityAbility,
+		updateDexterity,
+		constitutionAbility,
+		updateConstitution,
+		intelligenceAbility,
+		updateIntelligence,
+		wisdomAbility,
+		updateWisdom,
+		charismaAbility,
+		updateCharisma,
+	} = useContext(CharacterSheetContext);
 
 	const [specialization, setSpecialization] = useState<string>('');
 
@@ -56,6 +73,16 @@ function OperativeFirstLevel({ keyID }: { keyID: string }) {
 	}, [specialization]);
 
 	function confirmFirstLevelChanges() {
+		// Get the temp ability scores
+		const tempAbilityScores: {
+			strength: number;
+			dexterity: number;
+			constitution: number;
+			intelligence: number;
+			wisdom: number;
+			charisma: number;
+		} = getValue(`tempAbilityScores`);
+
 		// Set the default abilities given by Operative
 		Object.keys(operativeAbilityList['1']).forEach((i) => {
 			AddAbility(keyID, operativeAbilityList['1'][i]);
@@ -80,7 +107,49 @@ function OperativeFirstLevel({ keyID }: { keyID: string }) {
 		OperativesEdgeSkillBonus(keyID, 1);
 
 		// Confirm Attributes.
-		confirmLevelUpAttributes(keyID);
+		updateStrength({
+			aSName: 'Strength',
+			asBonus: strengthAbility.asBonus,
+			asPenalty: strengthAbility.asPenalty,
+			value: tempAbilityScores.strength,
+		});
+
+		updateDexterity({
+			aSName: 'Dexterity',
+			asBonus: dexterityAbility.asBonus,
+			asPenalty: dexterityAbility.asPenalty,
+			value: tempAbilityScores.dexterity,
+		});
+
+		updateConstitution({
+			aSName: 'Constitution',
+			asBonus: constitutionAbility.asBonus,
+			asPenalty: constitutionAbility.asPenalty,
+			value: tempAbilityScores.constitution,
+		});
+
+		updateIntelligence({
+			aSName: 'Intelligence',
+			asBonus: intelligenceAbility.asBonus,
+			asPenalty: intelligenceAbility.asPenalty,
+			value: tempAbilityScores.intelligence,
+		});
+
+		updateWisdom({
+			aSName: 'Wisdom',
+			asBonus: wisdomAbility.asBonus,
+			asPenalty: wisdomAbility.asPenalty,
+			value: tempAbilityScores.wisdom,
+		});
+
+		updateCharisma({
+			aSName: 'Charisma',
+			asBonus: charismaAbility.asBonus,
+			asPenalty: charismaAbility.asPenalty,
+			value: tempAbilityScores.charisma,
+		});
+
+		// confirmLevelUpAttributes(keyID);
 
 		// Set the associated skills for the Operative Specialization
 		associatedSkills.forEach((skill) => {
@@ -99,8 +168,8 @@ function OperativeFirstLevel({ keyID }: { keyID: string }) {
 				{Object.keys(operativeAbilityList['1']).map((ability) => {
 					return (
 						<div className={styles.classAbility} key={`classAbility${ability}`}>
-							<h3>{ability}</h3>
-							<div className={styles.abilityDescription}>
+							<RedLabel redLabelText={ability} />
+							<div className={stylesGeneral.descriptionDiv}>
 								{operativeAbilityList['1'][ability].abilityDescription}
 							</div>
 						</div>
@@ -112,34 +181,40 @@ function OperativeFirstLevel({ keyID }: { keyID: string }) {
 					Select your Specialization from the list below. You will gain the
 					Exploit at 5th level, even if you don't meet the requirements.
 				</div>
-				<DropDownList
-					optionType={'Specialization'}
-					optionsArray={specializationArray}
-					optionSelection={setSpecialization}
-					selectedOption={specialization}
-				/>
+				<div className={styles.dropDownDiv}>
+					<DropDownList
+						optionType={'Specialization'}
+						optionsArray={specializationArray}
+						optionSelection={setSpecialization}
+						selectedOption={specialization}
+					/>
+				</div>
 				{specialization != '' && (
 					<div className={styles.specializationFullDescription}>
 						<div className={styles.specializationHead}>{specialization}</div>
 						<div className={styles.specializationDescription}>
 							{description}
 						</div>
-						<ul>
+						<ul className={styles.specializationUL}>
 							<li key={'AssociatedSkills'}>
-								<span>Associated Skills: </span> {associatedSkills[0]} and{' '}
-								{associatedSkills[1]}. {trickAttackSkill}
+								<span className={styles.boldHead}>Associated Skills: </span>{' '}
+								{associatedSkills[0]} and {associatedSkills[1]}.{' '}
+								{trickAttackSkill}
 							</li>
-							<li key={'SpecializationExploit'}>
-								<div>Specialization Exploit: </div>
-								<div className={styles.exploitHead}>
-									{specializationExploit.abilityName}
+							<li
+								className={styles.specializationLi}
+								key={'SpecializationExploit'}
+							>
+								<div className={styles.boldHead}>Specialization Exploit: </div>
+								<div className={styles.exploitDiv}>
+									<RedLabel redLabelText={specializationExploit.abilityName} />
+									<div className={stylesGeneral.descriptionDiv}>
+										{specializationExploit.abilityDescription}
+									</div>
 								</div>
-								<ul>
-									<li>{specializationExploit.abilityDescription}</li>
-								</ul>
 							</li>
 							<li key={'SpecializationAbility'}>
-								<span>{abilityName}: </span>
+								<span className={styles.boldHead}>{abilityName}: </span>
 								{abilityDescription}
 							</li>
 						</ul>
@@ -152,7 +227,7 @@ function OperativeFirstLevel({ keyID }: { keyID: string }) {
 						onClick={confirmFirstLevelChanges}
 						to={`/Next-Up/charactersheet/${keyID}`}
 					>
-						Add Character
+						<div className={styles.confirmChanges}>Add Character</div>
 					</Link>
 				</div>
 			)}

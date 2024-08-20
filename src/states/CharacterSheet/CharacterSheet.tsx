@@ -31,21 +31,32 @@ type SkillBlockStatesListType = {
 
 export const CharacterSheetContext = createContext<{
 	strengthAbility: AbilityScoreType;
+	updateStrength: (newStrength: AbilityScoreType) => void;
 	dexterityAbility: AbilityScoreType;
+	updateDexterity: (newDexterity: AbilityScoreType) => void;
 	constitutionAbility: AbilityScoreType;
+	updateConstitution: (newConstitution: AbilityScoreType) => void;
 	intelligenceAbility: AbilityScoreType;
+	updateIntelligence: (newIntelligence: AbilityScoreType) => void;
 	wisdomAbility: AbilityScoreType;
+	updateWisdom: (newWisdom: AbilityScoreType) => void;
 	charismaAbility: AbilityScoreType;
+	updateCharisma: (newCharisma: AbilityScoreType) => void;
+
 	initMisc: number;
+
 	currentSP: number;
 	currentHP: number;
 	currentRP: number;
 	tempSP: number;
 	tempHP: number;
 	tempRP: number;
+
 	SkillBlockStatesList: SkillBlockStatesListType;
+
 	characterInfoObject: CharacterInfoObjectType;
 	characterInfoDynamicObject: CharacterBasicInfoDynamicType;
+
 	armorEquipped: ArmorType;
 	updateArmorEquipped: (newArmorEquipped: ArmorType) => void;
 	armorMiscMods: {
@@ -427,11 +438,17 @@ function CharacterSheet() {
 		<CharacterSheetContext.Provider
 			value={{
 				strengthAbility: strengthAbility,
+				updateStrength: updateStrength,
 				dexterityAbility: dexterityAbility,
+				updateDexterity: updateDexterity,
 				constitutionAbility: constitutionAbility,
+				updateConstitution: updateConstitution,
 				intelligenceAbility: intelligenceAbility,
+				updateIntelligence: updateIntelligence,
 				wisdomAbility: wisdomAbility,
+				updateWisdom: updateWisdom,
 				charismaAbility: charismaAbility,
+				updateCharisma: updateCharisma,
 
 				initMisc: initMisc,
 
@@ -459,9 +476,11 @@ function CharacterSheet() {
 			<FormProvider {...methods}>
 				{characterLevel === 0 && characterID ? (
 					// Confirm all first level selections based on class, which need to be handled uniquely.
-					<div className={styles.FirstLevelSelectionChanges}>
-						<FirstLevelMessage />
-						<div>{Component ? <Component keyID={characterID} /> : null}</div>
+					<div className={styles.firstLevelMessageParentDiv}>
+						<div className={styles.firstLevelMessageWrapper}>
+							<FirstLevelMessage />
+							<div>{Component ? <Component keyID={characterID} /> : null}</div>
+						</div>
 					</div>
 				) : (
 					// Once character has confirmed choices, move on to sheet.

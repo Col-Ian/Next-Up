@@ -355,7 +355,7 @@ function AddCharacterButton() {
 				onClick={addCharacterhandler}
 				to={`/Next-Up/charactersheet/${keyID}`}
 			>
-				<div className={styles.navBarItem}>Add</div>
+				<div className={styles.addButtonText}>Add</div>
 			</Link>
 		</div>
 	);

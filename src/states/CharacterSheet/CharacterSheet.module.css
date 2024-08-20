@@ -43,3 +43,19 @@ textarea {
 	max-width: 1050px;
 	min-width: 1050px;
 }
+
+.firstLevelMessageParentDiv {
+	height: 90vh;
+	align-content: center;
+	max-width: 520px;
+}
+
+.firstLevelMessageWrapper {
+	color: hsl(190, 100%, 95%);
+	background-color: #061626;
+	margin-top: 8px;
+	justify-content: center;
+	border: 5px solid hsl(208, 51%, 56%);
+	padding: 16px;
+	border-radius: 8px;
+}
