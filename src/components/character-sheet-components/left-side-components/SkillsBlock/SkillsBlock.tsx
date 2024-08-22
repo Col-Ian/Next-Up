@@ -63,7 +63,7 @@ function SkillsBlock() {
 					</div>
 					<div className={styles.skillsHeadRightTextDiv}>
 						<div className={styles.skillsHeadRightText}>SKILL RANKS</div>
-						<div className={styles.skillsHeadRightText}>PER LEVEL</div>
+						<div className={styles.skillsHeadRightText}>TOTAL</div>
 					</div>
 					<div className={styles.skillsHeadRightRanks}>
 						<input type='number' readOnly value={getMaxRanks()} />

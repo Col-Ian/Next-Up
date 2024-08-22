@@ -1,3 +1,5 @@
+import { OperativeLevelThreeFunction } from '../functions/OperativeLevelThreeFunction';
+import { OperativeLevelFiveFunction } from '../functions/OperativeLevelFiveFunction';
 import { exploitList } from './exploitsList';
 
 // To be used to add the abilities to the character sheet's ability list.
@@ -14,8 +16,8 @@ import { exploitList } from './exploitsList';
 			ability: {
 				abilityName: '',
 				abilityDescription: '',
-				abilitySource: '',
-				actionType: [],
+				abilitySource: 'Operative',
+				actionType: ['None'],
 				usesResolve: 0,
 			},
 		},
@@ -83,32 +85,49 @@ export const operativeAbilityList: {
 		hasOptions: false,
 		optionDescription: [],
 		options: {},
-		additionalInfo: [],
-		hasFunction: false,
-		functionToRun: () => {},
+		additionalInfo: [
+			"Your Operative's Edge Bonus increases to +2. This will automatically be calculated.",
+			'Your Trick Attack damage increases to 1d8',
+		],
+		hasFunction: true,
+		functionToRun: () => {
+			OperativeLevelThreeFunction;
+		},
 		abilities: {
-			ability: {
-				abilityName: '',
-				abilityDescription: '',
-				abilitySource: '',
-				actionType: [],
+			'Quick Movement (Ex)': {
+				abilityName: 'Quick Movement (Ex)',
+				abilityDescription:
+					'As long as you are unencumbered and wearing light armor or no armor, your land speed increases by 10 feet. At 9th level, your land speed instead increases by 20 feet, and at 15th level, your land speed instead increases by 30 feet.',
+				abilitySource: 'Operative',
+				actionType: ['None'],
+				usesResolve: 0,
+			},
+			'Weapon Specialization (Ex)': {
+				abilityName: 'Weapon Specialization (Ex)',
+				abilityDescription:
+					'You gain the Weapon Specialization feat as a bonus feat for each weapon type with which this class grants you proficiency.',
+				abilitySource: 'Operative',
+				actionType: ['None'],
 				usesResolve: 0,
 			},
 		},
 	},
 	4: {
-		hasOptions: false,
-		optionDescription: [],
-		options: {},
+		hasOptions: true,
+		optionDescription: [
+			'You gain another Operative Exploit. Please select one from the list below.',
+		],
+		options: { ...exploitList['2'] },
 		additionalInfo: [],
 		hasFunction: false,
 		functionToRun: () => {},
 		abilities: {
-			ability: {
-				abilityName: '',
-				abilityDescription: '',
-				abilitySource: '',
-				actionType: [],
+			'Debilitating Trick (Ex)': {
+				abilityName: 'Debilitating Trick (Ex)',
+				abilityDescription:
+					'When you succeed at both the skill check and attack roll of your trick attack, you can make the target flat-footed or off-target until the beginning of your next turn. You might learn exploits that grant you additional options for your debilitating trick, but you can select only one option each time you hit with a trick attack.',
+				abilitySource: 'Operative',
+				actionType: ['None'],
 				usesResolve: 0,
 			},
 		},
@@ -117,18 +136,12 @@ export const operativeAbilityList: {
 		hasOptions: false,
 		optionDescription: [],
 		options: {},
-		additionalInfo: [],
-		hasFunction: false,
-		functionToRun: () => {},
-		abilities: {
-			ability: {
-				abilityName: '',
-				abilityDescription: '',
-				abilitySource: '',
-				actionType: [],
-				usesResolve: 0,
-			},
+		additionalInfo: ['Your Trick Attack damage increases to 1d8'],
+		hasFunction: true,
+		functionToRun: () => {
+			OperativeLevelFiveFunction;
 		},
+		abilities: {},
 	},
 	6: {
 		hasOptions: false,
@@ -141,8 +154,8 @@ export const operativeAbilityList: {
 			ability: {
 				abilityName: '',
 				abilityDescription: '',
-				abilitySource: '',
-				actionType: [],
+				abilitySource: 'Operative',
+				actionType: ['None'],
 				usesResolve: 0,
 			},
 		},
@@ -158,8 +171,8 @@ export const operativeAbilityList: {
 			ability: {
 				abilityName: '',
 				abilityDescription: '',
-				abilitySource: '',
-				actionType: [],
+				abilitySource: 'Operative',
+				actionType: ['None'],
 				usesResolve: 0,
 			},
 		},
@@ -175,8 +188,8 @@ export const operativeAbilityList: {
 			ability: {
 				abilityName: '',
 				abilityDescription: '',
-				abilitySource: '',
-				actionType: [],
+				abilitySource: 'Operative',
+				actionType: ['None'],
 				usesResolve: 0,
 			},
 		},
@@ -192,8 +205,8 @@ export const operativeAbilityList: {
 			ability: {
 				abilityName: '',
 				abilityDescription: '',
-				abilitySource: '',
-				actionType: [],
+				abilitySource: 'Operative',
+				actionType: ['None'],
 				usesResolve: 0,
 			},
 		},
@@ -209,8 +222,8 @@ export const operativeAbilityList: {
 			ability: {
 				abilityName: '',
 				abilityDescription: '',
-				abilitySource: '',
-				actionType: [],
+				abilitySource: 'Operative',
+				actionType: ['None'],
 				usesResolve: 0,
 			},
 		},
@@ -226,8 +239,8 @@ export const operativeAbilityList: {
 			ability: {
 				abilityName: '',
 				abilityDescription: '',
-				abilitySource: '',
-				actionType: [],
+				abilitySource: 'Operative',
+				actionType: ['None'],
 				usesResolve: 0,
 			},
 		},
@@ -243,8 +256,8 @@ export const operativeAbilityList: {
 			ability: {
 				abilityName: '',
 				abilityDescription: '',
-				abilitySource: '',
-				actionType: [],
+				abilitySource: 'Operative',
+				actionType: ['None'],
 				usesResolve: 0,
 			},
 		},
@@ -260,8 +273,8 @@ export const operativeAbilityList: {
 			ability: {
 				abilityName: '',
 				abilityDescription: '',
-				abilitySource: '',
-				actionType: [],
+				abilitySource: 'Operative',
+				actionType: ['None'],
 				usesResolve: 0,
 			},
 		},
@@ -277,8 +290,8 @@ export const operativeAbilityList: {
 			ability: {
 				abilityName: '',
 				abilityDescription: '',
-				abilitySource: '',
-				actionType: [],
+				abilitySource: 'Operative',
+				actionType: ['None'],
 				usesResolve: 0,
 			},
 		},
@@ -294,8 +307,8 @@ export const operativeAbilityList: {
 			ability: {
 				abilityName: '',
 				abilityDescription: '',
-				abilitySource: '',
-				actionType: [],
+				abilitySource: 'Operative',
+				actionType: ['None'],
 				usesResolve: 0,
 			},
 		},
@@ -311,8 +324,8 @@ export const operativeAbilityList: {
 			ability: {
 				abilityName: '',
 				abilityDescription: '',
-				abilitySource: '',
-				actionType: [],
+				abilitySource: 'Operative',
+				actionType: ['None'],
 				usesResolve: 0,
 			},
 		},
@@ -328,8 +341,8 @@ export const operativeAbilityList: {
 			ability: {
 				abilityName: '',
 				abilityDescription: '',
-				abilitySource: '',
-				actionType: [],
+				abilitySource: 'Operative',
+				actionType: ['None'],
 				usesResolve: 0,
 			},
 		},
@@ -345,8 +358,8 @@ export const operativeAbilityList: {
 			ability: {
 				abilityName: '',
 				abilityDescription: '',
-				abilitySource: '',
-				actionType: [],
+				abilitySource: 'Operative',
+				actionType: ['None'],
 				usesResolve: 0,
 			},
 		},
@@ -362,8 +375,8 @@ export const operativeAbilityList: {
 			ability: {
 				abilityName: '',
 				abilityDescription: '',
-				abilitySource: '',
-				actionType: [],
+				abilitySource: 'Operative',
+				actionType: ['None'],
 				usesResolve: 0,
 			},
 		},
@@ -379,8 +392,8 @@ export const operativeAbilityList: {
 			ability: {
 				abilityName: '',
 				abilityDescription: '',
-				abilitySource: '',
-				actionType: [],
+				abilitySource: 'Operative',
+				actionType: ['None'],
 				usesResolve: 0,
 			},
 		},
