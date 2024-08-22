@@ -1,55 +1,44 @@
-
+import { operativeAbilityList } from './abilities/operativeAbilityList';
 
 const OperativeClassDefaults: ClassDefaultTypes = {
+	hitStaminaPoints: 6,
 
-    hitStaminaPoints: 6,
+	keyAbilityScore: ['Dexterity'],
 
-    keyAbilityScore: [
-        'Dexterity'
-    ],
+	keyAbilityDescription:
+		'Your Dexterity helps you to infiltrate, get into position, escape danger, and make decisive shots with your weapon, so Dexterity is your key ability score. High Intelligence boosts your skills, and Charisma aids in your interactions with other characters.',
 
-    keyAbilityDescription: 'Your Dexterity helps you to infiltrate, get into position, escape danger, and make decisive shots with your weapon, so Dexterity is your key ability score. High Intelligence boosts your skills, and Charisma aids in your interactions with other characters.',
+	classSkills: [
+		'Acrobatics',
+		'Athletics',
+		'Bluff',
+		'Computers',
+		'Culture',
+		'Disguise',
+		'Engineering',
+		'Intimidate',
+		'Medicine',
+		'Perception',
+		'Piloting',
+		'Sense Motive',
+		'Sleight of Hand',
+		'Stealth',
+		'Survival',
+	],
 
-    classSkills: [
-        'Acrobatics',
-        'Athletics',
-        'Bluff',
-        'Computers',
-        'Culture',
-        'Disguise',
-        'Engineering',
-        'Intimidate',
-        'Medicine',
-        'Perception',
-        'Piloting',
-        'Sense Motive',
-        'Sleight of Hand',
-        'Stealth',
-        'Survival'
-    ],
+	skillPointsPerLevel: 8,
 
-    skillPointsPerLevel: 8,
+	armorProficiencies: ['light armor'],
 
-    armorProficiencies: [
-        'light armor'
-    ],
+	weaponProficiencies: ['basic weapons', 'small arms', 'sniper weapons'],
 
-    weaponProficiencies: [
-        'basic weapons',
-        'small arms',
-        'sniper weapons'
-    ],
+	babAdvancement: 0.75,
 
-    babAdvancement: 0.75,
-    
-    goodSavingThrows: [
-        'Reflex',
-        'Will'
-    ],
+	goodSavingThrows: ['Reflex', 'Will'],
 
-    badSavingThrows: [
-        'Fortitude',
-    ],
-}
+	badSavingThrows: ['Fortitude'],
 
-export default OperativeClassDefaults
+	classAbilityList: operativeAbilityList,
+};
+
+export default OperativeClassDefaults;

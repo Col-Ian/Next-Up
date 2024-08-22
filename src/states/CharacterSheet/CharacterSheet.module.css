@@ -62,6 +62,27 @@ textarea {
 	border-radius: 8px;
 }
 
+.levelUpButtonDiv {
+	display: flex;
+	justify-content: center;
+}
+
+.levelUpButtonDiv a {
+	font-weight: bold;
+	color: #04121f;
+	text-decoration: none;
+	text-align: center;
+	padding: 8px;
+	border: 2px solid hsl(211, 39%, 37%);
+	background-color: hsl(209, 88%, 61%);
+	width: 110px;
+}
+
+.levelUpButtonDiv a:hover {
+	background-color: hsl(209, 68%, 55%);
+	cursor: pointer;
+}
+
 @media screen and (min-width: 1120px) {
 	.characterInfoDescriptionBlock {
 		flex-direction: row;

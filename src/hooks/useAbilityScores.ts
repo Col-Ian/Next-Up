@@ -6,18 +6,29 @@ import { setValue } from '../utils/setValue';
 export function useAbilityScores() {
 	const { characterID } = useParams();
 
-	const [strength, setStrength] = useState(getValue(`Strength${characterID}`));
-	const [dexterity, setDexterity] = useState(
+	const [strength, setStrength] = useState<AbilityScoreType>(
+		getValue(`Strength${characterID}`)
+	);
+
+	const [dexterity, setDexterity] = useState<AbilityScoreType>(
 		getValue(`Dexterity${characterID}`)
 	);
-	const [constitution, setConstitution] = useState(
+
+	const [constitution, setConstitution] = useState<AbilityScoreType>(
 		getValue(`Constitution${characterID}`)
 	);
-	const [intelligence, setIntelligence] = useState(
+
+	const [intelligence, setIntelligence] = useState<AbilityScoreType>(
 		getValue(`Intelligence${characterID}`)
 	);
-	const [wisdom, setWisdom] = useState(getValue(`Wisdom${characterID}`));
-	const [charisma, setCharisma] = useState(getValue(`Charisma${characterID}`));
+
+	const [wisdom, setWisdom] = useState<AbilityScoreType>(
+		getValue(`Wisdom${characterID}`)
+	);
+
+	const [charisma, setCharisma] = useState<AbilityScoreType>(
+		getValue(`Charisma${characterID}`)
+	);
 
 	useEffect(() => {
 		setStrength(getValue(`Strength${characterID}`));

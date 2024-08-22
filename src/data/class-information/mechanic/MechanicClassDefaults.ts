@@ -1,47 +1,34 @@
-
-
 const MechanicClassDefaults: ClassDefaultTypes = {
+	hitStaminaPoints: 6,
 
-    hitStaminaPoints: 6,
+	keyAbilityScore: ['Intelligence'],
 
-    keyAbilityScore: [
-        'Intelligence'
-    ],
+	keyAbilityDescription:
+		'You rely on your Intelligence for your knowledge, skills, and technical know-how, so Intelligence is your key ability score. A high Dexterity score makes your ranged attacks more accurate, should you engage in combat.',
 
-    keyAbilityDescription: 'You rely on your Intelligence for your knowledge, skills, and technical know-how, so Intelligence is your key ability score. A high Dexterity score makes your ranged attacks more accurate, should you engage in combat.',
+	classSkills: [
+		'Athletics',
+		'Computers',
+		'Engineering',
+		'Medicine',
+		'Perception',
+		'Physical Science',
+		'Piloting',
+	],
 
-    classSkills: [
-        'Athletics',
-        'Computers',
-        'Engineering',
-        'Medicine',
-        'Perception',
-        'Physical Science',
-        'Piloting'
-    ],
+	skillPointsPerLevel: 4,
 
-    skillPointsPerLevel: 4,
+	armorProficiencies: ['light armor'],
 
-    armorProficiencies: [
-        'light armor'
-    ],
+	weaponProficiencies: ['basic melee weapons', 'grenades', 'small arms'],
 
-    weaponProficiencies: [
-        'basic melee weapons',
-        'grenades',
-        'small arms'
-    ],
+	babAdvancement: 0.75,
 
-    babAdvancement: 0.75,
-    
-    goodSavingThrows: [
-        'Fortitude',
-        'Reflex',
-    ],
+	goodSavingThrows: ['Fortitude', 'Reflex'],
 
-    badSavingThrows: [
-        'Will'
-    ],
-}
+	badSavingThrows: ['Will'],
 
-export default MechanicClassDefaults
+	classAbilityList: {},
+};
+
+export default MechanicClassDefaults;

@@ -84,8 +84,8 @@ function OperativeFirstLevel({ keyID }: { keyID: string }) {
 		} = getValue(`tempAbilityScores`);
 
 		// Set the default abilities given by Operative
-		Object.keys(operativeAbilityList['1']).forEach((i) => {
-			AddAbility(keyID, operativeAbilityList['1'][i]);
+		Object.keys(operativeAbilityList['1'].abilities).forEach((i) => {
+			AddAbility(keyID, operativeAbilityList['1'].abilities[i]);
 		});
 
 		// Add the specialization as an object to the ability list.
@@ -99,9 +99,7 @@ function OperativeFirstLevel({ keyID }: { keyID: string }) {
 		AddAbility(keyID, specializationAsAbility);
 
 		// Set the specialization selected to the list so we can reference it again later when needed.
-		setValue(`OperativeSpecialization${keyID}`, {
-			specialization,
-		});
+		setValue(`OperativeSpecialization${keyID}`, specialization);
 
 		// Add Operative's Edge bonus of 1.
 		OperativesEdgeSkillBonus(keyID, 1);
@@ -149,8 +147,6 @@ function OperativeFirstLevel({ keyID }: { keyID: string }) {
 			value: tempAbilityScores.charisma,
 		});
 
-		// confirmLevelUpAttributes(keyID);
-
 		// Set the associated skills for the Operative Specialization
 		associatedSkills.forEach((skill) => {
 			let tempSkill: SkillListType = getValue(`${skill}${keyID}`);
@@ -165,12 +161,15 @@ function OperativeFirstLevel({ keyID }: { keyID: string }) {
 	return (
 		<div className={styles.firstParentDiv}>
 			<div className={styles.classAbilityList}>
-				{Object.keys(operativeAbilityList['1']).map((ability) => {
+				{Object.keys(operativeAbilityList['1'].abilities).map((ability) => {
 					return (
 						<div className={styles.classAbility} key={`classAbility${ability}`}>
 							<RedLabel redLabelText={ability} />
 							<div className={stylesGeneral.descriptionDiv}>
-								{operativeAbilityList['1'][ability].abilityDescription}
+								{
+									operativeAbilityList['1'].abilities[ability]
+										.abilityDescription
+								}
 							</div>
 						</div>
 					);

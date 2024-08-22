@@ -1,50 +1,40 @@
-
-
 const SolarianClassDefaults: ClassDefaultTypes = {
+	hitStaminaPoints: 7,
 
-    hitStaminaPoints: 7,
+	keyAbilityScore: ['Charisma'],
 
-    keyAbilityScore: [
-        'Charisma'
-    ],
+	keyAbilityDescription:
+		'Your Charisma lets you channel your connection to the cosmos, so Charisma is your key ability score. A high Strength score can make you better at melee attacks.',
 
-    keyAbilityDescription: 'Your Charisma lets you channel your connection to the cosmos, so Charisma is your key ability score. A high Strength score can make you better at melee attacks.',
+	classSkills: [
+		'Acrobatics',
+		'Athletics',
+		'Diplomacy',
+		'Intimidate',
+		'Mysticism',
+		'Perception',
+		'Physical Science',
+		'Sense Motive',
+		'Stealth',
+	],
 
-    classSkills: [
-        'Acrobatics',
-        'Athletics',
-        'Diplomacy',
-        'Intimidate',
-        'Mysticism',
-        'Perception',
-        'Physical Science',
-        'Sense Motive',
-        'Stealth'
-    ],
+	skillPointsPerLevel: 4,
 
-    skillPointsPerLevel: 4,
+	armorProficiencies: ['light armor', 'shields'],
 
-    armorProficiencies: [
-        'light armor',
-        'shields'
-    ],
+	weaponProficiencies: [
+		'Basic weapons',
+		'advanced melee weapons',
+		'small arms',
+	],
 
-    weaponProficiencies: [
-        'Basic weapons',
-        'advanced melee weapons',
-        'small arms'
-    ],
+	babAdvancement: 1,
 
-    babAdvancement: 1,
-    
-    goodSavingThrows: [
-        'Fortitude',
-        'Will'
-    ],
+	goodSavingThrows: ['Fortitude', 'Will'],
 
-    badSavingThrows: [
-        'Reflex',
-    ],
-}
+	badSavingThrows: ['Reflex'],
 
-export default SolarianClassDefaults
+	classAbilityList: {},
+};
+
+export default SolarianClassDefaults;

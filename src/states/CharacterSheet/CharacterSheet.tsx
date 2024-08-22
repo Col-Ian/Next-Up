@@ -4,7 +4,7 @@ import DescriptionBlock from '../../components/character-sheet-components/Descri
 import LeftSide from '../../components/character-sheet-components/left-side-components/LeftSide/LeftSide.tsx';
 import RightSide from '../../components/character-sheet-components/right-side-components/RightSide/RightSide.tsx';
 import { createContext, useEffect, useMemo, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import { getValue } from '../../utils/getValue.ts';
 import { levelUpList } from '../../data/levelUpList.ts';
 import FirstLevelMessage from '../../components/character-class-components/FirstLevelMessage/FirstLevelMessage.tsx';
@@ -510,6 +510,9 @@ function CharacterSheet() {
 										<UnderSide />
 									</div>
 								</div>
+							</div>
+							<div className={styles.levelUpButtonDiv}>
+								<Link to={`/Next-Up/level-up/${currentID}`}>LEVEL UP</Link>
 							</div>
 						</div>
 					</div>

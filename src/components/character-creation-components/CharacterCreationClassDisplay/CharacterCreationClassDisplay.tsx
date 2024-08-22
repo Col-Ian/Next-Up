@@ -53,6 +53,7 @@ function CharacterCreationClassDisplay() {
 			babAdvancement: 0,
 			goodSavingThrows: [''],
 			badSavingThrows: [''],
+			classAbilityList: {},
 		},
 	});
 

@@ -1,0 +1,117 @@
+.parentDiv {
+	height: 90vh;
+	align-content: center;
+	max-width: 520px;
+}
+
+.levelUpHeading {
+	font-size: 1.3em;
+}
+
+.heading {
+	font-size: 1.2em;
+	margin-top: 24px;
+	border-top: 3px solid hsl(208, 51%, 56%);
+	border-radius: 4px;
+}
+
+.levelUpWrapper {
+	color: hsl(190, 100%, 95%);
+	background-color: #061626;
+	margin-top: 8px;
+	justify-content: center;
+	border: 5px solid hsl(208, 51%, 56%);
+	padding: 16px;
+	border-radius: 8px;
+}
+
+.abilityScoreWrap {
+	margin-top: 8px;
+}
+
+.abilityScoreLabel {
+	font-weight: bold;
+	font-size: 1.1em;
+}
+
+.currentSelectedRow {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: space-around;
+	border: 3px solid hsl(208, 51%, 56%);
+	border-radius: 4px;
+}
+
+.currentSelectedDiv {
+	display: flex;
+	align-items: center;
+}
+
+.rightArrow {
+	font-size: 2em;
+	padding-bottom: 6px;
+	margin: 0px 12px;
+}
+
+.confirmScore {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.confirmScoreWrapper {
+	padding: 4px;
+	display: flex;
+	align-items: center;
+	border: 4px solid hsl(9, 77%, 44%);
+	border-top: none;
+	border-radius: 0px 0px 4px 4px;
+}
+
+.cancelConfirmDiv {
+	display: flex;
+	justify-content: space-around;
+}
+
+.cancelButton {
+	margin: 4px;
+	margin-top: 24px;
+}
+
+.cancelButton a {
+	text-decoration: none;
+	color: #04121f;
+	font-weight: bold;
+	text-align: center;
+	padding: 8px;
+	border: 2px solid hsl(7, 47%, 68%);
+	background-color: hsl(9, 77%, 44%);
+	width: 110px;
+}
+
+.cancelButton a:hover {
+	background-color: hsl(9, 77%, 38%);
+	cursor: pointer;
+}
+
+.confirmButton {
+	margin: 4px;
+	margin-top: 24px;
+}
+
+.confirmButton a {
+	font-weight: bold;
+	color: #04121f;
+	text-decoration: none;
+	text-align: center;
+	padding: 8px;
+	border: 2px solid hsl(211, 39%, 37%);
+	background-color: hsl(209, 88%, 61%);
+	width: 110px;
+}
+
+.confirmButton a:hover {
+	background-color: hsl(209, 68%, 55%);
+	cursor: pointer;
+}

@@ -1,47 +1,34 @@
-
-
 const WitchwarperClassDefaults: ClassDefaultTypes = {
+	hitStaminaPoints: 5,
 
-    hitStaminaPoints: 5,
+	keyAbilityScore: ['Charisma'],
 
-    keyAbilityScore: [
-        'Charisma'
-    ],
+	keyAbilityDescription:
+		'Your Charisma score determines your spellcasting ability, the saving throw DCs of your spells, and the number of bonus spells you can cast per day, so Charisma is your key ability score. A high Dexterity score can help you fire weapons more accurately and dodge incoming attacks.',
 
-    keyAbilityDescription: 'Your Charisma score determines your spellcasting ability, the saving throw DCs of your spells, and the number of bonus spells you can cast per day, so Charisma is your key ability score. A high Dexterity score can help you fire weapons more accurately and dodge incoming attacks.',
+	classSkills: [
+		'Acrobatics',
+		'Bluff',
+		'Culture',
+		'Diplomacy',
+		'Intimidate',
+		'Mysticism',
+		'Physical Science',
+	],
 
-    classSkills: [
-        'Acrobatics',
-        'Bluff',
-        'Culture',
-        'Diplomacy',
-        'Intimidate',
-        'Mysticism',
-        'Physical Science'
-    ],
+	skillPointsPerLevel: 4,
 
-    skillPointsPerLevel: 4,
+	armorProficiencies: ['light armor'],
 
-    armorProficiencies: [
-        'light armor',
-    ],
+	weaponProficiencies: ['basic weapons', 'small arms', 'grenades'],
 
-    weaponProficiencies: [
-        'basic weapons',
-        'small arms',
-        'grenades'
-    ],
+	babAdvancement: 0.75,
 
-    babAdvancement: 0.75,
-    
-    goodSavingThrows: [
-        'Reflex',
-    ],
+	goodSavingThrows: ['Reflex'],
 
-    badSavingThrows: [
-        'Fortitude',
-        'Will'
-    ],
-}
+	badSavingThrows: ['Fortitude', 'Will'],
 
-export default WitchwarperClassDefaults
+	classAbilityList: {},
+};
+
+export default WitchwarperClassDefaults;
