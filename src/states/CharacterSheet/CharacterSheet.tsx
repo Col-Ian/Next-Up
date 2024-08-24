@@ -21,6 +21,8 @@ import { useArmorClassBlock } from '../../hooks/useArmorClassBlock.ts';
 import { useSavingThrows } from '../../hooks/useSavingThrows.ts';
 import { useExperience } from '../../hooks/useExperience.ts';
 import { useAttackBonuses } from '../../hooks/useAttackBonuses.ts';
+import CombatOptions from '../../components/character-sheet-components/combat-options-components/CombatOptions/CombatOptions.tsx';
+import { useAbilities } from '../../hooks/useAbilities.ts';
 
 type SkillBlockStatesListType = {
 	[key: string]: {
@@ -73,6 +75,10 @@ export const CharacterSheetContext = createContext<{
 		ranged: number;
 		thrown: number;
 	};
+
+	abilitiesArray: AbilityListTypes[];
+	updateAbilityArray: (newAbilityArray: AbilityListTypes[]) => void;
+	currentCharacterID: string | undefined;
 }>({} as any);
 
 function CharacterSheet() {
@@ -133,6 +139,10 @@ function CharacterSheet() {
 	const { attackBonuses, updateAttackBonuses } = useAttackBonuses();
 
 	const { experience, updateExperience } = useExperience();
+
+	// To be passed onto AbilitiesBlock and CombatOptions
+	const { abilitiesArray, updateAbilityArray, currentCharacterID } =
+		useAbilities();
 
 	// useEffect for all changes related to swapping characters
 	useEffect(() => {
@@ -347,6 +357,12 @@ function CharacterSheet() {
 				}
 			});
 
+			Object.keys(SkillBlockStatesList).forEach((skill) => {
+				SkillBlockStatesList[skill].updateState(
+					getValue(`${skill}${currentID}`)
+				);
+			});
+
 			// ArmorClassBlock registers
 			setValue(`DR${characterID}`, data.damageReduction);
 			setValue(`Resistances${characterID}`, data.resistances);
@@ -411,6 +427,7 @@ function CharacterSheet() {
 		updateTempRP,
 		armorEquipped,
 		updateArmorEquipped,
+		SkillBlockStatesList,
 	]);
 
 	const characterInfoDynamicObject: CharacterBasicInfoDynamicType = useMemo(
@@ -471,6 +488,10 @@ function CharacterSheet() {
 				savingThrowMisc: savingThrowMisc,
 
 				attackBonuses: attackBonuses,
+
+				abilitiesArray: abilitiesArray,
+				updateAbilityArray: updateAbilityArray,
+				currentCharacterID: currentCharacterID,
 			}}
 		>
 			<FormProvider {...methods}>
@@ -485,6 +506,8 @@ function CharacterSheet() {
 				) : (
 					// Once character has confirmed choices, move on to sheet.
 					<div className={styles.parentDiv}>
+						<CombatOptions />
+
 						<div className={styles.characterSheetMainDiv}>
 							<div className={styles.characterSheetWrapper}>
 								<div className={styles.characterInfoDescriptionBlock}>
@@ -511,7 +534,13 @@ function CharacterSheet() {
 									</div>
 								</div>
 							</div>
-							<div className={styles.levelUpButtonDiv}>
+							<div
+								className={
+									characterLevel < 20
+										? styles.levelUpButtonDiv
+										: styles.levelUpBeyondButton
+								}
+							>
 								<Link to={`/Next-Up/level-up/${currentID}`}>LEVEL UP</Link>
 							</div>
 						</div>

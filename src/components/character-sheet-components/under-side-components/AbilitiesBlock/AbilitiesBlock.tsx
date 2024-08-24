@@ -1,17 +1,18 @@
 import SheetLabel from '../../labels/BlueLabel/SheetLabel';
 import styles from './AbilitiesBlock.module.css';
-import { useEffect } from 'react';
+import { useContext, useEffect } from 'react';
 import AddButtonLabel from '../../AddButtonLabel/AddButtonLabel';
 import { FieldValues, useFieldArray, useForm } from 'react-hook-form';
-import { useAbilities } from '../../../../hooks/useAbilities';
+import { CharacterSheetContext } from '../../../../states/CharacterSheet/CharacterSheet';
 
 type FormValues = FieldValues & {
 	name: AbilityListTypes[];
 };
 
 function AbilitiesBlockTemp() {
-	const { abilitiesArray, updateAbilityArray, currentCharacterID } =
-		useAbilities();
+	const { abilitiesArray, updateAbilityArray, currentCharacterID } = useContext(
+		CharacterSheetContext
+	);
 
 	const { control, register, watch, reset } = useForm<FormValues>();
 

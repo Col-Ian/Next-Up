@@ -3,7 +3,7 @@ import styles from './LevelUpPage.module.css';
 import stylesGeneral from '../../../states/CreateCharacter/CreateCharacter.module.css';
 import { getValue } from '../../../utils/getValue';
 import { useAbilityScores } from '../../../hooks/useAbilityScores';
-import { useEffect, useState } from 'react';
+import { Dispatch, SetStateAction, useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { setValue } from '../../../utils/setValue';
 import RedLabel from '../../labels/RedLabel/RedLabel';
@@ -14,6 +14,9 @@ import { LevelUpFunction } from '../LevelUpFunction';
 
 function LevelUpPage() {
 	const { characterID } = useParams();
+
+	// For going beyond level 20.
+	const [beyond, setBeyond] = useState<boolean>(false);
 
 	// Ability Score adjustments
 
@@ -85,10 +88,25 @@ function LevelUpPage() {
 		}
 	}
 
-	const classAbilityList: ClassAbilityListTypes =
-		classList[characterBasicInfo.chClass].classDefaults.classAbilityList[
-			nextLevel
-		];
+	function overTwenty() {
+		if (nextLevel >= 21) {
+			return {
+				hasOptions: false,
+				optionDescription: [],
+				options: {},
+				additionalInfo: [],
+				hasFunction: false,
+				functionToRun: () => {},
+				abilities: {},
+			};
+		} else {
+			classList[characterBasicInfo.chClass].classDefaults.classAbilityList[
+				nextLevel
+			];
+		}
+	}
+
+	const classAbilityList: ClassAbilityListTypes = overTwenty()!;
 
 	// If there are options, get the array for them.
 
@@ -109,9 +127,19 @@ function LevelUpPage() {
 	return (
 		<div className={styles.parentDiv}>
 			<div className={styles.levelUpWrapper}>
-				<div className={styles.levelUpHeading}>
-					At level {nextLevel.toString()}, you gain the following benefits:
-				</div>
+				{nextLevel > 20 ? (
+					<div className={styles.levelUpHeading}>
+						After Level 20, your character will no longer gain any benefits from
+						their class or theme. You will still gain all of the normal passive
+						benefits of levelling up, such as having the option to add a feat
+						every second level or increasing your ability scores every 5. You
+						should speak with your GM before confirming any changes.
+					</div>
+				) : (
+					<div className={styles.levelUpHeading}>
+						At level {nextLevel.toString()}, you gain the following benefits:
+					</div>
+				)}
 				{/* You get a feat at every 2nd level starting at 3rd level. This would mean using the next level -1 to find if it's even, so currentLevel will work.*/}
 				{currentLevel % 2 === 0 ? (
 					<div className={styles.heading}>
@@ -448,13 +476,22 @@ function LevelUpPage() {
 						)}
 					</div>
 				) : null}
+
+				{nextLevel > 20 ? (
+					<div className={styles.checkboxDiv}>
+						<input
+							type='checkbox'
+							defaultChecked={false}
+							onChange={() => goBeyond(beyond, setBeyond)}
+						/>
+						<div className={styles.checkboxText}>Go beyond?</div>
+					</div>
+				) : null}
 				<div className={styles.cancelConfirmDiv}>
 					<div className={styles.cancelButton}>
 						<Link to={`/Next-Up/charactersheet/${characterID}`}>CANCEL</Link>
 					</div>
-					{classAbilityList.hasOptions && optionSelected === '' ? (
-						<div></div>
-					) : (
+					{(classAbilityList.hasOptions && optionSelected != '') || beyond ? (
 						<div
 							className={styles.confirmButton}
 							onClick={() =>
@@ -478,6 +515,8 @@ function LevelUpPage() {
 								LEVEL UP
 							</Link>
 						</div>
+					) : (
+						<div></div>
 					)}
 				</div>
 			</div>
@@ -489,4 +528,11 @@ export default LevelUpPage;
 
 function getAbilityScoreIncrease(current: number) {
 	return current < 17 ? current + 2 : current + 1;
+}
+
+function goBeyond(
+	beyond: boolean,
+	setBeyond: Dispatch<SetStateAction<boolean>>
+) {
+	setBeyond(!beyond);
 }

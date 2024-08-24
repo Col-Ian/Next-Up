@@ -1,6 +1,10 @@
 import { OperativeLevelThreeFunction } from '../functions/OperativeLevelThreeFunction';
 import { OperativeLevelFiveFunction } from '../functions/OperativeLevelFiveFunction';
 import { exploitList } from './exploitsList';
+import { OperativeLevelSevenFunction } from '../functions/OperativeLevelSevenFunction';
+import { OperativeLevelElevenFunction } from '../functions/OperativeLevelElevenFunction';
+import { OperativeLevelFifteenFunction } from '../functions/OperativeLevelFifteenFunction';
+import { OperativeLevelNineteenFunction } from '../functions/OperativeLevelNineteenFunction';
 
 // To be used to add the abilities to the character sheet's ability list.
 
@@ -13,7 +17,7 @@ import { exploitList } from './exploitsList';
 		hasFunction: false,
 		functionToRun: () => {},
 		abilities: {
-			ability: {
+			'': {
 				abilityName: '',
 				abilityDescription: '',
 				abilitySource: 'Operative',
@@ -90,8 +94,8 @@ export const operativeAbilityList: {
 			'Your Trick Attack damage increases to 1d8',
 		],
 		hasFunction: true,
-		functionToRun: () => {
-			OperativeLevelThreeFunction;
+		functionToRun: (keyID) => {
+			OperativeLevelThreeFunction(keyID);
 		},
 		abilities: {
 			'Quick Movement (Ex)': {
@@ -115,7 +119,7 @@ export const operativeAbilityList: {
 	4: {
 		hasOptions: true,
 		optionDescription: [
-			'You gain another Operative Exploit. Please select one from the list below.',
+			'You gain another Operative Exploit. Please select one from the list below. (Keep in mind any you may already have)',
 		],
 		options: { ...exploitList['2'] },
 		additionalInfo: [],
@@ -136,41 +140,52 @@ export const operativeAbilityList: {
 		hasOptions: false,
 		optionDescription: [],
 		options: {},
-		additionalInfo: ['Your Trick Attack damage increases to 1d8'],
+		additionalInfo: [
+			'Your Trick Attack damage increases to 3d8',
+			"You gain the Operative's Exploit given from your Specialization. It will automatically be added to your abilities list.",
+		],
 		hasFunction: true,
-		functionToRun: () => {
-			OperativeLevelFiveFunction;
+		functionToRun: (keyID) => {
+			OperativeLevelFiveFunction(keyID);
 		},
 		abilities: {},
 	},
 	6: {
-		hasOptions: false,
-		optionDescription: [],
-		options: {},
+		hasOptions: true,
+		optionDescription: [
+			'You gain another Operative Exploit. You have access to the level 6 exploits as well now. Please select one from the list below. (Keep in mind any you may already have)',
+		],
+		options: { ...exploitList['2'], ...exploitList['6'] },
 		additionalInfo: [],
 		hasFunction: false,
 		functionToRun: () => {},
-		abilities: {
-			ability: {
-				abilityName: '',
-				abilityDescription: '',
-				abilitySource: 'Operative',
-				actionType: ['None'],
-				usesResolve: 0,
-			},
-		},
+		abilities: {},
 	},
 	7: {
 		hasOptions: false,
 		optionDescription: [],
 		options: {},
-		additionalInfo: [],
-		hasFunction: false,
-		functionToRun: () => {},
+		additionalInfo: [
+			"Your Operative's Edge Bonus increases to +3. This will automatically be calculated.",
+			'Your Trick Attack damage increases to 4d8',
+		],
+		hasFunction: true,
+		functionToRun: (keyID) => {
+			OperativeLevelSevenFunction(keyID);
+		},
 		abilities: {
-			ability: {
-				abilityName: '',
-				abilityDescription: '',
+			'Specialization Skill Mastery': {
+				abilityName: 'Specialization Skill Mastery',
+				abilityDescription:
+					'You become so confident in certain skills that you can use them reliably even under adverse conditions. When attempting a skill check with a skill in which you have the Skill Focus feat, you can take 10 even if stress or distractions would normally prevent you from doing so.',
+				abilitySource: 'Operative',
+				actionType: ['None'],
+				usesResolve: 0,
+			},
+			'Uncanny Agility': {
+				abilityName: 'Uncanny Agility',
+				abilityDescription:
+					"You are immune to the flat-footed condition, and your opponent doesn't gain any bonuses to attack rolls against you from flanking you or attacking you when you're prone. Furthermore, covering fire and harrying fire don't provide any advantage against you.",
 				abilitySource: 'Operative',
 				actionType: ['None'],
 				usesResolve: 0,
@@ -178,18 +193,21 @@ export const operativeAbilityList: {
 		},
 	},
 	8: {
-		hasOptions: false,
-		optionDescription: [],
-		options: {},
+		hasOptions: true,
+		optionDescription: [
+			'You gain another Operative Exploit. Please select one from the list below. (Keep in mind any you may already have)',
+		],
+		options: { ...exploitList['2'], ...exploitList['6'] },
 		additionalInfo: [],
 		hasFunction: false,
 		functionToRun: () => {},
 		abilities: {
-			ability: {
-				abilityName: '',
-				abilityDescription: '',
+			'Triple Attack (Ex)': {
+				abilityName: 'Triple Attack (Ex)',
+				abilityDescription:
+					'When making a full attack using only melee weapons with the operative special property or small arms, you can make up to three attacks instead of two.',
 				abilitySource: 'Operative',
-				actionType: ['None'],
+				actionType: ['Full Action'],
 				usesResolve: 0,
 			},
 		},
@@ -198,149 +216,123 @@ export const operativeAbilityList: {
 		hasOptions: false,
 		optionDescription: [],
 		options: {},
-		additionalInfo: [],
+		additionalInfo: [
+			'Your Quick Movement bonus increases to 20 ft.',
+			'Your Trick Attack damage increases to 5d8',
+		],
 		hasFunction: false,
 		functionToRun: () => {},
-		abilities: {
-			ability: {
-				abilityName: '',
-				abilityDescription: '',
-				abilitySource: 'Operative',
-				actionType: ['None'],
-				usesResolve: 0,
-			},
-		},
+		abilities: {},
 	},
 	10: {
-		hasOptions: false,
-		optionDescription: [],
-		options: {},
+		hasOptions: true,
+		optionDescription: [
+			'You gain another Operative Exploit. You have access to the level 10 exploits as well now. Please select one from the list below. (Keep in mind any you may already have)',
+		],
+		options: { ...exploitList['2'], ...exploitList['6'], ...exploitList['10'] },
 		additionalInfo: [],
 		hasFunction: false,
 		functionToRun: () => {},
-		abilities: {
-			ability: {
-				abilityName: '',
-				abilityDescription: '',
-				abilitySource: 'Operative',
-				actionType: ['None'],
-				usesResolve: 0,
-			},
-		},
+		abilities: {},
 	},
 	11: {
 		hasOptions: false,
 		optionDescription: [],
 		options: {},
-		additionalInfo: [],
-		hasFunction: false,
-		functionToRun: () => {},
-		abilities: {
-			ability: {
-				abilityName: '',
-				abilityDescription: '',
-				abilitySource: 'Operative',
-				actionType: ['None'],
-				usesResolve: 0,
-			},
+		additionalInfo: [
+			"Your Operative's Edge Bonus increases to +4. This will automatically be calculated.",
+			'Your Trick Attack damage increases to 6d8',
+			'You get your Specialization Power. It will be automatically added to your abilities list.',
+		],
+		hasFunction: true,
+		functionToRun: (keyID) => {
+			OperativeLevelElevenFunction(keyID);
 		},
+		abilities: {},
 	},
 	12: {
-		hasOptions: false,
-		optionDescription: [],
-		options: {},
+		hasOptions: true,
+		optionDescription: [
+			'You gain another Operative Exploit. Please select one from the list below. (Keep in mind any you may already have)',
+		],
+		options: { ...exploitList['2'], ...exploitList['6'], ...exploitList['10'] },
 		additionalInfo: [],
 		hasFunction: false,
 		functionToRun: () => {},
-		abilities: {
-			ability: {
-				abilityName: '',
-				abilityDescription: '',
-				abilitySource: 'Operative',
-				actionType: ['None'],
-				usesResolve: 0,
-			},
-		},
+		abilities: {},
 	},
 	13: {
 		hasOptions: false,
 		optionDescription: [],
 		options: {},
-		additionalInfo: [],
+		additionalInfo: ['Your Trick Attack damage increases to 7d8'],
 		hasFunction: false,
 		functionToRun: () => {},
 		abilities: {
-			ability: {
-				abilityName: '',
-				abilityDescription: '',
+			'Quad Attack (Ex)': {
+				abilityName: 'Quad Attack (Ex)',
+				abilityDescription:
+					'When making a full attack using only melee weapons with the operative special property or small arms, you can make up to four attacks instead of two.',
 				abilitySource: 'Operative',
-				actionType: ['None'],
+				actionType: ['Full Action'],
 				usesResolve: 0,
 			},
 		},
 	},
 	14: {
-		hasOptions: false,
-		optionDescription: [],
-		options: {},
+		hasOptions: true,
+		optionDescription: [
+			'You gain another Operative Exploit. You have access to the level 14 exploits as well now. Please select one from the list below. (Keep in mind any in which you may already have)',
+		],
+		options: {
+			...exploitList['2'],
+			...exploitList['6'],
+			...exploitList['10'],
+			...exploitList['14'],
+		},
 		additionalInfo: [],
 		hasFunction: false,
 		functionToRun: () => {},
-		abilities: {
-			ability: {
-				abilityName: '',
-				abilityDescription: '',
-				abilitySource: 'Operative',
-				actionType: ['None'],
-				usesResolve: 0,
-			},
-		},
+		abilities: {},
 	},
 	15: {
 		hasOptions: false,
 		optionDescription: [],
 		options: {},
-		additionalInfo: [],
-		hasFunction: false,
-		functionToRun: () => {},
-		abilities: {
-			ability: {
-				abilityName: '',
-				abilityDescription: '',
-				abilitySource: 'Operative',
-				actionType: ['None'],
-				usesResolve: 0,
-			},
+		additionalInfo: [
+			"Your Operative's Edge Bonus increases to +5. This will automatically be calculated.",
+			'Your Quick Movement bonus increases to 30 ft.',
+			'Your Trick Attack damage increases to 8d8',
+		],
+		hasFunction: true,
+		functionToRun: (keyID) => {
+			OperativeLevelFifteenFunction(keyID);
 		},
+		abilities: {},
 	},
 	16: {
-		hasOptions: false,
-		optionDescription: [],
-		options: {},
+		hasOptions: true,
+		optionDescription: [
+			'You gain another Operative Exploit. Please select one from the list below. (Keep in mind any in which you may already have)',
+		],
+		options: { ...exploitList['2'], ...exploitList['6'], ...exploitList['10'] },
 		additionalInfo: [],
 		hasFunction: false,
 		functionToRun: () => {},
-		abilities: {
-			ability: {
-				abilityName: '',
-				abilityDescription: '',
-				abilitySource: 'Operative',
-				actionType: ['None'],
-				usesResolve: 0,
-			},
-		},
+		abilities: {},
 	},
 	17: {
 		hasOptions: false,
 		optionDescription: [],
 		options: {},
-		additionalInfo: [],
+		additionalInfo: ['Your Trick Attack damage increases to 9d8'],
 		hasFunction: false,
 		functionToRun: () => {},
 		abilities: {
-			ability: {
-				abilityName: '',
-				abilityDescription: '',
+			'Double Debilitation (Ex)': {
+				abilityName: 'Double Debilitation (Ex)',
+				abilityDescription:
+					'When you succeed at both the skill check and attack roll of your trick attack, you can apply two of your debilitating trick effects.',
 				abilitySource: 'Operative',
 				actionType: ['None'],
 				usesResolve: 0,
@@ -348,52 +340,46 @@ export const operativeAbilityList: {
 		},
 	},
 	18: {
-		hasOptions: false,
-		optionDescription: [],
-		options: {},
+		hasOptions: true,
+		optionDescription: [
+			'You gain another Operative Exploit. Please select one from the list below. (Keep in mind any in which you may already have)',
+		],
+		options: { ...exploitList['2'], ...exploitList['6'], ...exploitList['10'] },
 		additionalInfo: [],
 		hasFunction: false,
 		functionToRun: () => {},
-		abilities: {
-			ability: {
-				abilityName: '',
-				abilityDescription: '',
-				abilitySource: 'Operative',
-				actionType: ['None'],
-				usesResolve: 0,
-			},
-		},
+		abilities: {},
 	},
 	19: {
 		hasOptions: false,
 		optionDescription: [],
 		options: {},
-		additionalInfo: [],
-		hasFunction: false,
-		functionToRun: () => {},
-		abilities: {
-			ability: {
-				abilityName: '',
-				abilityDescription: '',
-				abilitySource: 'Operative',
-				actionType: ['None'],
-				usesResolve: 0,
-			},
+		additionalInfo: [
+			"Your Operative's Edge Bonus increases to +5. This will automatically be calculated.",
+			'Your Trick Attack damage increases to 10d8',
+		],
+		hasFunction: true,
+		functionToRun: (keyID) => {
+			OperativeLevelNineteenFunction(keyID);
 		},
+		abilities: {},
 	},
 	20: {
-		hasOptions: false,
-		optionDescription: [],
-		options: {},
+		hasOptions: true,
+		optionDescription: [
+			'You gain another Operative Exploit. Please select one from the list below. (Keep in mind any in which you may already have)',
+		],
+		options: { ...exploitList['2'], ...exploitList['6'], ...exploitList['10'] },
 		additionalInfo: [],
 		hasFunction: false,
 		functionToRun: () => {},
 		abilities: {
-			ability: {
-				abilityName: '',
-				abilityDescription: '',
+			'Supreme Operative (Ex)': {
+				abilityName: 'Supreme Operative (Ex)',
+				abilityDescription:
+					"Whenever you attempt a skill check with your specialization's associated skills, you can roll twice and take the higher result. Once per day as a move action, you can temporarily trade out one of your operative exploits for another operative exploit requiring the same level or lower. This trade lasts 24 hours. If the exploit you trade away is a prerequisite for any of your other abilities, you lose all abilities that require it as a prerequisite for the duration.",
 				abilitySource: 'Operative',
-				actionType: ['None'],
+				actionType: ['Move Action'],
 				usesResolve: 0,
 			},
 		},

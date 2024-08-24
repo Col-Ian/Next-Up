@@ -1,5 +1,5 @@
+import { AddAbility } from '../../../../utils/AddAbility';
 import { getValue } from '../../../../utils/getValue';
-import { setValue } from '../../../../utils/setValue';
 import { specializationList } from '../abilities/specializationsList';
 
 export function OperativeLevelFiveFunction(characterID: string) {
@@ -7,12 +7,8 @@ export function OperativeLevelFiveFunction(characterID: string) {
 		`OperativeSpecialization${characterID}`
 	);
 
-	const tempAbilityArray: AbilityListTypes[] = getValue(
-		`Abilities${characterID}`
+	AddAbility(
+		characterID,
+		specializationList[specialization].specializationExploit
 	);
-
-	setValue(`Abilities${characterID}`, [
-		...tempAbilityArray,
-		specializationList[specialization].specializationExploit,
-	]);
 }

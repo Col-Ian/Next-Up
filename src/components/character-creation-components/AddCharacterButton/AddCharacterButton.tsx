@@ -273,7 +273,28 @@ function AddCharacterButton() {
       	Abilities
     	*/
 		setValue(`Abilities${keyID}`, []);
+
 		// Abilities from Class will be added upon confirming 1st level.
+		// Add an empty Ability to represent the first level feat, plus an additional one if the race is human.
+
+		AddAbility(keyID, {
+			abilityName: `Level 1 Feat`,
+			abilityDescription: `Add the feat given to you at level 1.`,
+			abilitySource: `Level 1 Feat`,
+			actionType: [],
+			usesResolve: 0,
+		});
+
+		if (race === 'Human') {
+			AddAbility(keyID, {
+				abilityName: `Bonus Feat (Human)`,
+				abilityDescription: `Add the feat given to you from the Bonus Feat ability for Humans.`,
+				abilitySource: `Bonus Feat (Human)`,
+				actionType: [],
+				usesResolve: 0,
+			});
+		}
+
 		// Add abilities from Race.
 		raceList[race].raceAbilityName.forEach((ability: String, index: number) => {
 			AddAbility(keyID, {

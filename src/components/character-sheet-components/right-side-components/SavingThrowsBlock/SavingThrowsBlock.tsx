@@ -32,7 +32,7 @@ function SavingThrowsBlock() {
 	useEffect(() => {
 		fortitudeBase.current = getSavingThrowBonus('Fortitude');
 		reflexBase.current = getSavingThrowBonus('Reflex');
-		willBase.current = getSavingThrowBonus('Rill');
+		willBase.current = getSavingThrowBonus('Will');
 	}, [characterID]);
 
 	function getSavingThrowBonus(SavingThrow: string) {

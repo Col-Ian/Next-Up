@@ -34,7 +34,7 @@ function HealthAndResolveBlock() {
 	let mathFloorHalfLevel = 1;
 
 	if (Math.floor(getValue(`Level${characterID}`) / 2) > 0) {
-		mathFloorHalfLevel = Math.floor(getValue(`Level${characterID}`)) / 2;
+		mathFloorHalfLevel = Math.floor(getValue(`Level${characterID}`) / 2);
 	}
 
 	const keyAbilityObject: AbilityScoreType = getValue(

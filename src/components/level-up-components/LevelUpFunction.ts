@@ -1,4 +1,5 @@
 import { themeList } from '../../data/theme-information/themeList';
+import { AddAbility } from '../../utils/AddAbility';
 import { getValue } from '../../utils/getValue';
 import { setValue } from '../../utils/setValue';
 
@@ -19,45 +20,30 @@ export function LevelUpFunction(
 	// Add an empty feat as an ability to remind the player to add a feat once back on the screen
 
 	if ((nextLevel - 1) % 2 === 0) {
-		const tempAbilityArray: AbilityListTypes[] = getValue(
-			`Abilities${characterID}`
-		);
-
-		setValue(`Abilities${characterID}`, [
-			...tempAbilityArray,
-			{
-				abilityName: `Level ${nextLevel} Feat`,
-				abilityDescription: `Add the feat given to you at level ${nextLevel}`,
-				abilitySource: `Level ${nextLevel} Feat`,
-				actionType: [],
-				usesResolve: 0,
-			},
-		]);
+		AddAbility(characterID, {
+			abilityName: `Level ${nextLevel} Feat`,
+			abilityDescription: `Add the feat given to you at level ${nextLevel}`,
+			abilitySource: `Level ${nextLevel} Feat`,
+			actionType: [],
+			usesResolve: 0,
+		});
 	}
 
 	// Add abilities that may be given by theme
 	if (themeArrayPosition != 0) {
-		const tempAbilityArray: AbilityListTypes[] = getValue(
-			`Abilities${characterID}`
-		);
-
-		setValue(`Abilities${characterID}`, [
-			...tempAbilityArray,
-
-			{
-				abilityName:
-					themeList[characterBasicInfo.theme].themeAbilityTitle[
-						themeArrayPosition
-					],
-				abilityDescription:
-					themeList[characterBasicInfo.theme].themeAbilityDescription[
-						themeArrayPosition
-					],
-				abilitySource: `Theme (${characterBasicInfo.theme})`,
-				actionType: ['None'],
-				usesResolve: 0,
-			},
-		]);
+		AddAbility(characterID, {
+			abilityName:
+				themeList[characterBasicInfo.theme].themeAbilityTitle[
+					themeArrayPosition
+				],
+			abilityDescription:
+				themeList[characterBasicInfo.theme].themeAbilityDescription[
+					themeArrayPosition
+				],
+			abilitySource: `Theme (${characterBasicInfo.theme})`,
+			actionType: ['None'],
+			usesResolve: 0,
+		});
 	}
 
 	// Confirm abiliy score changes when appropriate
@@ -110,22 +96,14 @@ export function LevelUpFunction(
 
 	// Add any options the class may have
 	if (classAbilityList.hasOptions) {
-		const tempAbilityArray: AbilityListTypes[] = getValue(
-			`Abilities${characterID}`
-		);
-
-		setValue(`Abilities${characterID}`, [
-			...tempAbilityArray,
-
-			{
-				abilityName: classAbilityList.options[optionSelected].abilityName,
-				abilityDescription:
-					classAbilityList.options[optionSelected].abilityDescription,
-				abilitySource: classAbilityList.options[optionSelected].abilitySource,
-				actionType: classAbilityList.options[optionSelected].actionType,
-				usesResolve: classAbilityList.options[optionSelected].usesResolve,
-			},
-		]);
+		AddAbility(characterID, {
+			abilityName: classAbilityList.options[optionSelected].abilityName,
+			abilityDescription:
+				classAbilityList.options[optionSelected].abilityDescription,
+			abilitySource: classAbilityList.options[optionSelected].abilitySource,
+			actionType: classAbilityList.options[optionSelected].actionType,
+			usesResolve: classAbilityList.options[optionSelected].usesResolve,
+		});
 	}
 
 	// Add the abilities given by class
@@ -144,7 +122,7 @@ export function LevelUpFunction(
 	}
 
 	// Run any functions the class may need to run at this level
-	classAbilityList.functionToRun({ keyID: characterID });
+	classAbilityList.functionToRun(characterID);
 
 	// Set the level.
 	setValue(`Level${characterID}`, nextLevel);
