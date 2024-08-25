@@ -100,13 +100,12 @@ function LevelUpPage() {
 				abilities: {},
 			};
 		} else {
-			classList[characterBasicInfo.chClass].classDefaults.classAbilityList[
-				nextLevel
-			];
+			return classList[characterBasicInfo.chClass].classDefaults
+				.classAbilityList[nextLevel];
 		}
 	}
 
-	const classAbilityList: ClassAbilityListTypes = overTwenty()!;
+	const classAbilityList: ClassAbilityListTypes = overTwenty();
 
 	// If there are options, get the array for them.
 
@@ -491,7 +490,9 @@ function LevelUpPage() {
 					<div className={styles.cancelButton}>
 						<Link to={`/Next-Up/charactersheet/${characterID}`}>CANCEL</Link>
 					</div>
-					{(classAbilityList.hasOptions && optionSelected != '') || beyond ? (
+					{(classAbilityList.hasOptions && optionSelected != '') ||
+					beyond ||
+					!classAbilityList.hasOptions ? (
 						<div
 							className={styles.confirmButton}
 							onClick={() =>

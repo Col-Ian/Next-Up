@@ -146,6 +146,32 @@ function CharacterSheet() {
 
 	// useEffect for all changes related to swapping characters
 	useEffect(() => {
+		// Set the values for the skills correctly on load if they changed before being set here..
+		Object.keys(SkillBlockStatesList).forEach((skill) => {
+			// If it's a Specialization Skill, don't add the rank. It's not supposed to count to the total ranks per level, and always equal to the level of the character.
+			if (SkillBlockStatesList[skill].skillState.operativeSpecializationSkill) {
+				setSkill(
+					0,
+					GetModifier(
+						getValue(
+							`${SkillBlockStatesList[skill].skillState.attributeAffecting}${characterID}`
+						)
+					),
+					skill
+				);
+			} else {
+				setSkill(
+					SkillBlockStatesList[skill].skillState.ranks,
+					GetModifier(
+						getValue(
+							`${SkillBlockStatesList[skill].skillState.attributeAffecting}${characterID}`
+						)
+					),
+					skill
+				);
+			}
+		});
+
 		// Set default values based on character selected.
 		let defaultValues = {
 			// CharacterInfo registers
