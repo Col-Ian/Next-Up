@@ -1,3 +1,7 @@
+.parentDiv {
+	margin-top: 16px;
+}
+
 .combatOptionsWrapper {
 	display: flex;
 	flex-direction: column;
@@ -23,14 +27,12 @@
 	display: none;
 	flex-direction: row;
 	background-color: white;
-	margin-top: 8px;
 	justify-content: center;
 	border: 5px solid hsl(206, 61%, 80%);
 	padding: 2px;
 	border-radius: 8px;
 	font-size: 0.8rem;
 	width: 100%;
-	margin: 16px 0px 0px 0px;
 	animation: slideInOut 0.8s ease-in-out;
 }
 
@@ -46,6 +48,7 @@
 }
 
 .showCombatOptionsButton {
+	font-weight: bold;
 	border: 2px solid hsl(7, 47%, 68%);
 	background-color: hsl(9, 77%, 44%);
 	text-align: center;
@@ -62,6 +65,51 @@
 
 .showCombatOptionsButton:hover {
 	background-color: hsl(9, 77%, 38%);
+	cursor: pointer;
+}
+
+.selectedOptionsWrapper {
+	margin: 8px 0px 8px 0px;
+	display: flex;
+	flex-direction: column;
+}
+
+.selectedOptionTypeAvailable {
+	font-weight: bold;
+	font-size: 1.4em;
+	border-top: 5px solid hsl(206, 61%, 80%);
+	border-radius: 8px;
+}
+
+.selectedOptionTypeUnavailable {
+	font-weight: bold;
+	font-size: 1.4em;
+	border-top: 5px solid hsl(206, 61%, 80%);
+	border-radius: 8px;
+	text-decoration: line-through 3px solid black;
+}
+
+.selectedOption {
+	font-size: 1.4em;
+	width: fit-content;
+	border-bottom: 3px solid hsl(206, 61%, 80%);
+	border-radius: 4px;
+}
+
+.resetResyncButtons {
+	width: fit-content;
+	font-size: 1.2em;
+	font-weight: bold;
+	border: 2px solid hsl(211, 39%, 37%);
+	background-color: hsl(209, 88%, 61%);
+	text-align: center;
+	padding: 16px 48px 16px 48px;
+	border-radius: 8px;
+	margin-bottom: 2px;
+}
+
+.resetResyncButtons:hover {
+	background-color: hsl(209, 68%, 55%);
 	cursor: pointer;
 }
 
