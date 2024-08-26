@@ -1,5 +1,6 @@
 .parentDiv {
 	margin-top: 16px;
+	position: relative;
 }
 
 .combatOptionsWrapper {
@@ -131,4 +132,111 @@
 		visibility: visible;
 		transform: translateY(0);
 	}
+}
+
+.standardActionContent {
+	position: absolute;
+	z-index: 9;
+	max-width: 520px;
+	width: 100%;
+}
+
+.moveActionContent {
+	position: absolute;
+	z-index: 8;
+	max-width: 520px;
+	width: 100%;
+}
+
+.fullActionContent {
+	position: absolute;
+	z-index: 7;
+	max-width: 520px;
+	width: 100%;
+}
+
+.swiftActionContent {
+	position: absolute;
+	z-index: 6;
+	max-width: 520px;
+	width: 100%;
+}
+
+.reactionContent {
+	position: absolute;
+	z-index: 5;
+	max-width: 520px;
+	width: 100%;
+}
+
+.actionsWrap {
+	border-top-right-radius: 4px;
+	border-bottom-right-radius: 3%;
+	border-bottom-left-radius: 3%;
+	margin-top: -4px;
+	margin-left: 9px;
+	margin-bottom: -6px;
+	border-top: 2px solid hsl(206, 61%, 80%);
+	border-left: 2px solid hsl(206, 61%, 80%);
+	border-right: 2px solid hsl(206, 61%, 80%);
+	padding-top: 5px;
+	padding-bottom: 2px;
+	background-color: rgb(241, 241, 241);
+	max-height: 238px;
+	overflow-y: scroll;
+}
+
+/* Scrollbar */
+.actionsWrap::-webkit-scrollbar {
+	width: 8px;
+}
+.actionsWrap::-webkit-scrollbar-track {
+	margin: 2px;
+	background: none;
+	border-radius: 5px;
+}
+.actionsWrap::-webkit-scrollbar-thumb {
+	border: 1px solid #555;
+	border-radius: 0.5em;
+}
+.actionsWrap::-webkit-scrollbar-thumb:hover {
+	background: #555;
+}
+.actionsWrap::-webkit-scrollbar-thumb {
+	background: #888;
+}
+
+.action {
+	display: flex;
+	flex-direction: column;
+	margin: 4px;
+	font-size: 1.2em;
+	border: 2px solid hsl(206, 61%, 80%);
+	border-radius: 4px;
+}
+
+.action:hover {
+	cursor: pointer;
+}
+.action input:hover {
+	cursor: pointer;
+}
+
+.actionUpper {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+}
+
+.actionLower {
+	margin: 8px 16px 8px 8px;
+	z-index: 10;
+	position: absolute;
+	top: 0;
+	left: 70px;
+	background-color: rgb(241, 241, 241);
+	border: 2px solid hsl(211, 39%, 37%);
+	padding: 2px;
+	text-indent: 5%;
+	font-weight: bold;
 }

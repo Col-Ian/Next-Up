@@ -6,7 +6,6 @@ import styles from './OperativeLevelComponents.module.css';
 import stylesGeneral from '../../../../states/CreateCharacter/CreateCharacter.module.css';
 import { setValue } from '../../../../utils/setValue.ts';
 import { Link } from 'react-router-dom';
-import { AddAbility } from '../../../../utils/AddAbility.ts';
 import { OperativesEdgeSkillBonus } from '../../../../data/class-information/operative/functions/OperativesEdgeSkillBonus.ts';
 import { getValue } from '../../../../utils/getValue.ts';
 import RedLabel from '../../../labels/RedLabel/RedLabel.tsx';
@@ -20,6 +19,7 @@ function OperativeFirstLevel({ keyID }: { keyID: string }) {
 	);
 
 	const {
+		updateAbilityArray,
 		strengthAbility,
 		updateStrength,
 		dexterityAbility,
@@ -85,7 +85,11 @@ function OperativeFirstLevel({ keyID }: { keyID: string }) {
 
 		// Set the default abilities given by Operative
 		Object.keys(operativeAbilityList['1'].abilities).forEach((i) => {
-			AddAbility(keyID, operativeAbilityList['1'].abilities[i]);
+			// AddAbility(keyID, operativeAbilityList['1'].abilities[i]);
+			updateAbilityArray([
+				...getValue(`Abilities${keyID}`),
+				operativeAbilityList['1'].abilities[i],
+			]);
 		});
 
 		// Add the specialization as an object to the ability list.
@@ -96,7 +100,11 @@ function OperativeFirstLevel({ keyID }: { keyID: string }) {
 			actionType: ['None'],
 			usesResolve: 0,
 		};
-		AddAbility(keyID, specializationAsAbility);
+		updateAbilityArray([
+			...getValue(`Abilities${keyID}`),
+			specializationAsAbility,
+		]);
+		// AddAbility(keyID, specializationAsAbility);
 
 		// Set the specialization selected to the list so we can reference it again later when needed.
 		setValue(`OperativeSpecialization${keyID}`, specialization);
