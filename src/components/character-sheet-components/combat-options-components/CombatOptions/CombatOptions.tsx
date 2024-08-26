@@ -203,15 +203,17 @@ function CombatOptions() {
 													id={`standardAction${index}`}
 													key={`standardAction${index}`}
 													onClick={() =>
-														setActionOption(
-															action.abilityName,
-															index,
-															action.usesResolve,
-															standardAction.action,
-															setStandardAction,
-															setFullAvailable,
-															moveAction.action
-														)
+														standardAvailable
+															? setActionOption(
+																	action.abilityName,
+																	index,
+																	action.usesResolve,
+																	standardAction.action,
+																	setStandardAction,
+																	setFullAvailable,
+																	moveAction.action
+															  )
+															: {}
 													}
 													onMouseOver={() =>
 														handleMouseOverEvent(index.toString())
@@ -266,15 +268,17 @@ function CombatOptions() {
 													id={`moveAction${index}`}
 													key={`moveAction${index}`}
 													onClick={() =>
-														setActionOption(
-															action.abilityName,
-															index,
-															action.usesResolve,
-															moveAction.action,
-															setMoveAction,
-															setFullAvailable,
-															standardAction.action
-														)
+														moveAvailable
+															? setActionOption(
+																	action.abilityName,
+																	index,
+																	action.usesResolve,
+																	moveAction.action,
+																	setMoveAction,
+																	setFullAvailable,
+																	standardAction.action
+															  )
+															: {}
 													}
 													onMouseOver={() =>
 														handleMouseOverEvent(index.toString())
@@ -329,15 +333,17 @@ function CombatOptions() {
 													id={`fullAction${index}`}
 													key={`fullAction${index}`}
 													onClick={() =>
-														setFullActionOption(
-															action.abilityName,
-															index,
-															action.usesResolve,
-															fullAction.action,
-															setFullAction,
-															setStandardAvailable,
-															setMoveAvailable
-														)
+														fullAvailable
+															? setFullActionOption(
+																	action.abilityName,
+																	index,
+																	action.usesResolve,
+																	fullAction.action,
+																	setFullAction,
+																	setStandardAvailable,
+																	setMoveAvailable
+															  )
+															: {}
 													}
 													onMouseOver={() =>
 														handleMouseOverEvent(index.toString())

@@ -26,7 +26,7 @@
 	opacity: 0;
 	visibility: hidden;
 	display: none;
-	flex-direction: row;
+	flex-direction: column;
 	background-color: white;
 	justify-content: center;
 	border: 5px solid hsl(206, 61%, 80%);
@@ -239,4 +239,10 @@
 	padding: 2px;
 	text-indent: 5%;
 	font-weight: bold;
+}
+
+@media screen and (min-width: 1120px) {
+	.combatOptionsContentWrap {
+		flex-direction: row;
+	}
 }
