@@ -245,4 +245,9 @@
 	.combatOptionsContentWrap {
 		flex-direction: row;
 	}
+
+	.actionLower {
+		left: 400px;
+		width: 500px;
+	}
 }

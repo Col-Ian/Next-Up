@@ -9,8 +9,7 @@ import { FullActionList } from '../../../../data/general-actions/FullActionList'
 import { ReactionList } from '../../../../data/general-actions/ReactionList';
 import SheetLabel from '../../labels/BlueLabel/SheetLabel';
 import ExpandComponent from '../../ExpandComponent/ExpandComponent';
-
-// Dylan: Would like to get the position of the description when you hover to appear more out of the way.
+import SplitIntoParagraphs from '../../../../utils/SplitIntoParagraphs';
 
 type actionSavedType = {
 	action: string;
@@ -240,7 +239,10 @@ function CombatOptions() {
 													</div>
 													{isHover === index.toString() ? (
 														<div className={styles.actionLower}>
-															{action.abilityDescription}
+															<SplitIntoParagraphs
+																text={action.abilityDescription}
+																id={`standard${index}`}
+															/>
 														</div>
 													) : null}
 												</div>
@@ -305,7 +307,10 @@ function CombatOptions() {
 													</div>
 													{isHover === index.toString() ? (
 														<div className={styles.actionLower}>
-															{action.abilityDescription}
+															<SplitIntoParagraphs
+																text={action.abilityDescription}
+																id={`move${index}`}
+															/>
 														</div>
 													) : null}
 												</div>
@@ -370,7 +375,10 @@ function CombatOptions() {
 													</div>
 													{isHover === index.toString() ? (
 														<div className={styles.actionLower}>
-															{action.abilityDescription}
+															<SplitIntoParagraphs
+																text={action.abilityDescription}
+																id={`full${index}`}
+															/>
 														</div>
 													) : null}
 												</div>
@@ -428,7 +436,10 @@ function CombatOptions() {
 													</div>
 													{isHover === index.toString() ? (
 														<div className={styles.actionLower}>
-															{action.abilityDescription}
+															<SplitIntoParagraphs
+																text={action.abilityDescription}
+																id={`swift${index}`}
+															/>
 														</div>
 													) : null}
 												</div>
@@ -486,7 +497,10 @@ function CombatOptions() {
 													</div>
 													{isHover === index.toString() ? (
 														<div className={styles.actionLower}>
-															{action.abilityDescription}
+															<SplitIntoParagraphs
+																text={action.abilityDescription}
+																id={`reactions${index}`}
+															/>
 														</div>
 													) : null}
 												</div>
