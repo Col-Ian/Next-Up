@@ -3,7 +3,7 @@ import CharacterInfo from '../../components/character-sheet-components/Character
 import DescriptionBlock from '../../components/character-sheet-components/DescriptionBlock/DescriptionBlock.tsx';
 import LeftSide from '../../components/character-sheet-components/left-side-components/LeftSide/LeftSide.tsx';
 import RightSide from '../../components/character-sheet-components/right-side-components/RightSide/RightSide.tsx';
-import { createContext, useEffect, useMemo, useState } from 'react';
+import { createContext, useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { getValue } from '../../utils/getValue.ts';
 import { levelUpList } from '../../data/levelUpList.ts';
