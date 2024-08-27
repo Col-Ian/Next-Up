@@ -24,7 +24,7 @@ export function LevelUpFunction(
 			abilityName: `Level ${nextLevel} Feat`,
 			abilityDescription: `Add the feat given to you at level ${nextLevel}`,
 			abilitySource: `Level ${nextLevel} Feat`,
-			actionType: [],
+			actionType: [false, false, false, false, false, false],
 			usesResolve: 0,
 		});
 	}
@@ -41,7 +41,7 @@ export function LevelUpFunction(
 					themeArrayPosition
 				],
 			abilitySource: `Theme (${characterBasicInfo.theme})`,
-			actionType: ['None'],
+			actionType: [false, false, false, false, false, false],
 			usesResolve: 0,
 		});
 	}

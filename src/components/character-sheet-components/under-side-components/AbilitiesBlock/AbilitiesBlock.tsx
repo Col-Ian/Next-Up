@@ -50,7 +50,7 @@ function AbilitiesBlockTemp() {
 				abilityName: '',
 				abilityDescription: '',
 				abilitySource: '',
-				actionType: [''],
+				actionType: [false, false, false, false, false, false],
 				usesResolve: 0,
 			});
 		}
@@ -67,7 +67,7 @@ function AbilitiesBlockTemp() {
 							abilityName: '',
 							abilityDescription: '',
 							abilitySource: '',
-							actionType: [''],
+							actionType: [false, false, false, false, false, false],
 							usesResolve: 0,
 						});
 					}}

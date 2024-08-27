@@ -10,6 +10,7 @@ import { ReactionList } from '../../../../data/general-actions/ReactionList';
 import SheetLabel from '../../labels/BlueLabel/SheetLabel';
 import ExpandComponent from '../../ExpandComponent/ExpandComponent';
 import SplitIntoParagraphs from '../../../../utils/SplitIntoParagraphs';
+import { OtherActionlist } from '../../../../data/general-actions/OtherActionList';
 
 type actionSavedType = {
 	action: string;
@@ -42,6 +43,10 @@ function CombatOptions() {
 	const [reactionsList, setReactionsList] =
 		useState<AbilityListTypes[]>(ReactionList);
 
+	// A list to hold all Other Actions
+	const [otherList, setOtherList] =
+		useState<AbilityListTypes[]>(OtherActionlist);
+
 	/*
 	The selected options to be shown.
 		Store the values seperately to track which actions have been taken.
@@ -60,15 +65,21 @@ function CombatOptions() {
 	});
 	const [moveAvailable, setMoveAvailable] = useState<boolean>(true);
 
+	const [swiftAction, setSwiftAction] = useState<actionSavedType>({
+		action: '',
+		index: 0,
+	});
+	const [swiftAvailable, setSwiftAvailable] = useState<boolean>(true);
+
 	const [fullAction, setFullAction] = useState<actionSavedType>({
 		action: '',
 		index: 0,
 	});
 	const [fullAvailable, setFullAvailable] = useState<boolean>(true);
 
-	const [swiftActions, setSwiftActions] = useState<actionSavedType[]>([]);
-
 	const [reactionActions, setReactionActions] = useState<actionSavedType[]>([]);
+
+	const [otherActions, setOtherActions] = useState<actionSavedType[]>([]);
 
 	const [show, setShow] = useState<boolean>(false);
 
@@ -76,9 +87,10 @@ function CombatOptions() {
 
 	const [showStandard, setShowStandard] = useState<boolean>(false);
 	const [showMove, setShowMove] = useState<boolean>(false);
-	const [showFull, setShowFull] = useState<boolean>(false);
 	const [showSwift, setShowSwift] = useState<boolean>(false);
+	const [showFull, setShowFull] = useState<boolean>(false);
 	const [showReaction, setShowReaction] = useState<boolean>(false);
+	const [showOther, setShowOther] = useState<boolean>(false);
 
 	// Mouseover to show descriptions of items
 	const [isHover, setIsHover] = useState<string>('');
@@ -98,39 +110,22 @@ function CombatOptions() {
 				setShowMove,
 				setShowFull,
 				setShowSwift,
-				setShowReaction
+				setShowReaction,
+				setShowOther
 			);
 
 		setActionList(
-			'Standard Action',
+			0,
 			abilitiesArray.current,
 			StandardActionList,
 			setStandardList
 		);
-		setActionList(
-			'Move Action',
-			abilitiesArray.current,
-			MoveActionList,
-			setMoveList
-		);
-		setActionList(
-			'Full Action',
-			abilitiesArray.current,
-			FullActionList,
-			setFullList
-		);
-		setActionList(
-			'Swift Action',
-			abilitiesArray.current,
-			SwiftActionList,
-			setSwiftList
-		);
-		setActionList(
-			'Reaction',
-			abilitiesArray.current,
-			ReactionList,
-			setReactionsList
-		);
+
+		setActionList(1, abilitiesArray.current, MoveActionList, setMoveList);
+		setActionList(2, abilitiesArray.current, SwiftActionList, setSwiftList);
+		setActionList(3, abilitiesArray.current, FullActionList, setFullList);
+		setActionList(4, abilitiesArray.current, ReactionList, setReactionsList);
+		setActionList(5, abilitiesArray.current, OtherActionlist, setOtherList);
 	}, [currentID]);
 
 	function resetAllSelectedOptions() {
@@ -143,43 +138,27 @@ function CombatOptions() {
 		setFullAction({ action: '', index: 0 });
 		setFullAvailable(true);
 
-		setSwiftActions([]);
+		setSwiftAction({ action: '', index: 0 });
+		setSwiftAvailable(true);
+
 		setReactionActions([]);
+		setOtherActions([]);
 	}
 
 	function syncAbilitiesList() {
 		abilitiesArray.current = getValue(`Abilities${currentID}`);
 
 		setActionList(
-			'Standard Action',
+			0,
 			abilitiesArray.current,
 			StandardActionList,
 			setStandardList
 		);
-		setActionList(
-			'Move Action',
-			abilitiesArray.current,
-			MoveActionList,
-			setMoveList
-		);
-		setActionList(
-			'Full Action',
-			abilitiesArray.current,
-			FullActionList,
-			setFullList
-		);
-		setActionList(
-			'Swift Action',
-			abilitiesArray.current,
-			SwiftActionList,
-			setSwiftList
-		);
-		setActionList(
-			'Reaction',
-			abilitiesArray.current,
-			ReactionList,
-			setReactionsList
-		);
+		setActionList(1, abilitiesArray.current, MoveActionList, setMoveList);
+		setActionList(2, abilitiesArray.current, SwiftActionList, setSwiftList);
+		setActionList(3, abilitiesArray.current, FullActionList, setFullList);
+		setActionList(4, abilitiesArray.current, ReactionList, setReactionsList);
+		setActionList(5, abilitiesArray.current, OtherActionlist, setOtherList);
 	}
 
 	return (
@@ -210,7 +189,8 @@ function CombatOptions() {
 																	standardAction.action,
 																	setStandardAction,
 																	setFullAvailable,
-																	moveAction.action
+																	moveAction.action,
+																	swiftAction.action
 															  )
 															: {}
 													}
@@ -278,7 +258,8 @@ function CombatOptions() {
 																	moveAction.action,
 																	setMoveAction,
 																	setFullAvailable,
-																	standardAction.action
+																	standardAction.action,
+																	swiftAction.action
 															  )
 															: {}
 													}
@@ -326,6 +307,75 @@ function CombatOptions() {
 								</div>
 							</div>
 						</div>
+						<div className={styles.swiftActionWrap}>
+							<SheetLabel sheetLabelText='Swift Actions' />
+							<div className={styles.swiftActionContent}>
+								{showSwift ? (
+									<div className={styles.actionsWrap}>
+										{swiftList.map((action, index) => {
+											return (
+												<div
+													className={styles.action}
+													id={`swiftAction${index}`}
+													key={`swiftAction${index}`}
+													onClick={() =>
+														swiftAvailable
+															? setActionOption(
+																	action.abilityName,
+																	index,
+																	action.usesResolve,
+																	swiftAction.action,
+																	setSwiftAction,
+																	setFullAvailable,
+																	standardAction.action,
+																	moveAction.action
+															  )
+															: {}
+													}
+													onMouseOver={() =>
+														handleMouseOverEvent(index.toString())
+													}
+													onMouseOut={() => handleMouseOverEvent('')}
+												>
+													<div className={styles.actionUpper}>
+														<input
+															type='checkbox'
+															checked={
+																swiftAction.action === action.abilityName &&
+																swiftAction.index === index
+																	? true
+																	: false
+															}
+															readOnly
+														/>
+														<div className={styles.actionLabel}>
+															{action.abilityName}
+															{action.usesResolve > 0
+																? ` (${action.usesResolve.toString()} RP)`
+																: null}
+														</div>
+													</div>
+													{isHover === index.toString() ? (
+														<div className={styles.actionLower}>
+															<SplitIntoParagraphs
+																text={action.abilityDescription}
+																id={`swift${index}`}
+															/>
+														</div>
+													) : null}
+												</div>
+											);
+										})}
+									</div>
+								) : null}
+								<div
+									className={styles.dropDownWrapper}
+									onClick={() => setShowSwift(!showSwift)}
+								>
+									<ExpandComponent expanded={showSwift} />
+								</div>
+							</div>
+						</div>
 						<div className={styles.fullActionWrap}>
 							<SheetLabel sheetLabelText='Full Actions' />
 							<div className={styles.fullActionContent}>
@@ -346,7 +396,8 @@ function CombatOptions() {
 																	fullAction.action,
 																	setFullAction,
 																	setStandardAvailable,
-																	setMoveAvailable
+																	setMoveAvailable,
+																	setSwiftAvailable
 															  )
 															: {}
 													}
@@ -394,67 +445,7 @@ function CombatOptions() {
 								</div>
 							</div>
 						</div>
-						<div className={styles.swiftActionWrap}>
-							<SheetLabel sheetLabelText='Swift Actions' />
-							<div className={styles.swiftActionContent}>
-								{showSwift ? (
-									<div className={styles.actionsWrap}>
-										{swiftList.map((action, index) => {
-											return (
-												<div
-													className={styles.action}
-													id={`swiftAction${index}`}
-													key={`swiftAction${index}`}
-													onClick={() =>
-														handleActionArrayOnClick(
-															swiftActions,
-															setSwiftActions,
-															{ action: action.abilityName, index }
-														)
-													}
-													onMouseOver={() =>
-														handleMouseOverEvent(index.toString())
-													}
-													onMouseOut={() => handleMouseOverEvent('')}
-												>
-													<div className={styles.actionUpper}>
-														<input
-															type='checkbox'
-															checked={isInActionsArray(
-																action.abilityName,
-																index,
-																swiftActions
-															)}
-															readOnly
-														/>
-														<div className={styles.actionLabel}>
-															{action.abilityName}
-															{action.usesResolve > 0
-																? ` (${action.usesResolve.toString()} RP)`
-																: null}
-														</div>
-													</div>
-													{isHover === index.toString() ? (
-														<div className={styles.actionLower}>
-															<SplitIntoParagraphs
-																text={action.abilityDescription}
-																id={`swift${index}`}
-															/>
-														</div>
-													) : null}
-												</div>
-											);
-										})}
-									</div>
-								) : null}
-								<div
-									className={styles.dropDownWrapper}
-									onClick={() => setShowSwift(!showSwift)}
-								>
-									<ExpandComponent expanded={showSwift} />
-								</div>
-							</div>
-						</div>
+
 						<div className={styles.reactionWrap}>
 							<SheetLabel sheetLabelText='Reactions' />
 							<div className={styles.rectionContent}>
@@ -516,6 +507,69 @@ function CombatOptions() {
 								</div>
 							</div>
 						</div>
+						{/* TODO */}
+						{/* turn this into the Other Actions list. */}
+						<div className={styles.otherActionWrap}>
+							<SheetLabel sheetLabelText='Other Actions' />
+							<div className={styles.otherActionContent}>
+								{showOther ? (
+									<div className={styles.actionsWrap}>
+										{otherList.map((action, index) => {
+											return (
+												<div
+													className={styles.action}
+													id={`otherAction${index}`}
+													key={`otherAction${index}`}
+													onClick={() =>
+														handleActionArrayOnClick(
+															otherActions,
+															setOtherActions,
+															{ action: action.abilityName, index }
+														)
+													}
+													onMouseOver={() =>
+														handleMouseOverEvent(index.toString())
+													}
+													onMouseOut={() => handleMouseOverEvent('')}
+												>
+													<div className={styles.actionUpper}>
+														<input
+															type='checkbox'
+															checked={isInActionsArray(
+																action.abilityName,
+																index,
+																otherActions
+															)}
+															readOnly
+														/>
+														<div className={styles.actionLabel}>
+															{action.abilityName}
+															{action.usesResolve > 0
+																? ` (${action.usesResolve.toString()} RP)`
+																: null}
+														</div>
+													</div>
+													{isHover === index.toString() ? (
+														<div className={styles.actionLower}>
+															<SplitIntoParagraphs
+																text={action.abilityDescription}
+																id={`other${index}`}
+															/>
+														</div>
+													) : null}
+												</div>
+											);
+										})}
+									</div>
+								) : null}
+								<div
+									className={styles.dropDownWrapper}
+									onClick={() => setShowOther(!showOther)}
+								>
+									<ExpandComponent expanded={showOther} />
+								</div>
+							</div>
+						</div>
 						<div className={styles.buttonsDiv}>
 							<div
 								className={styles.resetResyncButtons}
@@ -555,6 +609,18 @@ function CombatOptions() {
 						<div className={styles.selectedOptionsWrapper}>
 							<div
 								className={
+									moveAvailable
+										? styles.selectedOptionTypeAvailable
+										: styles.selectedOptionTypeUnavailable
+								}
+							>
+								Swift Action
+							</div>
+							<div className={styles.selectedOption}>{swiftAction.action}</div>
+						</div>
+						<div className={styles.selectedOptionsWrapper}>
+							<div
+								className={
 									fullAvailable
 										? styles.selectedOptionTypeAvailable
 										: styles.selectedOptionTypeUnavailable
@@ -566,10 +632,10 @@ function CombatOptions() {
 						</div>
 						<div className={styles.selectedOptionsWrapper}>
 							<div className={styles.selectedOptionTypeAvailable}>
-								Swift Actions
+								Reactions
 							</div>
 							<div className={styles.selectedSwiftActions}>
-								{swiftActions.map((action, id) => {
+								{reactionActions.map((action, id) => {
 									return (
 										<div
 											className={styles.selectedOption}
@@ -583,14 +649,14 @@ function CombatOptions() {
 						</div>
 						<div className={styles.selectedOptionsWrapper}>
 							<div className={styles.selectedOptionTypeAvailable}>
-								Reactions
+								Other Actions
 							</div>
 							<div className={styles.selectedSwiftActions}>
-								{reactionActions.map((action, id) => {
+								{otherActions.map((action, id) => {
 									return (
 										<div
 											className={styles.selectedOption}
-											key={`SwiftAction${id}`}
+											key={`OtherAction${id}`}
 										>
 											{action.action}
 										</div>
@@ -620,7 +686,8 @@ function CombatOptions() {
 								setShowMove,
 								setShowFull,
 								setShowSwift,
-								setShowReaction
+								setShowReaction,
+								setShowOther
 							)
 						}
 					>
@@ -640,7 +707,8 @@ function expandCombat(
 	setMove: Dispatch<SetStateAction<boolean>>,
 	setFull: Dispatch<SetStateAction<boolean>>,
 	setSwift: Dispatch<SetStateAction<boolean>>,
-	setReaction: Dispatch<SetStateAction<boolean>>
+	setReaction: Dispatch<SetStateAction<boolean>>,
+	setOther: Dispatch<SetStateAction<boolean>>
 ) {
 	setShow(!show);
 
@@ -649,6 +717,7 @@ function expandCombat(
 	setFull(false);
 	setSwift(false);
 	setReaction(false);
+	setOther(false);
 
 	const toggleButton: HTMLElement = document.getElementById(
 		styles.showCombatOptionsButton
@@ -665,7 +734,7 @@ function expandCombat(
 
 // Get the list of given action based on the default lists and the abilities from storage.
 function setActionList(
-	type: string,
+	type: number,
 	abilitiesArray: AbilityListTypes[],
 	defaultList: AbilityListTypes[],
 	setList: Dispatch<SetStateAction<AbilityListTypes[]>>
@@ -673,7 +742,7 @@ function setActionList(
 	let tempList: AbilityListTypes[] = [];
 
 	abilitiesArray.forEach((ability) => {
-		if (ability.actionType.includes(type)) {
+		if (ability.actionType[type]) {
 			tempList = [...tempList, ability];
 		}
 	});
@@ -688,7 +757,8 @@ function setActionOption(
 	currentAction: string,
 	setActionFunction: Dispatch<SetStateAction<actionSavedType>>,
 	setUnavailable: Dispatch<SetStateAction<boolean>>,
-	additionalActionType?: string
+	firstAdditionalActionType: string,
+	secondAdditionalActionType: string
 ) {
 	if (currentAction != newAction) {
 		rpUsage > 0
@@ -700,7 +770,7 @@ function setActionOption(
 		setUnavailable(false);
 	} else {
 		setActionFunction({ action: '', index: 0 });
-		if (additionalActionType && additionalActionType != '') {
+		if (firstAdditionalActionType != '' || secondAdditionalActionType != '') {
 			setUnavailable(false);
 		} else {
 			setUnavailable(true);
@@ -715,7 +785,8 @@ function setFullActionOption(
 	currentAction: string,
 	setFullActionFunction: Dispatch<SetStateAction<actionSavedType>>,
 	setStandardUnavailable: Dispatch<SetStateAction<boolean>>,
-	setMoveUnavailable: Dispatch<SetStateAction<boolean>>
+	setMoveUnavailable: Dispatch<SetStateAction<boolean>>,
+	setSwiftAvailable: Dispatch<SetStateAction<boolean>>
 ) {
 	if (currentAction != newAction) {
 		rpUsage > 0
@@ -726,10 +797,12 @@ function setFullActionOption(
 			: setFullActionFunction({ action: newAction, index: newIndex });
 		setStandardUnavailable(false);
 		setMoveUnavailable(false);
+		setSwiftAvailable(false);
 	} else {
 		setFullActionFunction({ action: '', index: 0 });
 		setStandardUnavailable(true);
 		setMoveUnavailable(true);
+		setSwiftAvailable(true);
 	}
 }
 

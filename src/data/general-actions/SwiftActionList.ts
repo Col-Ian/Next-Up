@@ -4,7 +4,7 @@ export const SwiftActionList: AbilityListTypes[] = [
 		abilityDescription:
 			'Changing your grip on a weapon, such as going from wielding a two-handed weapon with both hands to holding it in one hand, is a swift action.',
 		abilitySource: '',
-		actionType: ['Swift Action'],
+		actionType: [false, false, true, false, false, false],
 		usesResolve: 0,
 	},
 	{
@@ -12,7 +12,7 @@ export const SwiftActionList: AbilityListTypes[] = [
 		abilityDescription:
 			'Dropping to a prone position in your space is a swift action.',
 		abilitySource: '',
-		actionType: ['Swift Action'],
+		actionType: [false, false, true, false, false, false],
 		usesResolve: 0,
 	},
 ];

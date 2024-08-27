@@ -12,7 +12,7 @@ export function AddAbilityToSheet(
 		abilityName: '',
 		abilityDescription: '',
 		abilitySource: '',
-		actionType: [''],
+		actionType: [false, false, false, false, false, false],
 		usesResolve: 0,
 	};
 

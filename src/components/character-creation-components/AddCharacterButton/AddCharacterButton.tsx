@@ -281,7 +281,7 @@ function AddCharacterButton() {
 			abilityName: `Level 1 Feat`,
 			abilityDescription: `Add the feat given to you at level 1.`,
 			abilitySource: `Level 1 Feat`,
-			actionType: [],
+			actionType: [false, false, false, false, false, false],
 			usesResolve: 0,
 		});
 
@@ -290,7 +290,7 @@ function AddCharacterButton() {
 				abilityName: `Bonus Feat (Human)`,
 				abilityDescription: `Add the feat given to you from the Bonus Feat ability for Humans.`,
 				abilitySource: `Bonus Feat (Human)`,
-				actionType: [],
+				actionType: [false, false, false, false, false, false],
 				usesResolve: 0,
 			});
 		}
@@ -301,7 +301,7 @@ function AddCharacterButton() {
 				abilityName: ability.toUpperCase(),
 				abilityDescription: raceList[race].raceAbilityDescription[index],
 				abilitySource: `Race (${race})`,
-				actionType: ['None'],
+				actionType: [false, false, false, false, false, false],
 				usesResolve: 0,
 			});
 		});
@@ -310,7 +310,7 @@ function AddCharacterButton() {
 			abilityName: themeList[theme].themeAbilityTitle[0].toUpperCase(),
 			abilityDescription: themeList[theme].themeAbilityDescription[0],
 			abilitySource: `Theme (${theme})`,
-			actionType: ['None'],
+			actionType: [false, false, false, false, false, false],
 			usesResolve: 0,
 		});
 

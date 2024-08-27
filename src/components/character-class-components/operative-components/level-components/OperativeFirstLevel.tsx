@@ -56,12 +56,12 @@ function OperativeFirstLevel({ keyID }: { keyID: string }) {
 			abilityName: '',
 			abilityDescription: '',
 			abilitySource: '',
-			actionType: [''],
+			actionType: [false, false, false, false, false, false],
 			usesResolve: 0,
 		},
 		abilityName: '',
 		abilityDescription: '',
-		actionType: [''],
+		actionType: [false, false, false, false, false, false],
 		usesResolve: 0,
 	});
 
@@ -97,7 +97,7 @@ function OperativeFirstLevel({ keyID }: { keyID: string }) {
 			abilityName: `Specialization: ${specialization}`.toUpperCase(),
 			abilityDescription: `Associated Skills: ${associatedSkills[0]} and ${associatedSkills[1]}. ${trickAttackSkill}`,
 			abilitySource: 'Operative (Specialization)',
-			actionType: ['None'],
+			actionType: [false, false, false, false, false, false],
 			usesResolve: 0,
 		};
 		updateAbilityArray([
