@@ -123,7 +123,12 @@ function ArmorClassBlock() {
 					</div>
 					<input
 						type='number'
-						value={18 + maxDexBonus.current + armorMiscMods.kenetic}
+						value={
+							18 +
+							maxDexBonus.current +
+							armorMiscMods.kenetic +
+							armorEquipped.armorKAC
+						}
 						readOnly
 					/>
 					<div className={styles.plusEqualsNumber}> = </div>

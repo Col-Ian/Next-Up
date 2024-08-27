@@ -37,13 +37,6 @@ function ArmorBlock() {
 	const [showArray, setShowArray] = useState<boolean>(false);
 
 	useEffect(() => {
-		let tempIndex = 0;
-		armorArray.forEach((armor, index) => {
-			if (armor.isEquipped) {
-				tempIndex = index;
-			}
-		});
-
 		let defaultValues = {
 			armors: armorArray,
 		};
