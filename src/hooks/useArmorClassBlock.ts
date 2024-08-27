@@ -10,6 +10,12 @@ export function useArmorClassBlock() {
 		getValue(`EquippedArmor${characterID}`)
 	);
 
+	const [armorArray, setArmorArray] = useState<ArmorType[]>(
+		getValue(`Armor${characterID}`)
+	);
+
+	const [currentCharacterIDAC, setCurrentCharacterIDAC] = useState(characterID);
+
 	const [armorMiscMods, setArmorMiscMods] = useState<{
 		energy: number;
 		kenetic: number;
@@ -18,13 +24,22 @@ export function useArmorClassBlock() {
 	useEffect(() => {
 		setArmorEquipped(getValue(`EquippedArmor${characterID}`));
 		setArmorMiscMods(getValue(`ArmorMiscMods${characterID}`));
+		setArmorArray(getValue(`Armor${characterID}`));
+		setCurrentCharacterIDAC(characterID);
 	}, [characterID]);
+
+	const updateArmorArray = useCallback(
+		(newArray: ArmorType[]) => {
+			setArmorArray(newArray);
+			setValue(`Armor${characterID}`, newArray);
+		},
+		[characterID]
+	);
 
 	const updateArmorEquipped = useCallback(
 		(newArmorEquipped: ArmorType) => {
 			setArmorEquipped(newArmorEquipped);
 			setValue(`EquippedArmor${characterID}`, newArmorEquipped);
-			console.log("It's been updated");
 		},
 		[characterID]
 	);
@@ -42,5 +57,8 @@ export function useArmorClassBlock() {
 		updateArmorEquipped,
 		armorMiscMods,
 		updateArmorMiscMods,
+		armorArray,
+		updateArmorArray,
+		currentCharacterIDAC,
 	};
 }

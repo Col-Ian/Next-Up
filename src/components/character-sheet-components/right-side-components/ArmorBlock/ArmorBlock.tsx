@@ -1,8 +1,8 @@
-import { useCallback, useContext, useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import SheetLabel from '../../labels/BlueLabel/SheetLabel';
 import styles from './ArmorBlock.module.css';
 import ExpandComponent from '../../ExpandComponent/ExpandComponent';
-import { useArmor } from '../../../../hooks/useArmor';
+// import { useArmor } from '../../../../hooks/useArmor';
 import { FieldValues, useFieldArray, useForm } from 'react-hook-form';
 import AddButtonLabel from '../../AddButtonLabel/AddButtonLabel';
 import { CharacterSheetContext } from '../../../../states/CharacterSheet/CharacterSheet';
@@ -14,13 +14,17 @@ type FormValues = FieldValues & {
 // Dylan: Can't seem to get the armor equipped to update dynamically, only on refresh. Increasing the EAC/KAC values on the armor in its section should increase the bonuses and total in the Armor Class section.
 
 function ArmorBlock() {
-	const { armorEquipped, updateArmorEquipped } = useContext(
-		CharacterSheetContext
-	);
+	const {
+		armorEquipped,
+		updateArmorEquipped,
+		armorArray,
+		updateArmorArray,
+		currentCharacterIDAC,
+	} = useContext(CharacterSheetContext);
 
 	// const { updateArmorEquipped } = useArmorClassBlock();
 
-	const { armorArray, updateArmorArray, currentCharacterID } = useArmor();
+	// const { armorArray, updateArmorArray, currentCharacterIDAC } = useArmor();
 
 	const { control, register, watch, reset } = useForm<FormValues>();
 
@@ -32,8 +36,6 @@ function ArmorBlock() {
 
 	const [showArray, setShowArray] = useState<boolean>(false);
 
-	const [selectedRadioButton, setSelectedRadioButton] = useState<number>(0);
-
 	useEffect(() => {
 		let tempIndex = 0;
 		armorArray.forEach((armor, index) => {
@@ -41,26 +43,20 @@ function ArmorBlock() {
 				tempIndex = index;
 			}
 		});
-		setSelectedRadioButton(tempIndex);
 
 		let defaultValues = {
 			armors: armorArray,
 		};
 		reset({ ...defaultValues });
-	}, [currentCharacterID, armorEquipped]);
+	}, [currentCharacterIDAC, armorEquipped]);
 
 	useEffect(() => {
 		const subscription = watch((data) => {
 			updateArmorArray(data.armors);
-			armorArray.forEach((armor) => {
-				if (armor.isEquipped) {
-					updateArmorEquipped(armor);
-				}
-			});
 		});
 
 		return () => subscription.unsubscribe();
-	}, [watch, currentCharacterID]);
+	}, [watch, currentCharacterIDAC]);
 
 	function handleRemove(index: number) {
 		if (armorArray.length > 1) {
@@ -80,39 +76,37 @@ function ArmorBlock() {
 		}
 	}
 
-	// function handleEquip(index: number) {
-	// 	let tempArray: ArmorType[] = armorArray;
-	// 	tempArray[index].isEquipped = true;
-	// 	tempArray.forEach((armor: ArmorType, i: number) => {
-	// 		if (i != index) {
-	// 			armor.isEquipped = false;
-	// 		}
-	// 	});
-	// 	setSelectedRadioButton(index);
-	// 	updateArmorArray(tempArray);
-	// 	updateArmorEquipped(tempArray[index]);
-	// }
+	function handleEquip(index: number) {
+		let tempArmorArray: ArmorType[] = armorArray;
 
-	const handleEquip = useCallback(
-		(index: number) => {
-			{
-				let tempArray: ArmorType[] = armorArray;
-				tempArray[index].isEquipped = true;
-				tempArray.forEach((armor: ArmorType, i: number) => {
-					if (i != index) {
-						armor.isEquipped = false;
-					}
-				});
-				setSelectedRadioButton(index);
-				updateArmorArray(tempArray);
-				updateArmorEquipped(tempArray[index]);
+		// Set the armor to be opposite of what it's stored as.
+		tempArmorArray.forEach((armor, i) => {
+			if (i === index) {
+				armor.isEquipped = !armor.isEquipped;
+			} else {
+				armor.isEquipped = false;
 			}
-		},
-		[currentCharacterID]
-	);
+		});
 
-	function isRadioSelected(value: string) {
-		return `radio${selectedRadioButton}` === value ? true : false;
+		const armorToEquip: ArmorType = tempArmorArray[index];
+
+		let tempArmorEquipped: ArmorType = {
+			armorName: '',
+			armorType: '',
+			armorProficiency: '',
+			armorLevel: 0,
+			armorEAC: 0,
+			armorKAC: 0,
+			maxDexBonus: 0,
+			isEquipped: false,
+		};
+
+		if (armorToEquip.isEquipped) {
+			tempArmorEquipped = armorToEquip;
+		}
+
+		updateArmorArray(tempArmorArray);
+		updateArmorEquipped(tempArmorEquipped);
 	}
 
 	return (
@@ -189,15 +183,16 @@ function ArmorBlock() {
 									<div className={styles.bottomRow}>
 										<div className={styles.inputDivEquip}>
 											<div className={styles.inputLabel}>EQUIP</div>
+											{/* 
+											
+											Issue
+											*/}
 											<input
-												type='radio'
+												type='checkbox'
 												className={styles.checkboxInput}
-												value={`radio${index}`}
-												checked={isRadioSelected(`radio${index}`)}
-												onChange={() => handleEquip(index)}
-
-												// {...register(`armors.${index}.isEquipped`)}
 												// checked={armorArray[index].isEquipped ? true : false}
+												{...register(`armors.${index}.isEquipped`)}
+												onClick={() => handleEquip(index)}
 											/>
 										</div>
 										<div className={styles.inputDiv}>

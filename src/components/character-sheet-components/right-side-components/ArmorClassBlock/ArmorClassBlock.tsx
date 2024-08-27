@@ -27,7 +27,7 @@ function ArmorClassBlock() {
 				maxDexBonus.current = GetModifier(dexterityAbility);
 			}
 		}
-	}, [dexterityAbility]);
+	}, [dexterityAbility, armorEquipped]);
 
 	return (
 		<div className={styles.parentDiv}>
@@ -59,7 +59,7 @@ function ArmorClassBlock() {
 							<div>ARMOR</div>
 							<div>BONUS</div>
 						</div>
-						<input type='number' {...register(`bonusEAC`)} readOnly />
+						<input type='number' value={armorEquipped.armorEAC} readOnly />
 					</div>
 					<div className={styles.plusEqualsNumber}> + </div>
 					<div className={styles.inputDiv}>
@@ -102,7 +102,7 @@ function ArmorClassBlock() {
 					<div className={styles.plusEqualsNumber}> = </div>
 					<div className={styles.plusEqualsNumber}> 10 </div>
 					<div className={styles.inputDiv}>
-						<input type='number' {...register(`bonusKAC`)} readOnly />
+						<input type='number' value={armorEquipped.armorKAC} readOnly />
 					</div>
 					<div className={styles.plusEqualsNumber}> + </div>
 					<div className={styles.inputDiv}>

@@ -75,6 +75,9 @@ export const CharacterSheetContext = createContext<{
 		ranged: number;
 		thrown: number;
 	};
+	armorArray: ArmorType[];
+	updateArmorArray: (newArray: ArmorType[]) => void;
+	currentCharacterIDAC: string | undefined;
 
 	abilitiesArray: AbilityListTypes[];
 	updateAbilityArray: (newAbilityArray: AbilityListTypes[]) => void;
@@ -132,6 +135,9 @@ function CharacterSheet() {
 		updateArmorEquipped,
 		armorMiscMods,
 		updateArmorMiscMods,
+		armorArray,
+		updateArmorArray,
+		currentCharacterIDAC,
 	} = useArmorClassBlock();
 
 	const { savingThrowMisc, updateSavingThrowMisc } = useSavingThrows();
@@ -510,6 +516,9 @@ function CharacterSheet() {
 				armorEquipped: armorEquipped,
 				updateArmorEquipped: updateArmorEquipped,
 				armorMiscMods: armorMiscMods,
+				armorArray: armorArray,
+				updateArmorArray: updateArmorArray,
+				currentCharacterIDAC: currentCharacterIDAC,
 
 				savingThrowMisc: savingThrowMisc,
 
