@@ -15,13 +15,10 @@ function HomePage() {
 				<div className={styles.wrapperDiv}>
 					<div className={styles.heading}>Creating A Character</div>
 					<p>
-						The first step is creating your character. After you select the{' '}
-						<span className={styles.addCharacterSpan}>
-							<span className={styles.plusCircle}>+</span> Add Character
-						</span>{' '}
-						button from the navigation menu, you'll be guided step by step
-						through character creation. You won't be able to proceed through
-						character creation until you've selected all options in each
+						The first step is creating your character. After you select the Add
+						Character button from the navigation menu, you'll be guided step by
+						step through character creation. You won't be able to proceed
+						through character creation until you've selected all options in each
 						section. As of right now, only the Operative class and a few select
 						other options are available.
 					</p>
