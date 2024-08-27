@@ -1,0 +1,41 @@
+.parentDiv {
+	display: flex;
+	flex-direction: column;
+	position: relative;
+}
+
+.typeDivLabel {
+	text-align: center;
+	margin: 2px;
+	font-weight: bold;
+}
+.typeDivLabel:hover {
+	cursor: pointer;
+}
+
+.actionTypeDropDown {
+	padding: 8px;
+	width: max-content;
+	display: flex;
+	flex-direction: column;
+	justify-content: start;
+	align-items: start;
+	position: absolute;
+	top: 41px;
+	right: -2px;
+	z-index: 3;
+	background-color: white;
+	border: 2px solid black;
+	font-weight: bold;
+}
+
+.actionRow {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	margin: 2px 0px 2px 0px;
+}
+
+.actionRow:hover {
+	cursor: pointer;
+}

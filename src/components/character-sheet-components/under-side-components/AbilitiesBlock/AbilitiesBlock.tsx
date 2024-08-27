@@ -79,48 +79,89 @@ function AbilitiesBlockTemp() {
 				{fields.map((field, index) => {
 					return (
 						<div className={styles.individualAbility} key={field.id}>
-							<div
-								className={styles.delete}
-								onClick={() => handleRemove(index)}
-							>
-								&#128465;
-							</div>
-							<div className={styles.topRow}>
-								<div className={styles.inputDiv}>
-									<input
-										type='text'
-										{...register(`abilities.${index}.abilityName`)}
+							<div className={styles.leftBlock}>
+								<div
+									className={styles.delete}
+									onClick={() => handleRemove(index)}
+								>
+									&#128465;
+								</div>
+								<div className={styles.topRow}>
+									<div className={styles.inputDiv}>
+										<input
+											type='text'
+											{...register(`abilities.${index}.abilityName`)}
+											spellCheck={false}
+											className={styles.textInput}
+										/>
+									</div>
+									<div className={styles.verticalBar} />
+									<div className={styles.inputDiv}>
+										<input
+											type='text'
+											{...register(`abilities.${index}.abilitySource`)}
+											spellCheck={false}
+											className={styles.textInput}
+										/>
+									</div>
+									<div className={styles.verticalBar} />
+									<div className={styles.inputDiv}>
+										<div className={styles.inputLabel}>RP</div>
+										<input
+											type='number'
+											{...register(`abilities.${index}.usesResolve`)}
+											className={styles.numberInput}
+										/>
+									</div>
+								</div>
+								<div className={styles.abilityDescription}>
+									<textarea
+										{...register(`abilities.${index}.abilityDescription`)}
+										className={styles.abilityTextarea}
 										spellCheck={false}
-										className={styles.textInput}
-									/>
-								</div>
-								<div className={styles.verticalBar} />
-								<div className={styles.inputDiv}>
-									<input
-										type='text'
-										{...register(`abilities.${index}.abilitySource`)}
-										spellCheck={false}
-										className={styles.textInput}
-									/>
-								</div>
-								<div className={styles.verticalBar} />
-								<div>TYPE</div>
-								<div className={styles.verticalBar} />
-								<div className={styles.inputDiv}>
-									<div className={styles.inputLabel}>RP</div>
-									<input
-										type='number'
-										{...register(`abilities.${index}.usesResolve`)}
-										className={styles.numberInput}
 									/>
 								</div>
 							</div>
-							<div className={styles.abilityDescription}>
-								<textarea
-									{...register(`abilities.${index}.abilityDescription`)}
-									className={styles.abilityTextarea}
-									spellCheck={false}
-								/>
+
+							<div className={styles.typeDiv}>
+								<div className={styles.typeDivLabel}>Action</div>
+								<div className={styles.actionTypeDropDown}>
+									<div className={styles.actionRow}>
+										<input
+											type='checkbox'
+											{...register(`abilities.${index}.actionType.0`)}
+										/>
+										<div className={styles.actionLabel}>Standard</div>
+									</div>
+									<div className={styles.actionRow}>
+										<input
+											type='checkbox'
+											{...register(`abilities.${index}.actionType.1`)}
+										/>
+										<div className={styles.actionLabel}>Move</div>
+									</div>
+									<div className={styles.actionRow}>
+										<input
+											type='checkbox'
+											{...register(`abilities.${index}.actionType.2`)}
+										/>
+										<div className={styles.actionLabel}>Full</div>
+									</div>
+									<div className={styles.actionRow}>
+										<input
+											type='checkbox'
+											{...register(`abilities.${index}.actionType.3`)}
+										/>
+										<div className={styles.actionLabel}>Swift</div>
+									</div>
+									<div className={styles.actionRow}>
+										<input
+											type='checkbox'
+											{...register(`abilities.${index}.actionType.4`)}
+										/>
+										<div className={styles.actionLabel}>Reaction</div>
+									</div>
+								</div>
 							</div>
 						</div>
 					);

@@ -9,6 +9,8 @@ type DropDownProps = {
 	index?: number;
 };
 
+// Dylan: I still have to get the position fixed to prevent out of bounds. I'll work on this when everything else is working as expected.
+
 const DropDownList: React.FC<DropDownProps> = ({
 	optionType,
 	optionsArray,

@@ -6,28 +6,6 @@ import { OperativeLevelElevenFunction } from '../functions/OperativeLevelElevenF
 import { OperativeLevelFifteenFunction } from '../functions/OperativeLevelFifteenFunction';
 import { OperativeLevelNineteenFunction } from '../functions/OperativeLevelNineteenFunction';
 
-// To be used to add the abilities to the character sheet's ability list.
-
-/*
-	0: {
-		hasOptions: false,
-		optionDescription: [],
-		options: {},
-		additionalInfo: [],
-		hasFunction: false,
-		functionToRun: () => {},
-		abilities: {
-			'': {
-				abilityName: '',
-				abilityDescription: '',
-				abilitySource: 'Operative',
-				actionType: ['None'],
-				usesResolve: 0,
-			},
-		},
-	},
-*/
-
 export const operativeAbilityList: {
 	[key: string]: ClassAbilityListTypes;
 } = {
