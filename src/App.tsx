@@ -1,9 +1,9 @@
-import Login from './states/Login/Login.tsx';
 import { Outlet, RouterProvider, createBrowserRouter } from 'react-router-dom';
 import CharacterSheet from './states/CharacterSheet/CharacterSheet.tsx';
 import CreateCharacter from './states/CreateCharacter/CreateCharacter.tsx';
 import NavBar from './states/NavBar/NavBar.tsx';
 import LevelUpPage from './components/level-up-components/LevelUpPage/LevelUpPage.tsx';
+import HomePage from './states/HomePage/HomePage.tsx';
 
 const Dashboard = () => {
 	return (
@@ -29,7 +29,7 @@ const router = createBrowserRouter([
 			},
 			{
 				path: '/Next-Up/',
-				element: <Login />,
+				element: <HomePage />,
 			},
 			{
 				path: '/Next-Up/create-character',

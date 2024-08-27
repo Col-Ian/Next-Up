@@ -47,7 +47,7 @@
 	width: 100%;
 	border: none;
 	outline: none;
-	height: 135px;
+	height: 171px;
 }
 
 .inputDiv {
@@ -127,6 +127,9 @@
 }
 .actionRow input {
 	margin: 2px -8px 2px -8px;
+}
+.typeDivLabel {
+	font-weight: bold;
 }
 
 @media screen and (min-width: 1120px) {

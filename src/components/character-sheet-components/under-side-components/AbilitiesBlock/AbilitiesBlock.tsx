@@ -9,7 +9,7 @@ type FormValues = FieldValues & {
 	name: AbilityListTypes[];
 };
 
-function AbilitiesBlockTemp() {
+function AbilitiesBlock() {
 	const { abilitiesArray, updateAbilityArray, currentCharacterID } = useContext(
 		CharacterSheetContext
 	);
@@ -75,7 +75,7 @@ function AbilitiesBlockTemp() {
 					<AddButtonLabel itemToAdd='ABILITY' />
 				</div>
 			</div>
-			<div className={styles.abilitiesBlockTempContent}>
+			<div className={styles.abilitiesBlockContent}>
 				{fields.map((field, index) => {
 					return (
 						<div className={styles.individualAbility} key={field.id}>
@@ -145,14 +145,14 @@ function AbilitiesBlockTemp() {
 											type='checkbox'
 											{...register(`abilities.${index}.actionType.2`)}
 										/>
-										<div className={styles.actionLabel}>Full</div>
+										<div className={styles.actionLabel}>Swift</div>
 									</div>
 									<div className={styles.actionRow}>
 										<input
 											type='checkbox'
 											{...register(`abilities.${index}.actionType.3`)}
 										/>
-										<div className={styles.actionLabel}>Swift</div>
+										<div className={styles.actionLabel}>Full</div>
 									</div>
 									<div className={styles.actionRow}>
 										<input
@@ -160,6 +160,13 @@ function AbilitiesBlockTemp() {
 											{...register(`abilities.${index}.actionType.4`)}
 										/>
 										<div className={styles.actionLabel}>Reaction</div>
+									</div>
+									<div className={styles.actionRow}>
+										<input
+											type='checkbox'
+											{...register(`abilities.${index}.actionType.5`)}
+										/>
+										<div className={styles.actionLabel}>Other</div>
 									</div>
 								</div>
 							</div>
@@ -171,4 +178,4 @@ function AbilitiesBlockTemp() {
 	);
 }
 
-export default AbilitiesBlockTemp;
+export default AbilitiesBlock;

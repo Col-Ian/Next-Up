@@ -21,6 +21,9 @@
 	max-width: 520px;
 	width: 100%;
 }
+.buttonsDiv {
+	margin-top: 20px;
+}
 
 .combatOptionsContentWrap {
 	opacity: 0;
@@ -148,23 +151,30 @@
 	width: 100%;
 }
 
-.fullActionContent {
+.swiftActionContent {
 	position: absolute;
 	z-index: 7;
 	max-width: 520px;
 	width: 100%;
 }
 
-.swiftActionContent {
+.fullActionContent {
 	position: absolute;
 	z-index: 6;
 	max-width: 520px;
 	width: 100%;
 }
 
-.reactionContent {
+.rectionContent {
 	position: absolute;
 	z-index: 5;
+	max-width: 520px;
+	width: 100%;
+}
+
+.otherActionContent {
+	position: absolute;
+	z-index: 4;
 	max-width: 520px;
 	width: 100%;
 }
@@ -232,7 +242,7 @@
 	margin: 8px 16px 8px 8px;
 	z-index: 10;
 	position: absolute;
-	top: 0;
+	top: 0px;
 	left: 70px;
 	background-color: rgb(241, 241, 241);
 	border: 2px solid hsl(211, 39%, 37%);

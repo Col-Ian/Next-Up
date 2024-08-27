@@ -1,0 +1,74 @@
+.parentDiv {
+	color: hsl(190, 100%, 95%);
+	background-color: hsl(210, 73%, 9%);
+	margin-top: 8px;
+	justify-content: center;
+	border: 5px solid hsl(208, 51%, 56%);
+	padding: 16px;
+	border-radius: 8px;
+	max-width: 1070px;
+	text-align: center;
+}
+
+p {
+	font-size: 1.2em;
+}
+
+/*  */
+
+.wrapperDiv {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	padding: 8px;
+}
+
+.heading {
+	background-color: hsl(208, 51%, 56%);
+	border-radius: 8px;
+	color: hsl(210, 73%, 9%);
+	font-size: 1.6em;
+	font-weight: bold;
+	padding: 16px;
+	width: max-content;
+}
+
+/*  */
+
+.plusCircle {
+	font-weight: bold;
+	font-size: 30px;
+}
+
+.addCharacterSpan {
+	padding: 4px 12px;
+	border-radius: 4px;
+	background-color: hsl(206, 61%, 80%);
+	color: rgb(179, 27, 0);
+}
+
+/*  */
+
+.pictureWithDescriptionWrap {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+
+.subHeading {
+	background-color: hsl(208, 51%, 56%);
+	border-radius: 8px;
+	color: hsl(210, 73%, 9%);
+	font-size: 1.2em;
+	font-weight: bold;
+	padding: 16px;
+	width: max-content;
+	margin-bottom: 12px;
+}
+
+.pictureWithDescriptionWrap img {
+	min-width: none;
+	max-width: 500px;
+}

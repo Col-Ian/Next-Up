@@ -23,6 +23,7 @@ import { useExperience } from '../../hooks/useExperience.ts';
 import { useAttackBonuses } from '../../hooks/useAttackBonuses.ts';
 import CombatOptions from '../../components/character-sheet-components/combat-options-components/CombatOptions/CombatOptions.tsx';
 import { useAbilities } from '../../hooks/useAbilities.ts';
+import { useCharacterInfoDynamicObject } from '../../hooks/useCharacterInfoDynamicObject.ts';
 
 type SkillBlockStatesListType = {
 	[key: string]: {
@@ -95,6 +96,9 @@ function CharacterSheet() {
 	const { reset, watch } = methods;
 
 	// Custom hook states.
+
+	const { characterInfoDynamicObject, updateCharacterInfoDynamicObject } =
+		useCharacterInfoDynamicObject();
 
 	const {
 		strengthAbility,
@@ -287,7 +291,7 @@ function CharacterSheet() {
 	useEffect(() => {
 		const subscription = watch((data) => {
 			// CharacterInfo registers
-			setValue(`characterBasicInfoDynamic${characterID}`, {
+			updateCharacterInfoDynamicObject({
 				characterAlignment: data.characterAlignment,
 				characterDiety: data.characterDiety,
 				characterGender: data.characterGender,
@@ -461,11 +465,6 @@ function CharacterSheet() {
 		updateArmorEquipped,
 		SkillBlockStatesList,
 	]);
-
-	const characterInfoDynamicObject: CharacterBasicInfoDynamicType = useMemo(
-		() => getValue(`characterBasicInfoDynamic${characterID}`),
-		[characterID]
-	);
 
 	const [characterInfoObject, setCharacterInfoObject] =
 		useState<CharacterInfoObjectType>(

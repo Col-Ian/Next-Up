@@ -20,6 +20,9 @@ function NavBar() {
 
 	return (
 		<nav className={styles.navBarParent}>
+			<div className={[styles.navBarItem, styles.homePageDiv].join(' ')}>
+				<Link to='/Next-Up/'>Home</Link>
+			</div>
 			{nameArray && <ListOfCharacters nameArray={nameArray} />}
 			<div className={[styles.navBarItem, styles.createCharacter].join(' ')}>
 				<Link to='/Next-Up/create-character'>

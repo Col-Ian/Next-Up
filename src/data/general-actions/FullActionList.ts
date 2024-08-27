@@ -32,6 +32,14 @@ export const FullActionList: AbilityListTypes[] = [
 		usesResolve: 0,
 	},
 	{
+		abilityName: 'Reposition (Full Action, Combat Maneuver)',
+		abilityDescription:
+			'If you reposition a creature as a full action, you can move a distance equal to the distance you repositioned your target (up to your move speed), dragging the target along with you.',
+		abilitySource: '',
+		actionType: [false, false, false, true, false, false],
+		usesResolve: 0,
+	},
+	{
 		abilityName: 'Run',
 		abilityDescription:
 			"You can run as a full action. When you run, you can move up to four times your speed in a straight line. You gain the flat-footed condition, and you can't run if you must cross difficult terrain or can't see where you're going. Running provokes attacks of opportunity (see below). You can run for a number of rounds equal to your Constitution score. See page 258 of the CRB for information on long-distance running.",

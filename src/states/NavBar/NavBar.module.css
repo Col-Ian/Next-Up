@@ -20,11 +20,13 @@
 	color: hsl(206, 71%, 9%, 0.555);
 }
 
-.createCharacter {
+.createCharacter,
+.homePageDiv {
 	text-decoration: none;
 }
 
-.createCharacter:hover {
+.createCharacter:hover,
+.homePageDiv:hover {
 	text-decoration: none;
 }
 
