@@ -3,7 +3,7 @@ import styles from './HomePage.module.css';
 function HomePage() {
 	return (
 		<div className={styles.parentDiv}>
-			<div className={styles.homePageContent}>
+			<div className={styles.homePageContent} autoFocus>
 				<div className={styles.wrapperDiv}>
 					<div className={styles.heading}>Welcome To Next-Up</div>
 					<p>

@@ -69,6 +69,13 @@ textarea {
 	border-radius: 8px;
 }
 
+.bottomSheetButtons {
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
+}
+
 .levelUpButtonDiv {
 	display: flex;
 	justify-content: center;
@@ -83,6 +90,7 @@ textarea {
 	border: 2px solid hsl(211, 39%, 37%);
 	background-color: hsl(209, 88%, 61%);
 	width: 110px;
+	margin: 4px 24px 4px 24px;
 }
 
 .levelUpButtonDiv a:hover {
@@ -95,7 +103,8 @@ textarea {
 	justify-content: center;
 }
 
-.levelUpBeyondButton a {
+.levelUpBeyondButton a,
+.deleteButton {
 	font-weight: bold;
 	color: #04121f;
 	text-decoration: none;
@@ -104,9 +113,11 @@ textarea {
 	border: 2px solid hsl(7, 47%, 68%);
 	background-color: hsl(9, 77%, 44%);
 	width: 110px;
+	margin: 4px 24px 4px 24px;
 }
 
-.levelUpBeyondButton a:hover {
+.levelUpBeyondButton a:hover,
+.deleteButton:hover {
 	background-color: hsl(9, 77%, 38%);
 	cursor: pointer;
 }

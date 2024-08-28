@@ -3,7 +3,13 @@ import CharacterInfo from '../../components/character-sheet-components/Character
 import DescriptionBlock from '../../components/character-sheet-components/DescriptionBlock/DescriptionBlock.tsx';
 import LeftSide from '../../components/character-sheet-components/left-side-components/LeftSide/LeftSide.tsx';
 import RightSide from '../../components/character-sheet-components/right-side-components/RightSide/RightSide.tsx';
-import { createContext, useEffect, useState } from 'react';
+import {
+	createContext,
+	Dispatch,
+	SetStateAction,
+	useEffect,
+	useState,
+} from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { getValue } from '../../utils/getValue.ts';
 import { levelUpList } from '../../data/levelUpList.ts';
@@ -24,6 +30,7 @@ import { useAttackBonuses } from '../../hooks/useAttackBonuses.ts';
 import CombatOptions from '../../components/character-sheet-components/combat-options-components/CombatOptions/CombatOptions.tsx';
 import { useAbilities } from '../../hooks/useAbilities.ts';
 import { useCharacterInfoDynamicObject } from '../../hooks/useCharacterInfoDynamicObject.ts';
+import DeleteCharacter from '../../components/character-sheet-components/DeleteCharacter/DeleteCharacter.tsx';
 
 type SkillBlockStatesListType = {
 	[key: string]: {
@@ -83,6 +90,8 @@ export const CharacterSheetContext = createContext<{
 	abilitiesArray: AbilityListTypes[];
 	updateAbilityArray: (newAbilityArray: AbilityListTypes[]) => void;
 	currentCharacterID: string | undefined;
+
+	setShow: Dispatch<SetStateAction<boolean>>;
 }>({} as any);
 
 function CharacterSheet() {
@@ -153,6 +162,9 @@ function CharacterSheet() {
 	// To be passed onto AbilitiesBlock and CombatOptions
 	const { abilitiesArray, updateAbilityArray, currentCharacterID } =
 		useAbilities();
+
+	// To use for showing the delete text.
+	const [show, setShow] = useState<boolean>(false);
 
 	// useEffect for all changes related to swapping characters
 	useEffect(() => {
@@ -526,6 +538,8 @@ function CharacterSheet() {
 				abilitiesArray: abilitiesArray,
 				updateAbilityArray: updateAbilityArray,
 				currentCharacterID: currentCharacterID,
+
+				setShow: setShow,
 			}}
 		>
 			<FormProvider {...methods}>
@@ -568,14 +582,25 @@ function CharacterSheet() {
 									</div>
 								</div>
 							</div>
-							<div
-								className={
-									characterLevel < 20
-										? styles.levelUpButtonDiv
-										: styles.levelUpBeyondButton
-								}
-							>
-								<Link to={`/Next-Up/level-up/${currentID}`}>LEVEL UP</Link>
+							<div className={styles.bottomSheetButtons}>
+								<div
+									className={styles.deleteButton}
+									onClick={() => setShow(!show)}
+								>
+									DELETE
+								</div>
+								<div
+									className={
+										characterLevel < 20
+											? styles.levelUpButtonDiv
+											: styles.levelUpBeyondButton
+									}
+								>
+									<Link to={`/Next-Up/level-up/${currentID}`}>LEVEL UP</Link>
+								</div>
+							</div>
+							<div className={styles.deleteCharacterPopUp}>
+								{show ? <DeleteCharacter /> : null}
 							</div>
 						</div>
 					</div>

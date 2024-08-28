@@ -14,18 +14,20 @@ function NavBar() {
 		}
 	}, []);
 
-	addEventListener('Character Created', () => {
+	addEventListener('Character List Updated', () => {
 		setNameArray(getValue('charactersAvailable'));
 	});
 
 	return (
 		<nav className={styles.navBarParent}>
 			<div className={[styles.navBarItem, styles.homePageDiv].join(' ')}>
-				<Link to='/Next-Up/'>Home</Link>
+				<Link to='/Next-Up/' onClick={scrollToTop}>
+					Home
+				</Link>
 			</div>
 			{nameArray && <ListOfCharacters nameArray={nameArray} />}
 			<div className={[styles.navBarItem, styles.createCharacter].join(' ')}>
-				<Link to='/Next-Up/create-character'>
+				<Link to='/Next-Up/create-character' onClick={scrollToTop}>
 					<span className={styles.plusCircle}>+</span> Add Character
 				</Link>
 			</div>
@@ -43,7 +45,7 @@ function ListOfCharacters({ nameArray }: ListOfCharactersProps) {
 			{nameArray.map((i) => {
 				return (
 					<div className={styles.navBarItem} key={`${i.characterName}${i.id}`}>
-						<Link to={`/Next-Up/charactersheet/${i.id}`}>
+						<Link to={`/Next-Up/charactersheet/${i.id}`} onClick={scrollToTop}>
 							{i.characterName}
 						</Link>
 					</div>
@@ -51,6 +53,10 @@ function ListOfCharacters({ nameArray }: ListOfCharactersProps) {
 			})}
 		</div>
 	);
+}
+
+function scrollToTop() {
+	window.scrollTo(0, 0);
 }
 
 export default NavBar;

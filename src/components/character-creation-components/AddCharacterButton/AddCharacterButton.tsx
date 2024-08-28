@@ -366,7 +366,9 @@ function AddCharacterButton() {
 
 		setValue(`initiativeCards${keyID}`, [characterInitiative]);
 
-		dispatchEvent(new Event('Character Created'));
+		dispatchEvent(new Event('Character List Updated'));
+
+		window.scrollTo(0, 0);
 	}
 
 	return (
