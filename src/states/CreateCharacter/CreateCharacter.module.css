@@ -1,8 +1,6 @@
 .parentDiv {
 	height: 90vh;
 	align-content: center;
-	max-width: 520px;
-	/* min-width: 520px; */
 }
 
 .wrapperDiv {
@@ -26,4 +24,10 @@
 	padding: 6px;
 	margin-top: -5px;
 	margin-left: 10px;
+}
+
+@media screen and (min-width: 1120px) {
+	.parentDiv {
+		width: 1070px;
+	}
 }

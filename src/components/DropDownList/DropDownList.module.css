@@ -1,7 +1,10 @@
 .parentDiv {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
 	text-align: center;
 	position: relative;
-	z-index: 2;
 }
 .dropDownButton {
 	text-align: center;
@@ -10,6 +13,7 @@
 	background-color: hsl(209, 88%, 61%);
 	color: #04121f;
 	width: max-content;
+	z-index: 2;
 }
 
 .dropDownButton:hover {
@@ -17,10 +21,20 @@
 	cursor: pointer;
 }
 
-.dropDownOptions {
+.dropDownOptionsAbove {
 	position: absolute;
 	color: #04121f;
 	background-color: hsl(209, 88%, 61%);
+	z-index: 3;
+	bottom: 36px;
+}
+
+.dropDownOptionsBelow {
+	position: absolute;
+	color: #04121f;
+	background-color: hsl(209, 88%, 61%);
+	z-index: 3;
+	top: 36px;
 }
 
 .dropDown {

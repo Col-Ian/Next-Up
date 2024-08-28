@@ -32,6 +32,7 @@ function ShowOptions({
 								optionSelection={optionsSelectedArray[index].optionSet}
 								optionType='Option'
 								selectedOption={optionsSelectedArray[index].optionValue}
+								above={true}
 							/>
 						</div>
 					</div>

@@ -93,6 +93,7 @@ function CharacterCreationThemeDisplay() {
 				optionsArray={themeArray}
 				optionSelection={setTheme}
 				selectedOption={theme}
+				above={false}
 			/>
 			{theme != '' && (
 				<div className={styles.themeInformationDiv}>

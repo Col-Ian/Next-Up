@@ -6,7 +6,7 @@ type DropDownProps = {
 	optionsArray: string[];
 	optionSelection: Function;
 	selectedOption: string;
-	index?: number;
+	above: boolean;
 };
 
 // Dylan: I still have to get the position fixed to prevent out of bounds. I'll work on this when everything else is working as expected.
@@ -16,6 +16,7 @@ const DropDownList: React.FC<DropDownProps> = ({
 	optionsArray,
 	optionSelection,
 	selectedOption,
+	above,
 }: DropDownProps): JSX.Element => {
 	const { visible, setVisible, ref } = useDismissHandler(false);
 
@@ -40,7 +41,11 @@ const DropDownList: React.FC<DropDownProps> = ({
 						: `${optionType}...`}
 				</div>
 			</button>
-			<div className={styles.dropDownOptions}>
+			<div
+				className={
+					above ? styles.dropDownOptionsAbove : styles.dropDownOptionsBelow
+				}
+			>
 				{visible ? (
 					<div className={styles.dropDown} id='dropDownDiv' ref={ref}>
 						{optionsArray.map((option: string, index: number) => {

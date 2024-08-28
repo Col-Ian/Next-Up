@@ -94,6 +94,7 @@ function CharacterCreationClassDisplay() {
 				optionsArray={classArray}
 				optionSelection={setChClass}
 				selectedOption={chClass}
+				above={false}
 			/>
 			{chClass != '' && (
 				<div className={styles.classInformationDiv}>
@@ -122,6 +123,7 @@ function CharacterCreationClassDisplay() {
 											optionsArray={keyAbilityScore}
 											optionSelection={setKeyAbilityScoreSelected}
 											selectedOption={keyAbilityScoreSelected}
+											above={true}
 										/>
 									</div>
 								)

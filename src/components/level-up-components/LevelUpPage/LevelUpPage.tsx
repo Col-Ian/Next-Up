@@ -417,6 +417,7 @@ function LevelUpPage() {
 											optionsArray={optionsArray}
 											optionSelection={setOptionSelected}
 											selectedOption={optionSelected}
+											above={true}
 										/>
 										{optionSelected != '' ? (
 											<div className={styles.optionSelectedDiv}>

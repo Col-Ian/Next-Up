@@ -194,6 +194,7 @@ function OperativeFirstLevel({ keyID }: { keyID: string }) {
 						optionsArray={specializationArray}
 						optionSelection={setSpecialization}
 						selectedOption={specialization}
+						above={true}
 					/>
 				</div>
 				{specialization != '' && (

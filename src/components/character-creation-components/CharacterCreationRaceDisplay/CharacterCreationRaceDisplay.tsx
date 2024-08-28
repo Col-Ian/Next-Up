@@ -112,6 +112,7 @@ function CharacterCreationRaceDisplay() {
 				optionsArray={raceArray}
 				optionSelection={setRace}
 				selectedOption={race}
+				above={false}
 			/>
 			{race != '' && (
 				<div className={styles.raceInformationDiv}>
