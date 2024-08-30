@@ -9,6 +9,7 @@ import NextButtonValidation from '../../../utils/NextButtonValidation.ts';
 import NextButton from '../../../utils/NextButton/NextButton.tsx';
 import ShowOptions from '../ShowOptions/ShowOptions.tsx';
 import RedLabel from '../../labels/RedLabel/RedLabel.tsx';
+import SplitIntoParagraphs from '../../../utils/SplitIntoParagraphs.tsx';
 
 function CharacterCreationThemeDisplay() {
 	const {
@@ -99,7 +100,12 @@ function CharacterCreationThemeDisplay() {
 				<div className={styles.themeInformationDiv}>
 					<div className={styles.descriptionDiv}>
 						<RedLabel redLabelText={themeScoreModifiers} />
-						<div className={styles.themeDescription}>{themeDescription}</div>
+						<div className={styles.themeDescription}>
+							<SplitIntoParagraphs
+								text={themeDescription}
+								id='themeDescription'
+							/>
+						</div>
 					</div>
 					<ThemeAbilityArray
 						themeAbilityTitle={themeAbilityTitle}
@@ -132,7 +138,10 @@ function ThemeAbilityArray({
 			<div className={styles.abilityDiv} key={`${header}${index}`}>
 				<RedLabel redLabelText={header} />
 				<div className={stylesGeneral.descriptionDiv}>
-					{themeAbilityDescription[index]}
+					<SplitIntoParagraphs
+						text={themeAbilityDescription[index]}
+						id={`abilityDescription${index}`}
+					/>
 				</div>
 			</div>
 		);

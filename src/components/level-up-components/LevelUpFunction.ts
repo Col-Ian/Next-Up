@@ -1,3 +1,4 @@
+import { Dispatch, SetStateAction } from 'react';
 import { themeList } from '../../data/theme-information/themeList';
 import { AddAbility } from '../../utils/AddAbility';
 import { getValue } from '../../utils/getValue';
@@ -15,13 +16,16 @@ export function LevelUpFunction(
 	charismaAbility: AbilityScoreType,
 	themeArrayPosition: number,
 	classAbilityList: ClassAbilityListTypes,
-	optionSelected: string
+	optionSelectedArray: {
+		optionSelected: string;
+		setOptionSelected: Dispatch<SetStateAction<string>>;
+	}[]
 ) {
 	// Add an empty feat as an ability to remind the player to add a feat once back on the screen
 
 	if ((nextLevel - 1) % 2 === 0) {
 		AddAbility(characterID, {
-			abilityName: `Level ${nextLevel} Feat`,
+			abilityName: `LEVEL ${nextLevel} FEAT`,
 			abilityDescription: `Add the feat given to you at level ${nextLevel}`,
 			abilitySource: `Level ${nextLevel} Feat`,
 			actionType: [false, false, false, false, false, false],
@@ -35,7 +39,7 @@ export function LevelUpFunction(
 			abilityName:
 				themeList[characterBasicInfo.theme].themeAbilityTitle[
 					themeArrayPosition
-				],
+				].toUpperCase(),
 			abilityDescription:
 				themeList[characterBasicInfo.theme].themeAbilityDescription[
 					themeArrayPosition
@@ -96,13 +100,25 @@ export function LevelUpFunction(
 
 	// Add any options the class may have
 	if (classAbilityList.hasOptions) {
-		AddAbility(characterID, {
-			abilityName: classAbilityList.options[optionSelected].abilityName,
-			abilityDescription:
-				classAbilityList.options[optionSelected].abilityDescription,
-			abilitySource: classAbilityList.options[optionSelected].abilitySource,
-			actionType: classAbilityList.options[optionSelected].actionType,
-			usesResolve: classAbilityList.options[optionSelected].usesResolve,
+		optionSelectedArray.forEach((option, index) => {
+			if (option.optionSelected != '') {
+				AddAbility(characterID, {
+					abilityName:
+						classAbilityList.options[index][
+							option.optionSelected
+						].abilityName.toUpperCase(),
+					abilityDescription:
+						classAbilityList.options[index][option.optionSelected]
+							.abilityDescription,
+					abilitySource:
+						classAbilityList.options[index][option.optionSelected]
+							.abilitySource,
+					actionType:
+						classAbilityList.options[index][option.optionSelected].actionType,
+					usesResolve:
+						classAbilityList.options[index][option.optionSelected].usesResolve,
+				});
+			}
 		});
 	}
 

@@ -12,7 +12,7 @@ export const operativeAbilityList: {
 	1: {
 		hasOptions: false,
 		optionDescription: [],
-		options: {},
+		options: [],
 		additionalInfo: [],
 		hasFunction: false,
 		functionToRun: () => {},
@@ -48,7 +48,7 @@ export const operativeAbilityList: {
 		optionDescription: [
 			'As you gain experience, you learn special tricks called operative exploits. You learn your first operative exploit at 2nd level, and you learn an additional exploit every 2 levels thereafter. If an operative exploit allows a saving throw to resist its effects, the DC is equal to 10 + half your operative level + your Dexterity modifier. If it requires an enemy to attempt a skill check, the DC is equal to 10 + 1-1/2 x your operative level + your Dexterity modifier. You cannot learn the same exploit more than once unless it specially says otherwise. Select a Exploit from the list below.',
 		],
-		options: { ...exploitList['2'] },
+		options: [{ ...exploitList['2'] }],
 		additionalInfo: [],
 		hasFunction: false,
 		functionToRun: () => {},
@@ -66,7 +66,7 @@ export const operativeAbilityList: {
 	3: {
 		hasOptions: false,
 		optionDescription: [],
-		options: {},
+		options: [],
 		additionalInfo: [
 			"Your Operative's Edge Bonus increases to +2. This will automatically be calculated.",
 			'Your Trick Attack damage increases to 1d8',
@@ -99,7 +99,7 @@ export const operativeAbilityList: {
 		optionDescription: [
 			'You gain another Operative Exploit. Please select one from the list below. (Keep in mind any you may already have)',
 		],
-		options: { ...exploitList['2'] },
+		options: [{ ...exploitList['2'] }],
 		additionalInfo: [],
 		hasFunction: false,
 		functionToRun: () => {},
@@ -117,7 +117,7 @@ export const operativeAbilityList: {
 	5: {
 		hasOptions: false,
 		optionDescription: [],
-		options: {},
+		options: [],
 		additionalInfo: [
 			'Your Trick Attack damage increases to 3d8',
 			"You gain the Operative's Exploit given from your Specialization. It will automatically be added to your abilities list.",
@@ -133,7 +133,7 @@ export const operativeAbilityList: {
 		optionDescription: [
 			'You gain another Operative Exploit. You have access to the level 6 exploits as well now. Please select one from the list below. (Keep in mind any you may already have)',
 		],
-		options: { ...exploitList['2'], ...exploitList['6'] },
+		options: [{ ...exploitList['2'], ...exploitList['6'] }],
 		additionalInfo: [],
 		hasFunction: false,
 		functionToRun: () => {},
@@ -142,7 +142,7 @@ export const operativeAbilityList: {
 	7: {
 		hasOptions: false,
 		optionDescription: [],
-		options: {},
+		options: [],
 		additionalInfo: [
 			"Your Operative's Edge Bonus increases to +3. This will automatically be calculated.",
 			'Your Trick Attack damage increases to 4d8',
@@ -175,7 +175,7 @@ export const operativeAbilityList: {
 		optionDescription: [
 			'You gain another Operative Exploit. Please select one from the list below. (Keep in mind any you may already have)',
 		],
-		options: { ...exploitList['2'], ...exploitList['6'] },
+		options: [{ ...exploitList['2'], ...exploitList['6'] }],
 		additionalInfo: [],
 		hasFunction: false,
 		functionToRun: () => {},
@@ -193,7 +193,7 @@ export const operativeAbilityList: {
 	9: {
 		hasOptions: false,
 		optionDescription: [],
-		options: {},
+		options: [],
 		additionalInfo: [
 			'Your Quick Movement bonus increases to 20 ft.',
 			'Your Trick Attack damage increases to 5d8',
@@ -207,7 +207,9 @@ export const operativeAbilityList: {
 		optionDescription: [
 			'You gain another Operative Exploit. You have access to the level 10 exploits as well now. Please select one from the list below. (Keep in mind any you may already have)',
 		],
-		options: { ...exploitList['2'], ...exploitList['6'], ...exploitList['10'] },
+		options: [
+			{ ...exploitList['2'], ...exploitList['6'], ...exploitList['10'] },
+		],
 		additionalInfo: [],
 		hasFunction: false,
 		functionToRun: () => {},
@@ -216,7 +218,7 @@ export const operativeAbilityList: {
 	11: {
 		hasOptions: false,
 		optionDescription: [],
-		options: {},
+		options: [],
 		additionalInfo: [
 			"Your Operative's Edge Bonus increases to +4. This will automatically be calculated.",
 			'Your Trick Attack damage increases to 6d8',
@@ -233,7 +235,9 @@ export const operativeAbilityList: {
 		optionDescription: [
 			'You gain another Operative Exploit. Please select one from the list below. (Keep in mind any you may already have)',
 		],
-		options: { ...exploitList['2'], ...exploitList['6'], ...exploitList['10'] },
+		options: [
+			{ ...exploitList['2'], ...exploitList['6'], ...exploitList['10'] },
+		],
 		additionalInfo: [],
 		hasFunction: false,
 		functionToRun: () => {},
@@ -242,7 +246,7 @@ export const operativeAbilityList: {
 	13: {
 		hasOptions: false,
 		optionDescription: [],
-		options: {},
+		options: [],
 		additionalInfo: ['Your Trick Attack damage increases to 7d8'],
 		hasFunction: false,
 		functionToRun: () => {},
@@ -262,12 +266,14 @@ export const operativeAbilityList: {
 		optionDescription: [
 			'You gain another Operative Exploit. You have access to the level 14 exploits as well now. Please select one from the list below. (Keep in mind any in which you may already have)',
 		],
-		options: {
-			...exploitList['2'],
-			...exploitList['6'],
-			...exploitList['10'],
-			...exploitList['14'],
-		},
+		options: [
+			{
+				...exploitList['2'],
+				...exploitList['6'],
+				...exploitList['10'],
+				...exploitList['14'],
+			},
+		],
 		additionalInfo: [],
 		hasFunction: false,
 		functionToRun: () => {},
@@ -276,7 +282,7 @@ export const operativeAbilityList: {
 	15: {
 		hasOptions: false,
 		optionDescription: [],
-		options: {},
+		options: [],
 		additionalInfo: [
 			"Your Operative's Edge Bonus increases to +5. This will automatically be calculated.",
 			'Your Quick Movement bonus increases to 30 ft.',
@@ -293,7 +299,14 @@ export const operativeAbilityList: {
 		optionDescription: [
 			'You gain another Operative Exploit. Please select one from the list below. (Keep in mind any in which you may already have)',
 		],
-		options: { ...exploitList['2'], ...exploitList['6'], ...exploitList['10'] },
+		options: [
+			{
+				...exploitList['2'],
+				...exploitList['6'],
+				...exploitList['10'],
+				...exploitList['14'],
+			},
+		],
 		additionalInfo: [],
 		hasFunction: false,
 		functionToRun: () => {},
@@ -302,7 +315,7 @@ export const operativeAbilityList: {
 	17: {
 		hasOptions: false,
 		optionDescription: [],
-		options: {},
+		options: [],
 		additionalInfo: ['Your Trick Attack damage increases to 9d8'],
 		hasFunction: false,
 		functionToRun: () => {},
@@ -322,7 +335,14 @@ export const operativeAbilityList: {
 		optionDescription: [
 			'You gain another Operative Exploit. Please select one from the list below. (Keep in mind any in which you may already have)',
 		],
-		options: { ...exploitList['2'], ...exploitList['6'], ...exploitList['10'] },
+		options: [
+			{
+				...exploitList['2'],
+				...exploitList['6'],
+				...exploitList['10'],
+				...exploitList['14'],
+			},
+		],
 		additionalInfo: [],
 		hasFunction: false,
 		functionToRun: () => {},
@@ -331,7 +351,7 @@ export const operativeAbilityList: {
 	19: {
 		hasOptions: false,
 		optionDescription: [],
-		options: {},
+		options: [],
 		additionalInfo: [
 			"Your Operative's Edge Bonus increases to +5. This will automatically be calculated.",
 			'Your Trick Attack damage increases to 10d8',
@@ -347,7 +367,14 @@ export const operativeAbilityList: {
 		optionDescription: [
 			'You gain another Operative Exploit. Please select one from the list below. (Keep in mind any in which you may already have)',
 		],
-		options: { ...exploitList['2'], ...exploitList['6'], ...exploitList['10'] },
+		options: [
+			{
+				...exploitList['2'],
+				...exploitList['6'],
+				...exploitList['10'],
+				...exploitList['14'],
+			},
+		],
 		additionalInfo: [],
 		hasFunction: false,
 		functionToRun: () => {},

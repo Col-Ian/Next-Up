@@ -491,8 +491,7 @@ function CharacterSheet() {
 
 	const characterLevel = getValue(`Level${characterID}`);
 
-	const Component =
-		levelUpList['1'][characterInfoObject.chClass]?.componentForClass;
+	const Component = levelUpList[characterInfoObject.chClass]?.componentForClass;
 
 	return (
 		<CharacterSheetContext.Provider

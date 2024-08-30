@@ -61,7 +61,22 @@ function LevelUpPage() {
 	}, [tempAbilityScores]);
 
 	// Blank state for any options a class may have
-	const [optionSelected, setOptionSelected] = useState<string>('');
+	const [firstOptionSelected, setFirstOptionSelected] = useState<string>('');
+	const [secondOptionSelected, setSecondOptionSelected] = useState<string>('');
+
+	const optionSelectedArray: {
+		optionSelected: string;
+		setOptionSelected: Dispatch<SetStateAction<string>>;
+	}[] = [
+		{
+			optionSelected: firstOptionSelected,
+			setOptionSelected: setFirstOptionSelected,
+		},
+		{
+			optionSelected: secondOptionSelected,
+			setOptionSelected: setSecondOptionSelected,
+		},
+	];
 
 	// Get the basic info for theme/class.
 
@@ -93,7 +108,7 @@ function LevelUpPage() {
 			return {
 				hasOptions: false,
 				optionDescription: [],
-				options: {},
+				options: [],
 				additionalInfo: [],
 				hasFunction: false,
 				functionToRun: () => {},
@@ -401,6 +416,34 @@ function LevelUpPage() {
 					</div>
 				) : null}
 
+				{Object.keys(classAbilityList.abilities).length != 0 ? (
+					<div className={styles.abilitiesWrapper}>
+						<div className={styles.heading}>
+							You gain the following abilities from {characterBasicInfo.chClass}
+							:
+						</div>
+						{Object.keys(classAbilityList.abilities).map(
+							(ability: string, index: number) => {
+								return (
+									<div
+										className={styles.individualAbilityWrapper}
+										key={`${ability}${index}`}
+									>
+										<RedLabel
+											redLabelText={classAbilityList.abilities[
+												ability
+											].abilityName.toUpperCase()}
+										/>
+										<div className={stylesGeneral.descriptionDiv}>
+											{classAbilityList.abilities[ability].abilityDescription}
+										</div>
+									</div>
+								);
+							}
+						)}
+					</div>
+				) : null}
+
 				{/* Check for options from the class abilities. */}
 				{classAbilityList.hasOptions ? (
 					<div className={styles.classOptionsParent}>
@@ -415,17 +458,24 @@ function LevelUpPage() {
 										<DropDownList
 											optionType='Option'
 											optionsArray={optionsArray}
-											optionSelection={setOptionSelected}
-											selectedOption={optionSelected}
+											optionSelection={
+												optionSelectedArray[index].setOptionSelected
+											}
+											selectedOption={optionSelectedArray[index].optionSelected}
 											above={true}
 										/>
-										{optionSelected != '' ? (
+										{optionSelectedArray[index].optionSelected != '' ? (
 											<div className={styles.optionSelectedDiv}>
-												<RedLabel redLabelText={optionSelected} />
+												<RedLabel
+													redLabelText={
+														optionSelectedArray[index].optionSelected
+													}
+												/>
 												<div className={stylesGeneral.descriptionDiv}>
 													{
-														classAbilityList.options[optionSelected]
-															.abilityDescription
+														classAbilityList.options[index][
+															optionSelectedArray[index].optionSelected
+														].abilityDescription
 													}
 												</div>
 											</div>
@@ -449,34 +499,6 @@ function LevelUpPage() {
 					  )
 					: null}
 
-				{Object.keys(classAbilityList.abilities).length != 0 ? (
-					<div className={styles.abilitiesWrapper}>
-						<div className={styles.heading}>
-							You gain the following abilities from {characterBasicInfo.chClass}
-							:
-						</div>
-						{Object.keys(classAbilityList.abilities).map(
-							(ability: string, index: number) => {
-								return (
-									<div
-										className={styles.individualAbilityWrapper}
-										key={`${ability}${index}`}
-									>
-										<RedLabel
-											redLabelText={
-												classAbilityList.abilities[ability].abilityName
-											}
-										/>
-										<div className={stylesGeneral.descriptionDiv}>
-											{classAbilityList.abilities[ability].abilityDescription}
-										</div>
-									</div>
-								);
-							}
-						)}
-					</div>
-				) : null}
-
 				{nextLevel > 20 ? (
 					<div className={styles.checkboxDiv}>
 						<input
@@ -491,7 +513,9 @@ function LevelUpPage() {
 					<div className={styles.cancelButton}>
 						<Link to={`/Next-Up/charactersheet/${characterID}`}>CANCEL</Link>
 					</div>
-					{(classAbilityList.hasOptions && optionSelected != '') ||
+					{(classAbilityList.hasOptions && firstOptionSelected != '') ||
+					(classAbilityList.options.length === 2 &&
+						secondOptionSelected != '') ||
 					beyond ||
 					!classAbilityList.hasOptions ? (
 						<div
@@ -509,7 +533,7 @@ function LevelUpPage() {
 									charismaAbility,
 									themeArrayPosition,
 									classAbilityList,
-									optionSelected
+									optionSelectedArray
 								)
 							}
 						>

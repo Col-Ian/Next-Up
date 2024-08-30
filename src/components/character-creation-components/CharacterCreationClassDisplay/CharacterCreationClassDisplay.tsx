@@ -8,6 +8,7 @@ import { CharacterCreationContext } from '../../../states/CreateCharacter/Create
 import DropDownList from '../../DropDownList/DropDownList.tsx';
 import RedLabel from '../../labels/RedLabel/RedLabel.tsx';
 import { BlueRedBlueHeadingLabel } from '../../labels/BlueRedBlueHeadingLabel/BlueRedBlueHeadingLabel.tsx';
+import SplitIntoParagraphs from '../../../utils/SplitIntoParagraphs.tsx';
 
 function CharacterCreationClassDisplay() {
 	const {
@@ -99,7 +100,10 @@ function CharacterCreationClassDisplay() {
 			{chClass != '' && (
 				<div className={styles.classInformationDiv}>
 					<div className={styles.classDescription}>
-						<p>{classDescription}</p>
+						<SplitIntoParagraphs
+							text={classDescription}
+							id='classDescription'
+						/>
 					</div>
 					<BlueRedBlueHeadingLabel
 						blueHeading='STAMINA POINTS'
@@ -111,7 +115,10 @@ function CharacterCreationClassDisplay() {
 						<div className='otherClassInfo'>
 							<RedLabel redLabelText='KEY ABILITY SCORE' />
 							<div className={stylesGeneral.descriptionDiv}>
-								{keyAbilityDescription}
+								<SplitIntoParagraphs
+									text={keyAbilityDescription}
+									id='keyAbilityDescription'
+								/>
 							</div>
 							{
 								// If there is a choice for Key Ability Score

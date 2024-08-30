@@ -1,3 +1,5 @@
+import { envoyAbilityList } from './abilities/envoyAbilityList';
+
 const EnvoyClassDefaults: ClassDefaultTypes = {
 	hitStaminaPoints: 6,
 
@@ -36,7 +38,7 @@ const EnvoyClassDefaults: ClassDefaultTypes = {
 
 	badSavingThrows: ['Fortitude'],
 
-	classAbilityList: {},
+	classAbilityList: envoyAbilityList,
 };
 
 export default EnvoyClassDefaults;

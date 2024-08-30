@@ -10,6 +10,7 @@ import { OperativesEdgeSkillBonus } from '../../../../data/class-information/ope
 import { getValue } from '../../../../utils/getValue.ts';
 import RedLabel from '../../../labels/RedLabel/RedLabel.tsx';
 import { CharacterSheetContext } from '../../../../states/CharacterSheet/CharacterSheet.tsx';
+import SplitIntoParagraphs from '../../../../utils/SplitIntoParagraphs.tsx';
 
 function OperativeFirstLevel({ keyID }: { keyID: string }) {
 	const specializationArray = Object.keys(specializationList).map(
@@ -169,19 +170,27 @@ function OperativeFirstLevel({ keyID }: { keyID: string }) {
 	return (
 		<div className={styles.firstParentDiv}>
 			<div className={styles.classAbilityList}>
-				{Object.keys(operativeAbilityList['1'].abilities).map((ability) => {
-					return (
-						<div className={styles.classAbility} key={`classAbility${ability}`}>
-							<RedLabel redLabelText={ability} />
-							<div className={stylesGeneral.descriptionDiv}>
-								{
-									operativeAbilityList['1'].abilities[ability]
-										.abilityDescription
-								}
+				{Object.keys(operativeAbilityList['1'].abilities).map(
+					(ability, index) => {
+						return (
+							<div
+								className={styles.classAbility}
+								key={`classAbility${ability}`}
+							>
+								<RedLabel redLabelText={ability} />
+								<div className={stylesGeneral.descriptionDiv}>
+									<SplitIntoParagraphs
+										text={
+											operativeAbilityList['1'].abilities[ability]
+												.abilityDescription
+										}
+										id={`classAbilityDescription${index}`}
+									/>
+								</div>
 							</div>
-						</div>
-					);
-				})}
+						);
+					}
+				)}
 			</div>
 			<div className={styles.specializationSelected}>
 				<div className={styles.specializationMessage}>
@@ -201,7 +210,10 @@ function OperativeFirstLevel({ keyID }: { keyID: string }) {
 					<div className={styles.specializationFullDescription}>
 						<div className={styles.specializationHead}>{specialization}</div>
 						<div className={styles.specializationDescription}>
-							{description}
+							<SplitIntoParagraphs
+								text={description}
+								id='specializationDescription'
+							/>
 						</div>
 						<ul className={styles.specializationUL}>
 							<li key={'AssociatedSkills'}>
@@ -217,7 +229,10 @@ function OperativeFirstLevel({ keyID }: { keyID: string }) {
 								<div className={styles.exploitDiv}>
 									<RedLabel redLabelText={specializationExploit.abilityName} />
 									<div className={stylesGeneral.descriptionDiv}>
-										{specializationExploit.abilityDescription}
+										<SplitIntoParagraphs
+											text={specializationExploit.abilityDescription}
+											id='exploitDescription'
+										/>
 									</div>
 								</div>
 							</li>

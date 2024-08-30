@@ -10,6 +10,7 @@ import NextButtonValidation from '../../../utils/NextButtonValidation.ts';
 import ShowOptions from '../ShowOptions/ShowOptions.tsx';
 import RedLabel from '../../labels/RedLabel/RedLabel.tsx';
 import { BlueRedBlueHeadingLabel } from '../../labels/BlueRedBlueHeadingLabel/BlueRedBlueHeadingLabel.tsx';
+import SplitIntoParagraphs from '../../../utils/SplitIntoParagraphs.tsx';
 
 function CharacterCreationRaceDisplay() {
 	const {
@@ -116,7 +117,9 @@ function CharacterCreationRaceDisplay() {
 			/>
 			{race != '' && (
 				<div className={styles.raceInformationDiv}>
-					<div className={styles.raceDescription}>{raceDescription}</div>
+					<div className={styles.raceDescription}>
+						<SplitIntoParagraphs text={raceDescription} id='raceDescription' />
+					</div>
 					<BlueRedBlueHeadingLabel
 						blueHeading='ABILITY SCORE MODIFIERS'
 						redSubHead={raceScoreModifiers}
@@ -126,7 +129,7 @@ function CharacterCreationRaceDisplay() {
 					<div className={styles.abilityDiv}>
 						<RedLabel redLabelText='SIZE AND TYPE' />
 						<div className={stylesGeneral.descriptionDiv}>
-							{raceSizeAndType}
+							<SplitIntoParagraphs text={raceSizeAndType} id='sizeAndType' />
 						</div>
 					</div>
 					<RaceAbilityArray
@@ -161,7 +164,10 @@ function RaceAbilityArray({
 			<div className={styles.abilityDiv} key={`${header}${index}`}>
 				<RedLabel redLabelText={header} />
 				<div className={stylesGeneral.descriptionDiv}>
-					{raceAbilityDescription[index]}
+					<SplitIntoParagraphs
+						text={raceAbilityDescription[index]}
+						id={`abilityDescription${index}`}
+					/>
 				</div>
 			</div>
 		);

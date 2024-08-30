@@ -43,6 +43,7 @@
 	max-height: 250px;
 	overflow: scroll;
 	overflow-x: hidden;
+	min-width: max-content;
 }
 
 .individualOption {
