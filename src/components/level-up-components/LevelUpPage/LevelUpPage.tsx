@@ -121,12 +121,13 @@ function LevelUpPage() {
 	}
 
 	const classAbilityList: ClassAbilityListTypes = overTwenty();
+	console.log(classAbilityList.options[0]);
 
 	// If there are options, get the array for them.
 
-	function getOptionsArray() {
+	function getOptionsArray(index: number) {
 		if (classAbilityList.hasOptions) {
-			return Object.keys(classAbilityList.options).map((option) => {
+			return Object.keys(classAbilityList.options[index]).map((option) => {
 				return option;
 			});
 		} else {
@@ -134,7 +135,13 @@ function LevelUpPage() {
 		}
 	}
 
-	const optionsArray: string[] = getOptionsArray();
+	const firstOptionsArray: string[] = getOptionsArray(0);
+	const secondOptionsArray: string[] = getOptionsArray(1);
+
+	const optionsArray: [string[], string[]] = [
+		firstOptionsArray,
+		secondOptionsArray,
+	];
 
 	const themeArrayPosition: number = getThemeArrayPosition();
 
@@ -457,7 +464,7 @@ function LevelUpPage() {
 										<div className={styles.heading}>{option}</div>
 										<DropDownList
 											optionType='Option'
-											optionsArray={optionsArray}
+											optionsArray={optionsArray[index]}
 											optionSelection={
 												optionSelectedArray[index].setOptionSelected
 											}

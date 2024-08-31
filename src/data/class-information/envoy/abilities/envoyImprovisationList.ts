@@ -180,13 +180,6 @@ export const envoyImpoveisationList: {
 			actionType: [false, false, false, false, true, false],
 			usesResolve: 0,
 		},
-		'': {
-			abilityName: '',
-			abilityDescription: '',
-			abilitySource: 'Envoy (Improvisation)',
-			actionType: [false, false, false, false, false, false],
-			usesResolve: 0,
-		},
 	},
 	4: {
 		'CLEVER ATTACK (EX)': {
