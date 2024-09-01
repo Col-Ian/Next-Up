@@ -126,7 +126,10 @@ function LevelUpPage() {
 	// If there are options, get the array for them.
 
 	function getOptionsArray(index: number) {
-		if (classAbilityList.hasOptions) {
+		if (
+			classAbilityList.hasOptions &&
+			classAbilityList.options.length >= index + 1
+		) {
 			return Object.keys(classAbilityList.options[index]).map((option) => {
 				return option;
 			});
