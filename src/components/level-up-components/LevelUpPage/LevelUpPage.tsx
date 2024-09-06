@@ -121,7 +121,6 @@ function LevelUpPage() {
 	}
 
 	const classAbilityList: ClassAbilityListTypes = overTwenty();
-	console.log(classAbilityList.options[0]);
 
 	// If there are options, get the array for them.
 

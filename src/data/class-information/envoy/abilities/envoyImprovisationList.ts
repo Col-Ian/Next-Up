@@ -574,67 +574,75 @@ export const envoyImpoveisationList: {
 			usesResolve: 0,
 		},
 
-		'': {
-			abilityName: '',
-			abilityDescription: '',
+		'Improved Terrifying Blast (Ex)': {
+			abilityName: 'Improved Terrifying Blast (Ex)',
+			abilityDescription:
+				'When you use the terrifying blast envoy improvisation, the amount of rounds that creatures are shaken due to failing the Will save increases to 1d4+1 rounds. You must have the terrifying blast envoy improvisation to choose this improvisation. This is a fear effect.',
 			abilitySource: 'Envoy (Improvisation)',
 			actionType: [false, false, false, false, false, false],
 			usesResolve: 0,
 		},
 
-		'': {
-			abilityName: '',
-			abilityDescription: '',
+		'Just Like That! (Ex)': {
+			abilityName: 'Just Like That! (Ex)',
+			abilityDescription:
+				"When you or an ally scores a critical hit against a creature, as a reaction, you can encourage a number of allies equal to your Charisma modifier to continue fighting that creature. For 1 round, the encouraged allies can score a critical hit against the creature on a natural 19 or 20; this effect ends immediately after an encouraged ally scores a critical hit against the target. Once you use this ability, you can't use it again for 1 minute.",
 			abilitySource: 'Envoy (Improvisation)',
-			actionType: [false, false, false, false, false, false],
+			actionType: [false, false, false, false, true, false],
 			usesResolve: 0,
 		},
 
-		'': {
-			abilityName: '',
-			abilityDescription: '',
+		'Quick Study (Ex)': {
+			abilityName: 'Quick Study (Ex)',
+			abilityDescription:
+				"As a move action, you become proficient with a type of weapon with which another ally within 30 feet is proficient. If that ally has weapon specialization with that weapon type, you can also apply that ally's weapon specialization with that weapon type. This ability's effects last a number of rounds equal to half your envoy level, after which you can't use this ability again until after you regain Stamina Points following a 10-minute rest.",
 			abilitySource: 'Envoy (Improvisation)',
-			actionType: [false, false, false, false, false, false],
+			actionType: [false, true, false, false, false, false],
 			usesResolve: 0,
 		},
 
-		'': {
-			abilityName: '',
-			abilityDescription: '',
+		'Reprimand Spell (Su)': {
+			abilityName: 'Reprimand Spell (Su)',
+			abilityDescription:
+				"As a standard action, you spend 1 Resolve Point to scold a spell out of existence. This functions as dispel magic with a range of 30 feet, using your envoy level as your caster level.\nAt 12th level, you can instead spend 2 Resolve Points to cast dispel magic as a reaction, using its counter function against a spell that affects any target or creature within 30 feet of you. If your dispel check exceeds the DC by 10 or more, you convince the spell to follow your commands and can select a new target (or targets, as appropriate) for the spell within the spell's original range. The spellcaster loses the ability to dismiss the spell, and you gain that ability.\nYou must be 8th level and have the spell speaker alternate class ability to choose this improvisation.",
 			abilitySource: 'Envoy (Improvisation)',
-			actionType: [false, false, false, false, false, false],
+			actionType: [true, false, false, false, false, false],
+			usesResolve: 1,
+		},
+
+		'Scapegoat (Ex)': {
+			abilityName: 'Scapegoat (Ex)',
+			abilityDescription:
+				"Through a mix of complex manipulation and other cues, you focus enemies' fire on an ally. As a standard action, you can spend 1 Resolve Point and select a willing ally within 30 feet. Until the end of your next turn, enemies within 100 feet of that ally who can sense both you and that ally take a -4 penalty to all ranged attacks they make that don't target that ally. This ability otherwise acts as if that ally used the draw fire improvisation. You must have the draw fire improvisation to choose this improvisation.",
+			abilitySource: 'Envoy (Improvisation)',
+			actionType: [true, false, false, false, false, false],
+			usesResolve: 1,
+		},
+
+		'Seize the Advantage (Ex)': {
+			abilityName: 'Seize the Advantage (Ex)',
+			abilityDescription:
+				"As a reaction, whenever you or one of your allies critically hits a creature, you can choose one ally within 60 feet of the target of the critical hit. The chosen ally can immediately attack the target creature with one weapon they're currently wielding as a reaction. If they do, the chosen ally takes a -4 penalty to their attack roll and is staggered until the end of their next turn. Characters who can't be staggered can't benefit from this improvisation. Once you use this ability, you can't use it again until after you regain Stamina Points following a 10-minute rest.",
+			abilitySource: 'Envoy (Improvisation)',
+			actionType: [false, false, false, false, true, false],
 			usesResolve: 0,
 		},
 
-		'': {
-			abilityName: '',
-			abilityDescription: '',
+		'Situational Awareness (Ex)': {
+			abilityName: 'Situational Awareness (Ex)',
+			abilityDescription:
+				'If you ready an action, once before the trigger you selected occurs, you can spend 1 Resolve Point to change both the trigger and the action you have ready. You must ready an action that takes the same kind of action as your originally readied action, or you must ready a lesser action. (For example, if you readied a standard action, you could switch to another standard action, a move action, or a swift action, and if you readied a move action, you could switch to another move action or a swift action.)',
 			abilitySource: 'Envoy (Improvisation)',
-			actionType: [false, false, false, false, false, false],
-			usesResolve: 0,
+			actionType: [false, false, false, false, false, true],
+			usesResolve: 1,
 		},
-
-		'': {
-			abilityName: '',
-			abilityDescription: '',
+		'Sustained Determination (Ex)': {
+			abilityName: 'Sustained Determination (Ex)',
+			abilityDescription:
+				"As a move action, you can spend 2 Resolve Points to grant an ally within 60 feet 1 Resolve Point that they can spend to empower one of their abilities, even if they have spent all of their own Resolve Points. The ally must spend the Resolve Point before the start of your next turn; if they do not do so, they lose the Resolve Point and you still lose the Resolve Points you spent. You can't grant the same ally the benefits of this ability again until both you and your ally have recovered your Resolve Points after an 8-hour rest or its equivalent.",
 			abilitySource: 'Envoy (Improvisation)',
-			actionType: [false, false, false, false, false, false],
-			usesResolve: 0,
-		},
-
-		'': {
-			abilityName: '',
-			abilityDescription: '',
-			abilitySource: 'Envoy (Improvisation)',
-			actionType: [false, false, false, false, false, false],
-			usesResolve: 0,
-		},
-		'': {
-			abilityName: '',
-			abilityDescription: '',
-			abilitySource: 'Envoy (Improvisation)',
-			actionType: [false, false, false, false, false, false],
-			usesResolve: 0,
+			actionType: [false, true, false, false, false, false],
+			usesResolve: 2,
 		},
 	},
 };

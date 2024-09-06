@@ -36,9 +36,49 @@ const DropDownList: React.FC<DropDownProps> = ({
 				onClick={() => toggleDropDown()}
 			>
 				<div>
-					{selectedOption != '' && selectedOption != undefined
-						? `${optionType}: ${selectedOption}`
-						: `${optionType}...`}
+					{selectedOption != '' && selectedOption != undefined ? (
+						<div className={styles.dropDownText}>
+							{optionType}: {selectedOption}{' '}
+							{above ? (
+								<span
+									className={
+										visible
+											? styles.caret
+											: [styles.caret, styles.caretRotate].join(' ')
+									}
+								/>
+							) : (
+								<span
+									className={
+										visible
+											? [styles.caret, styles.caretRotate].join(' ')
+											: styles.caret
+									}
+								/>
+							)}
+						</div>
+					) : (
+						<div className={styles.dropDownText}>
+							{optionType}
+							{above ? (
+								<span
+									className={
+										visible
+											? styles.caret
+											: [styles.caret, styles.caretRotate].join(' ')
+									}
+								/>
+							) : (
+								<span
+									className={
+										visible
+											? [styles.caret, styles.caretRotate].join(' ')
+											: styles.caret
+									}
+								/>
+							)}
+						</div>
+					)}
 				</div>
 			</button>
 			<div
