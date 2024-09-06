@@ -1,5 +1,5 @@
 import { Dispatch, SetStateAction, useEffect, useRef, useState } from 'react';
-import styles from './CombatOptions..module.css';
+import styles from './CombatOptions.module.css';
 import { useCurrentID } from '../../../../hooks/useCurrentID';
 import { getValue } from '../../../../utils/getValue';
 import { MoveActionList } from '../../../../data/general-actions/MoveActionList';
@@ -7,10 +7,13 @@ import { StandardActionList } from '../../../../data/general-actions/StandardAct
 import { SwiftActionList } from '../../../../data/general-actions/SwiftActionList';
 import { FullActionList } from '../../../../data/general-actions/FullActionList';
 import { ReactionList } from '../../../../data/general-actions/ReactionList';
-import SheetLabel from '../../labels/BlueLabel/SheetLabel';
-import ExpandComponent from '../../ExpandComponent/ExpandComponent';
-import SplitIntoParagraphs from '../../../../utils/SplitIntoParagraphs';
 import { OtherActionlist } from '../../../../data/general-actions/OtherActionList';
+import StandardActionComponent from '../StandardActionComponent';
+import MoveActionComponent from '../MoveActionComponent';
+import SwiftActionComponent from '../SwiftActionComponent';
+import FullActionComponent from '../FullActionComponent';
+import ReactionComponent from '../ReactionComponent';
+import OtherActionComponent from '../OtherActionComponent';
 
 type actionSavedType = {
 	action: string;
@@ -83,15 +86,6 @@ function CombatOptions() {
 
 	const [show, setShow] = useState<boolean>(false);
 
-	// For the ExpandComponent for each list.
-
-	const [showStandard, setShowStandard] = useState<boolean>(false);
-	const [showMove, setShowMove] = useState<boolean>(false);
-	const [showSwift, setShowSwift] = useState<boolean>(false);
-	const [showFull, setShowFull] = useState<boolean>(false);
-	const [showReaction, setShowReaction] = useState<boolean>(false);
-	const [showOther, setShowOther] = useState<boolean>(false);
-
 	// Mouseover to show descriptions of items
 	const [isHover, setIsHover] = useState<string>('');
 
@@ -102,17 +96,7 @@ function CombatOptions() {
 	// Reset all values on character swap.
 	useEffect(() => {
 		abilitiesArray.current = getValue(`Abilities${currentID}`);
-		if (show)
-			expandCombat(
-				show,
-				setShow,
-				setShowStandard,
-				setShowMove,
-				setShowFull,
-				setShowSwift,
-				setShowReaction,
-				setShowOther
-			);
+		if (show) expandCombat(show, setShow);
 
 		setActionList(
 			0,
@@ -169,407 +153,74 @@ function CombatOptions() {
 					id={styles.combatOptionsContentWrap}
 				>
 					<div className={styles.combatOptionsLeftWrap}>
-						<div className={styles.actionWrap}>
-							<SheetLabel sheetLabelText='Standard Actions' />
-							<div className={styles.standardActionContent}>
-								{showStandard ? (
-									<div className={styles.actionsWrap}>
-										{standardList.map((action, index) => {
-											return (
-												<div
-													className={styles.action}
-													id={`standardAction${index}`}
-													key={`standardAction${index}`}
-													onClick={() =>
-														standardAvailable
-															? setActionOption(
-																	action.abilityName,
-																	index,
-																	action.usesResolve,
-																	standardAction.action,
-																	setStandardAction,
-																	setFullAvailable,
-																	moveAction.action,
-																	swiftAction.action
-															  )
-															: {}
-													}
-													onMouseOver={() =>
-														handleMouseOverEvent(index.toString())
-													}
-													onMouseOut={() => handleMouseOverEvent('')}
-												>
-													<div className={styles.actionUpper}>
-														<input
-															type='checkbox'
-															checked={
-																standardAction.action === action.abilityName &&
-																standardAction.index === index
-																	? true
-																	: false
-															}
-															readOnly
-														/>
-														<div className={styles.actionLabel}>
-															{action.abilityName}
-															{action.usesResolve > 0
-																? ` (${action.usesResolve.toString()} RP)`
-																: null}
-														</div>
-													</div>
-													{isHover === index.toString() ? (
-														<div className={styles.actionLower}>
-															<SplitIntoParagraphs
-																text={action.abilityDescription}
-																id={`standard${index}`}
-															/>
-														</div>
-													) : null}
-												</div>
-											);
-										})}
-									</div>
-								) : null}
-								<div
-									className={styles.dropDownWrapper}
-									onClick={() => setShowStandard(!showStandard)}
-								>
-									<ExpandComponent expanded={showStandard} />
-								</div>
-							</div>
-						</div>
-						<div className={styles.moveActionWrap}>
-							<SheetLabel sheetLabelText='Move Actions' />
-							<div className={styles.moveActionContent}>
-								{showMove ? (
-									<div className={styles.actionsWrap}>
-										{moveList.map((action, index) => {
-											return (
-												<div
-													className={styles.action}
-													id={`moveAction${index}`}
-													key={`moveAction${index}`}
-													onClick={() =>
-														moveAvailable
-															? setActionOption(
-																	action.abilityName,
-																	index,
-																	action.usesResolve,
-																	moveAction.action,
-																	setMoveAction,
-																	setFullAvailable,
-																	standardAction.action,
-																	swiftAction.action
-															  )
-															: {}
-													}
-													onMouseOver={() =>
-														handleMouseOverEvent(index.toString())
-													}
-													onMouseOut={() => handleMouseOverEvent('')}
-												>
-													<div className={styles.actionUpper}>
-														<input
-															type='checkbox'
-															checked={
-																moveAction.action === action.abilityName &&
-																moveAction.index === index
-																	? true
-																	: false
-															}
-															readOnly
-														/>
-														<div className={styles.actionLabel}>
-															{action.abilityName}
-															{action.usesResolve > 0
-																? ` (${action.usesResolve.toString()} RP)`
-																: null}
-														</div>
-													</div>
-													{isHover === index.toString() ? (
-														<div className={styles.actionLower}>
-															<SplitIntoParagraphs
-																text={action.abilityDescription}
-																id={`move${index}`}
-															/>
-														</div>
-													) : null}
-												</div>
-											);
-										})}
-									</div>
-								) : null}
-								<div
-									className={styles.dropDownWrapper}
-									onClick={() => setShowMove(!showMove)}
-								>
-									<ExpandComponent expanded={showMove} />
-								</div>
-							</div>
-						</div>
-						<div className={styles.swiftActionWrap}>
-							<SheetLabel sheetLabelText='Swift Actions' />
-							<div className={styles.swiftActionContent}>
-								{showSwift ? (
-									<div className={styles.actionsWrap}>
-										{swiftList.map((action, index) => {
-											return (
-												<div
-													className={styles.action}
-													id={`swiftAction${index}`}
-													key={`swiftAction${index}`}
-													onClick={() =>
-														swiftAvailable
-															? setActionOption(
-																	action.abilityName,
-																	index,
-																	action.usesResolve,
-																	swiftAction.action,
-																	setSwiftAction,
-																	setFullAvailable,
-																	standardAction.action,
-																	moveAction.action
-															  )
-															: {}
-													}
-													onMouseOver={() =>
-														handleMouseOverEvent(index.toString())
-													}
-													onMouseOut={() => handleMouseOverEvent('')}
-												>
-													<div className={styles.actionUpper}>
-														<input
-															type='checkbox'
-															checked={
-																swiftAction.action === action.abilityName &&
-																swiftAction.index === index
-																	? true
-																	: false
-															}
-															readOnly
-														/>
-														<div className={styles.actionLabel}>
-															{action.abilityName}
-															{action.usesResolve > 0
-																? ` (${action.usesResolve.toString()} RP)`
-																: null}
-														</div>
-													</div>
-													{isHover === index.toString() ? (
-														<div className={styles.actionLower}>
-															<SplitIntoParagraphs
-																text={action.abilityDescription}
-																id={`swift${index}`}
-															/>
-														</div>
-													) : null}
-												</div>
-											);
-										})}
-									</div>
-								) : null}
-								<div
-									className={styles.dropDownWrapper}
-									onClick={() => setShowSwift(!showSwift)}
-								>
-									<ExpandComponent expanded={showSwift} />
-								</div>
-							</div>
-						</div>
-						<div className={styles.fullActionWrap}>
-							<SheetLabel sheetLabelText='Full Actions' />
-							<div className={styles.fullActionContent}>
-								{showFull ? (
-									<div className={styles.actionsWrap}>
-										{fullList.map((action, index) => {
-											return (
-												<div
-													className={styles.action}
-													id={`fullAction${index}`}
-													key={`fullAction${index}`}
-													onClick={() =>
-														fullAvailable
-															? setFullActionOption(
-																	action.abilityName,
-																	index,
-																	action.usesResolve,
-																	fullAction.action,
-																	setFullAction,
-																	setStandardAvailable,
-																	setMoveAvailable,
-																	setSwiftAvailable
-															  )
-															: {}
-													}
-													onMouseOver={() =>
-														handleMouseOverEvent(index.toString())
-													}
-													onMouseOut={() => handleMouseOverEvent('')}
-												>
-													<div className={styles.actionUpper}>
-														<input
-															type='checkbox'
-															checked={
-																fullAction.action === action.abilityName &&
-																fullAction.index === index
-																	? true
-																	: false
-															}
-															readOnly
-														/>
-														<div className={styles.actionLabel}>
-															{action.abilityName}
-															{action.usesResolve > 0
-																? ` (${action.usesResolve.toString()} RP)`
-																: null}
-														</div>
-													</div>
-													{isHover === index.toString() ? (
-														<div className={styles.actionLower}>
-															<SplitIntoParagraphs
-																text={action.abilityDescription}
-																id={`full${index}`}
-															/>
-														</div>
-													) : null}
-												</div>
-											);
-										})}
-									</div>
-								) : null}
-								<div
-									className={styles.dropDownWrapper}
-									onClick={() => setShowFull(!showFull)}
-								>
-									<ExpandComponent expanded={showFull} />
-								</div>
-							</div>
-						</div>
+						<StandardActionComponent
+							standardList={standardList}
+							standardAvailable={standardAvailable}
+							setActionOption={setActionOption}
+							standardAction={standardAction}
+							setStandardAction={setStandardAction}
+							setFullAvailable={setFullAvailable}
+							moveAction={moveAction}
+							swiftAction={swiftAction}
+							handleMouseOverEvent={handleMouseOverEvent}
+							isHover={isHover}
+						/>
+						<MoveActionComponent
+							moveList={moveList}
+							moveAvailable={moveAvailable}
+							setActionOption={setActionOption}
+							moveAction={moveAction}
+							setMoveAction={setMoveAction}
+							setFullAvailable={setFullAvailable}
+							standardAction={standardAction}
+							swiftAction={swiftAction}
+							handleMouseOverEvent={handleMouseOverEvent}
+							isHover={isHover}
+						/>
+						<SwiftActionComponent
+							swiftList={swiftList}
+							swiftAvailable={swiftAvailable}
+							setActionOption={setActionOption}
+							swiftAction={swiftAction}
+							setSwiftAction={setSwiftAction}
+							setFullAvailable={setFullAvailable}
+							standardAction={standardAction}
+							moveAction={moveAction}
+							handleMouseOverEvent={handleMouseOverEvent}
+							isHover={isHover}
+						/>
 
-						<div className={styles.reactionWrap}>
-							<SheetLabel sheetLabelText='Reactions' />
-							<div className={styles.rectionContent}>
-								{showReaction ? (
-									<div className={styles.actionsWrap}>
-										{reactionsList.map((action, index) => {
-											return (
-												<div
-													className={styles.action}
-													id={`reactionAction${index}`}
-													key={`reactionAction${index}`}
-													onClick={() =>
-														handleActionArrayOnClick(
-															reactionActions,
-															setReactionActions,
-															{ action: action.abilityName, index }
-														)
-													}
-													onMouseOver={() =>
-														handleMouseOverEvent(index.toString())
-													}
-													onMouseOut={() => handleMouseOverEvent('')}
-												>
-													<div className={styles.actionUpper}>
-														<input
-															type='checkbox'
-															checked={isInActionsArray(
-																action.abilityName,
-																index,
-																reactionActions
-															)}
-															readOnly
-														/>
-														<div className={styles.actionLabel}>
-															{action.abilityName}
-															{action.usesResolve > 0
-																? ` (${action.usesResolve.toString()} RP)`
-																: null}
-														</div>
-													</div>
-													{isHover === index.toString() ? (
-														<div className={styles.actionLower}>
-															<SplitIntoParagraphs
-																text={action.abilityDescription}
-																id={`reactions${index}`}
-															/>
-														</div>
-													) : null}
-												</div>
-											);
-										})}
-									</div>
-								) : null}
-								<div
-									className={styles.dropDownWrapper}
-									onClick={() => setShowReaction(!showReaction)}
-								>
-									<ExpandComponent expanded={showReaction} />
-								</div>
-							</div>
-						</div>
-						{/* TODO */}
-						{/* turn this into the Other Actions list. */}
-						<div className={styles.otherActionWrap}>
-							<SheetLabel sheetLabelText='Other Actions' />
-							<div className={styles.otherActionContent}>
-								{showOther ? (
-									<div className={styles.actionsWrap}>
-										{otherList.map((action, index) => {
-											return (
-												<div
-													className={styles.action}
-													id={`otherAction${index}`}
-													key={`otherAction${index}`}
-													onClick={() =>
-														handleActionArrayOnClick(
-															otherActions,
-															setOtherActions,
-															{ action: action.abilityName, index }
-														)
-													}
-													onMouseOver={() =>
-														handleMouseOverEvent(index.toString())
-													}
-													onMouseOut={() => handleMouseOverEvent('')}
-												>
-													<div className={styles.actionUpper}>
-														<input
-															type='checkbox'
-															checked={isInActionsArray(
-																action.abilityName,
-																index,
-																otherActions
-															)}
-															readOnly
-														/>
-														<div className={styles.actionLabel}>
-															{action.abilityName}
-															{action.usesResolve > 0
-																? ` (${action.usesResolve.toString()} RP)`
-																: null}
-														</div>
-													</div>
-													{isHover === index.toString() ? (
-														<div className={styles.actionLower}>
-															<SplitIntoParagraphs
-																text={action.abilityDescription}
-																id={`other${index}`}
-															/>
-														</div>
-													) : null}
-												</div>
-											);
-										})}
-									</div>
-								) : null}
-								<div
-									className={styles.dropDownWrapper}
-									onClick={() => setShowOther(!showOther)}
-								>
-									<ExpandComponent expanded={showOther} />
-								</div>
-							</div>
-						</div>
+						<FullActionComponent
+							fullList={fullList}
+							fullAvailable={fullAvailable}
+							setFullActionOption={setFullActionOption}
+							fullAction={fullAction}
+							setFullAction={setFullAction}
+							setStandardAvailable={setStandardAvailable}
+							setMoveAvailable={setMoveAvailable}
+							setSwiftAvailable={setSwiftAvailable}
+							handleMouseOverEvent={handleMouseOverEvent}
+							isHover={isHover}
+						/>
+						<ReactionComponent
+							reactionsList={reactionsList}
+							handleActionArrayOnClick={handleActionArrayOnClick}
+							reactionActions={reactionActions}
+							setReactionActions={setReactionActions}
+							handleMouseOverEvent={handleMouseOverEvent}
+							isInActionsArray={isInActionsArray}
+							isHover={isHover}
+						/>
+
+						<OtherActionComponent
+							otherList={otherList}
+							handleActionArrayOnClick={handleActionArrayOnClick}
+							otherActions={otherActions}
+							setOtherActions={setOtherActions}
+							handleMouseOverEvent={handleMouseOverEvent}
+							isInActionsArray={isInActionsArray}
+							isHover={isHover}
+						/>
 						<div className={styles.buttonsDiv}>
 							<div
 								className={styles.resetResyncButtons}
@@ -678,18 +329,7 @@ function CombatOptions() {
 					<div
 						className={styles.showCombatOptionsButton}
 						id={styles.showCombatOptionsButton}
-						onClick={() =>
-							expandCombat(
-								show,
-								setShow,
-								setShowStandard,
-								setShowMove,
-								setShowFull,
-								setShowSwift,
-								setShowReaction,
-								setShowOther
-							)
-						}
+						onClick={() => expandCombat(show, setShow)}
 					>
 						{show ? 'End' : 'Start'} Combat
 					</div>
@@ -702,22 +342,9 @@ function CombatOptions() {
 // Function to show/hide the component.
 function expandCombat(
 	show: boolean,
-	setShow: Dispatch<SetStateAction<boolean>>,
-	setStandard: Dispatch<SetStateAction<boolean>>,
-	setMove: Dispatch<SetStateAction<boolean>>,
-	setFull: Dispatch<SetStateAction<boolean>>,
-	setSwift: Dispatch<SetStateAction<boolean>>,
-	setReaction: Dispatch<SetStateAction<boolean>>,
-	setOther: Dispatch<SetStateAction<boolean>>
+	setShow: Dispatch<SetStateAction<boolean>>
 ) {
 	setShow(!show);
-
-	setStandard(false);
-	setMove(false);
-	setFull(false);
-	setSwift(false);
-	setReaction(false);
-	setOther(false);
 
 	const toggleButton: HTMLElement = document.getElementById(
 		styles.showCombatOptionsButton
