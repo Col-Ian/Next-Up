@@ -144,3 +144,8 @@
 		display: none;
 	}
 }
+
+.dropDownWrapper {
+	position: sticky;
+	bottom: 0;
+}
