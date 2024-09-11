@@ -10,7 +10,7 @@ export function useAbilities() {
 		getValue(`Abilities${characterID}`)
 	);
 
-	const [currentCharacterID, setCurrentCharacterID] = useState(characterID);
+	const [currentCharacterIDAB, setCurrentCharacterID] = useState(characterID);
 
 	useEffect(() => {
 		setAbilitiesArray(getValue(`Abilities${characterID}`));
@@ -28,6 +28,6 @@ export function useAbilities() {
 	return {
 		abilitiesArray,
 		updateAbilityArray,
-		currentCharacterID,
+		currentCharacterIDAB,
 	};
 }

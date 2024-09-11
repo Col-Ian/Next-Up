@@ -11,9 +11,8 @@ type FormValues = FieldValues & {
 };
 
 function AbilitiesBlock() {
-	const { abilitiesArray, updateAbilityArray, currentCharacterID } = useContext(
-		CharacterSheetContext
-	);
+	const { abilitiesArray, updateAbilityArray, currentCharacterIDAB } =
+		useContext(CharacterSheetContext);
 
 	const { control, register, watch, reset } = useForm<FormValues>();
 
@@ -35,14 +34,14 @@ function AbilitiesBlock() {
 		};
 
 		reset({ ...defaultValues });
-	}, [currentCharacterID]);
+	}, [currentCharacterIDAB]);
 
 	useEffect(() => {
 		const subscription = watch((data) => {
 			updateAbilityArray(data.abilities);
 		});
 		return () => subscription.unsubscribe();
-	}, [watch, currentCharacterID]);
+	}, [watch, currentCharacterIDAB]);
 
 	function handleRemove(index: number) {
 		if (abilitiesArray.length > 1) {

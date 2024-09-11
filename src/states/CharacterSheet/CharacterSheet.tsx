@@ -89,7 +89,7 @@ export const CharacterSheetContext = createContext<{
 
 	abilitiesArray: AbilityListTypes[];
 	updateAbilityArray: (newAbilityArray: AbilityListTypes[]) => void;
-	currentCharacterID: string | undefined;
+	currentCharacterIDAB: string | undefined;
 
 	setShow: Dispatch<SetStateAction<boolean>>;
 }>({} as any);
@@ -160,7 +160,7 @@ function CharacterSheet() {
 	const { experience, updateExperience } = useExperience();
 
 	// To be passed onto AbilitiesBlock and CombatOptions
-	const { abilitiesArray, updateAbilityArray, currentCharacterID } =
+	const { abilitiesArray, updateAbilityArray, currentCharacterIDAB } =
 		useAbilities();
 
 	// To use for showing the delete text.
@@ -536,7 +536,7 @@ function CharacterSheet() {
 
 				abilitiesArray: abilitiesArray,
 				updateAbilityArray: updateAbilityArray,
-				currentCharacterID: currentCharacterID,
+				currentCharacterIDAB: currentCharacterIDAB,
 
 				setShow: setShow,
 			}}
