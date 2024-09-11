@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import { deleteCharacterFunction } from './deleteCharacterFunction';
 
 function DeleteCharacter() {
-	const { characterInfoDynamicObject, currentCharacterID, setShow } =
+	const { characterInfoDynamicObject, currentCharacterIDAB, setShow } =
 		useContext(CharacterSheetContext);
 	return (
 		<div className={styles.parentDiv}>
@@ -20,7 +20,7 @@ function DeleteCharacter() {
 				<div className={styles.deleteConfirm}>
 					<Link
 						to={'/Next-Up/'}
-						onClick={() => deleteCharacterFunction(currentCharacterID)}
+						onClick={() => deleteCharacterFunction(currentCharacterIDAB)}
 					>
 						DELETE
 					</Link>
