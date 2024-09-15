@@ -1,4 +1,5 @@
 import { skillList } from '../skillList.ts';
+import { espraksaAdjustments } from './race-adjustments/alien-archive-three/espraksaAdjustments.ts';
 import drowAdjustments from './race-adjustments/alien-archive/drowAdjustments.ts';
 import androidAdjustments from './race-adjustments/core/androidAdjustments.ts';
 import humanAdjustments from './race-adjustments/core/humanAdjustments.ts';
@@ -220,6 +221,37 @@ export const raceList: { [key: string]: RaceListTypes } = {
 		optionDescription: [],
 		optionArray: [[]],
 		raceFunction: drowAdjustments,
+	},
+	Espraksa: {
+		raceSource: 'Alien Archive 3',
+		raceName: 'Espraksa',
+		raceScoreModifiers: '+2 Wis, +2 Cha, -2 Con',
+		raceDescription:
+			'The avian espraksas coloration varies depending on the environment in which their ancestors evolved. They have a thick collar of feathers to keep their long, slender necks warm. They also have lengthy antennae-like feathers that extend from the inner corners of their eyes. Males have crests of feathers that extend from the crowns of their heads and are expressive enough to communicate emotion.',
+		raceSizeAndType:
+			'Espraksas are Medium humanoids with the espraksa subtype.',
+		raceHP: 4,
+		raceSize: 'Medium',
+		raceAbilityName: [
+			'Espraksa Movement',
+			'Cold Inured',
+			'Empathic',
+			'Multicultural',
+			'Natural Weapons',
+			'Snatch',
+		],
+		raceAbilityDescription: [
+			'Espraksas have a land speed of 30 feet and an extraordinary fly speed of 30 feet with average maneuverability.',
+			'An espraksa treats severe cold as cold and extreme cold as severe cold (see Cold Dangers).',
+			'Espraksas gain a +2 racial bonus to Diplomacy and Sense Motive checks. They take a -2 penalty to saving throws against mind-affecting effects, but the DC of any mind-affecting effect they create is increased by 1.',
+			'Esprakas learn an additional language for every even-numbered rank gained in the Culture skill.',
+			"Espraksa are always considered armed. They can deal 1d3 lethal piercing damage with unarmed strikes and the attack doesn't count as archaic. Espraksas gain a unique weapon specialization with their natural weapons at 3rd level, allowing them to add 1-1/2 x their character level to their damage rolls with their natural weapons (instead of just adding their character level, as usual).",
+			"This functions as the grab universal creature rule, except the espraksa must hit with two talon attacks during the same turn to grab. Only one talon must hit the target's KAC + 4 (or + 13) to trigger the free grab (or pin), but both must hit.",
+		],
+		hasOptions: false,
+		optionDescription: [],
+		optionArray: [[]],
+		raceFunction: espraksaAdjustments,
 	},
 };
 

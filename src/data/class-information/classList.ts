@@ -2,6 +2,7 @@
 import EnvoyClassDefaults from './envoy/EnvoyClassDefaults';
 // import EvolutionistClassDefaults from "./evolutionist/EvolutionistClassDefaults.ts";
 import OperativeClassDefaults from './operative/OperativeClassDefaults.ts';
+import TechnomancerClassDefaults from './technomancer/TechnomancerClassDefaults.ts';
 
 export const classList: { [key: string]: ClassListTypes } = {
 	// 'Biohacker':{
@@ -22,5 +23,10 @@ export const classList: { [key: string]: ClassListTypes } = {
 		classDescription:
 			"You're a shadow. You move swiftly, strike suddenly, and always have an escape plan. You're a consummate professional, and you always get the job done, whether it's scouting enemy lines, hunting down criminals, stealing and smuggling items, or assassinating key figures. As an operative, you're skilled in a wide variety of disciplines and specialties, and use speed, mobility, and your quick wits rather than relying on heavy weapons. You excel at the art of surprise, whether it's sniping targets from cover or striking while their backs are turned. Your cause may be righteous, but you have no problem fighting dirty—achieving your objective is all that matters.",
 		classDefaults: OperativeClassDefaults,
+	},
+	Technomancer: {
+		classDescription:
+			'To the uninitiated, magic and technology are completely unrelated, but you know there are more correlations between the two than most suspect. Magic and technology are just tools, and when combined into one discipline, called technomancy, they can be far more powerful than one or the other on its own. You utilize tech to empower, harness, and manipulate magic, and you wield magic to augment, control, and modify technology. You are an expert at hacking the underlying structure of the universe itself, bending the laws of science and nature to your will. Your technomancy—which is gained from scientific study and experimentation—manipulates the physical world, weaves illusions, allows you to peer through time and space, and if necessary, can blast a foe into atoms.',
+		classDefaults: TechnomancerClassDefaults,
 	},
 };

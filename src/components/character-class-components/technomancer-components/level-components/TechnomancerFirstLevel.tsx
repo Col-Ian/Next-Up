@@ -1,17 +1,17 @@
-import { envoyAbilityList } from '../../../../data/class-information/envoy/abilities/envoyAbilityList';
-import SplitIntoParagraphs from '../../../../utils/SplitIntoParagraphs';
-import RedLabel from '../../../labels/RedLabel/RedLabel';
-import styles from './EnvoyFirstLevel.module.css';
+import styles from './TechnomancerFirstLevel.module.css';
 import stylesGeneral from '../../../../states/CreateCharacter/CreateCharacter.module.css';
-import DropDownList from '../../../DropDownList/DropDownList';
-import { envoyImpoveisationList } from '../../../../data/class-information/envoy/abilities/envoyImprovisationList';
-import { useContext, useEffect, useState } from 'react';
+import { technomancerAbilityList } from '../../../../data/class-information/technomancer/abilities/technomancerAbilityList';
+import RedLabel from '../../../labels/RedLabel/RedLabel';
+import SplitIntoParagraphs from '../../../../utils/SplitIntoParagraphs';
 import { CharacterSheetContext } from '../../../../states/CharacterSheet/CharacterSheet';
-import { getValue } from '../../../../utils/getValue';
+import { useContext, useEffect, useState } from 'react';
 import { setValue } from '../../../../utils/setValue';
+import { getValue } from '../../../../utils/getValue';
+import { technomaticTalentList } from '../../../../data/class-information/technomancer/abilities/technomaticTaletList';
+import DropDownList from '../../../DropDownList/DropDownList';
 import { Link } from 'react-router-dom';
 
-function EnvoyFirstLevel({ keyID }: { keyID: string }) {
+function TechnomancerFirstLevel({ keyID }: { keyID: string }) {
 	const {
 		updateAbilityArray,
 		strengthAbility,
@@ -28,17 +28,17 @@ function EnvoyFirstLevel({ keyID }: { keyID: string }) {
 		updateCharisma,
 	} = useContext(CharacterSheetContext);
 
-	const [improvisation, setImprovisation] = useState<string>('');
+	const [technomantic, setTechnomantic] = useState<string>('');
 
 	const [moveOn, setMoveOn] = useState<boolean>(false);
 
 	useEffect(() => {
-		if (improvisation != '') {
+		if (technomantic != '') {
 			setMoveOn(true);
 		}
-	}, [improvisation]);
+	}, [technomantic]);
 
-	const improvisationArray = Object.keys(envoyImpoveisationList['1']).map(
+	const technomanticArray = Object.keys(technomaticTalentList).map(
 		(key: string) => {
 			return key;
 		}
@@ -99,16 +99,16 @@ function EnvoyFirstLevel({ keyID }: { keyID: string }) {
 		});
 
 		// Abilities
-		Object.keys(envoyAbilityList['1'].abilities).map((ability) => {
+		Object.keys(technomancerAbilityList['1'].abilities).map((ability) => {
 			updateAbilityArray([
 				...getValue(`Abilities${keyID}`),
-				envoyAbilityList['1'].abilities[ability],
+				technomancerAbilityList['1'].abilities[ability],
 			]);
 		});
 
 		updateAbilityArray([
 			...getValue(`Abilities${keyID}`),
-			envoyImpoveisationList['1'][improvisation],
+			technomaticTalentList[technomantic],
 		]);
 
 		// Set the level to 1 so it's no longer locked in the level 1 selection screen.
@@ -118,48 +118,54 @@ function EnvoyFirstLevel({ keyID }: { keyID: string }) {
 	return (
 		<div className={styles.parentDiv}>
 			<div className={styles.classAbilityList}>
-				{Object.keys(envoyAbilityList['1'].abilities).map((ability, index) => {
-					return (
-						<div className={styles.classAbility} key={`classAbility${ability}`}>
-							<RedLabel redLabelText={ability} />
-							<div className={stylesGeneral.descriptionDiv}>
-								<SplitIntoParagraphs
-									text={
-										envoyAbilityList['1'].abilities[ability].abilityDescription
+				{Object.keys(technomancerAbilityList['1'].abilities).map(
+					(ability, index) => {
+						return (
+							<div
+								className={styles.classAbility}
+								key={`classAbility${ability}`}
+							>
+								<RedLabel
+									redLabelText={
+										technomancerAbilityList['1'].abilities[ability].abilityName
 									}
-									id={`classAbilityDescription${index}`}
 								/>
+								<div className={stylesGeneral.descriptionDiv}>
+									<SplitIntoParagraphs
+										text={
+											technomancerAbilityList['1'].abilities[ability]
+												.abilityDescription
+										}
+										id={`classAbilityDescription${index}`}
+									/>
+								</div>
 							</div>
-						</div>
-					);
-				})}
+						);
+					}
+				)}
 			</div>
-			<div className={styles.improvisationSelected}>
-				<div className={styles.improvisationMessage}>
-					Select your envoy improvisation below.
+			<div className={styles.technomanticSelection}>
+				<div className={styles.technomanticMessage}>
+					Select your technomantic talent below.
 				</div>
 				<div className={styles.dropDownDiv}>
 					<DropDownList
-						optionType={'Improvisation'}
-						optionsArray={improvisationArray}
-						optionSelection={setImprovisation}
-						selectedOption={improvisation}
+						optionType={'Technomantic Talent'}
+						optionsArray={technomanticArray}
+						optionSelection={setTechnomantic}
+						selectedOption={technomantic}
 						above={true}
 					/>
 				</div>
-				{improvisation != '' && (
+				{technomantic != '' && (
 					<div className={styles.classAbility}>
 						<RedLabel
-							redLabelText={
-								envoyImpoveisationList['1'][improvisation].abilityName
-							}
+							redLabelText={technomaticTalentList[technomantic].abilityName}
 						/>
 						<div className={stylesGeneral.descriptionDiv}>
 							<SplitIntoParagraphs
-								text={
-									envoyImpoveisationList['1'][improvisation].abilityDescription
-								}
-								id={`improvisationDescription`}
+								text={technomaticTalentList[technomantic].abilityDescription}
+								id={`technomanticDescription`}
 							/>
 						</div>
 					</div>
@@ -179,4 +185,4 @@ function EnvoyFirstLevel({ keyID }: { keyID: string }) {
 	);
 }
 
-export default EnvoyFirstLevel;
+export default TechnomancerFirstLevel;

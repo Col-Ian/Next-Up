@@ -33,7 +33,7 @@ function SpellBlocks({
 	});
 
 	useEffect(() => {
-		let defaultValues = {
+		const defaultValues = {
 			spells: spellArray,
 		};
 
@@ -213,6 +213,50 @@ function SpellBlocks({
 												className={styles.previewText}
 												placeholder='Enter a brief description of the spell that will be shown in your combat options.'
 											/>
+											<div className={styles.actionTypeDiv}>
+												<div className={styles.actionDiv}>
+													<input
+														type='checkbox'
+														{...register(`spells.${index}.actionType.0`)}
+													/>
+													<div className={styles.actionLabel}>Standard</div>
+												</div>
+												<div className={styles.actionDiv}>
+													<input
+														type='checkbox'
+														{...register(`spells.${index}.actionType.1`)}
+													/>
+													<div className={styles.actionLabel}>Move</div>
+												</div>
+												<div className={styles.actionDiv}>
+													<input
+														type='checkbox'
+														{...register(`spells.${index}.actionType.2`)}
+													/>
+													<div className={styles.actionLabel}>Swift</div>
+												</div>
+												<div className={styles.actionDiv}>
+													<input
+														type='checkbox'
+														{...register(`spells.${index}.actionType.3`)}
+													/>
+													<div className={styles.actionLabel}>Full</div>
+												</div>
+												<div className={styles.actionDiv}>
+													<input
+														type='checkbox'
+														{...register(`spells.${index}.actionType.4`)}
+													/>
+													<div className={styles.actionLabel}>Reaction</div>
+												</div>
+												<div className={styles.actionDiv}>
+													<input
+														type='checkbox'
+														{...register(`spells.${index}.actionType.5`)}
+													/>
+													<div className={styles.actionLabel}>Other</div>
+												</div>
+											</div>
 										</div>
 									</div>
 								);

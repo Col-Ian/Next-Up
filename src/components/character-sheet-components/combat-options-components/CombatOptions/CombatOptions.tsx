@@ -14,6 +14,7 @@ import SwiftActionComponent from '../SwiftActionComponent';
 import FullActionComponent from '../FullActionComponent';
 import ReactionComponent from '../ReactionComponent';
 import OtherActionComponent from '../OtherActionComponent';
+import { setActionList } from '../functions/setActionList';
 
 type actionSavedType = {
 	action: string;
@@ -27,6 +28,17 @@ function CombatOptions() {
 	const abilitiesArray = useRef<AbilityListTypes[]>(
 		getValue(`Abilities${currentID}`)
 	);
+
+	// Create a list of all the spells the character may have.
+	const allSpellsArray = useRef<SpellListTypes[]>([
+		...getValue(`Level0Spells${currentID}`),
+		...getValue(`Level1Spells${currentID}`),
+		...getValue(`Level2Spells${currentID}`),
+		...getValue(`Level3Spells${currentID}`),
+		...getValue(`Level4Spells${currentID}`),
+		...getValue(`Level5Spells${currentID}`),
+		...getValue(`Level6Spells${currentID}`),
+	]);
 
 	// A list to hold all the Standard Actions.
 	const [standardList, setStandardList] =
@@ -96,20 +108,60 @@ function CombatOptions() {
 	// Reset all values on character swap.
 	useEffect(() => {
 		abilitiesArray.current = getValue(`Abilities${currentID}`);
+		allSpellsArray.current = [
+			...getValue(`Level0Spells${currentID}`),
+			...getValue(`Level1Spells${currentID}`),
+			...getValue(`Level2Spells${currentID}`),
+			...getValue(`Level3Spells${currentID}`),
+			...getValue(`Level4Spells${currentID}`),
+			...getValue(`Level5Spells${currentID}`),
+			...getValue(`Level6Spells${currentID}`),
+		];
 		if (show) expandCombat(show, setShow);
 
 		setActionList(
 			0,
 			abilitiesArray.current,
+			allSpellsArray.current,
 			StandardActionList,
 			setStandardList
 		);
 
-		setActionList(1, abilitiesArray.current, MoveActionList, setMoveList);
-		setActionList(2, abilitiesArray.current, SwiftActionList, setSwiftList);
-		setActionList(3, abilitiesArray.current, FullActionList, setFullList);
-		setActionList(4, abilitiesArray.current, ReactionList, setReactionsList);
-		setActionList(5, abilitiesArray.current, OtherActionlist, setOtherList);
+		setActionList(
+			1,
+			abilitiesArray.current,
+			allSpellsArray.current,
+			MoveActionList,
+			setMoveList
+		);
+		setActionList(
+			2,
+			abilitiesArray.current,
+			allSpellsArray.current,
+			SwiftActionList,
+			setSwiftList
+		);
+		setActionList(
+			3,
+			abilitiesArray.current,
+			allSpellsArray.current,
+			FullActionList,
+			setFullList
+		);
+		setActionList(
+			4,
+			abilitiesArray.current,
+			allSpellsArray.current,
+			ReactionList,
+			setReactionsList
+		);
+		setActionList(
+			5,
+			abilitiesArray.current,
+			allSpellsArray.current,
+			OtherActionlist,
+			setOtherList
+		);
 	}, [currentID]);
 
 	function resetAllSelectedOptions() {
@@ -135,14 +187,45 @@ function CombatOptions() {
 		setActionList(
 			0,
 			abilitiesArray.current,
+			allSpellsArray.current,
 			StandardActionList,
 			setStandardList
 		);
-		setActionList(1, abilitiesArray.current, MoveActionList, setMoveList);
-		setActionList(2, abilitiesArray.current, SwiftActionList, setSwiftList);
-		setActionList(3, abilitiesArray.current, FullActionList, setFullList);
-		setActionList(4, abilitiesArray.current, ReactionList, setReactionsList);
-		setActionList(5, abilitiesArray.current, OtherActionlist, setOtherList);
+		setActionList(
+			1,
+			abilitiesArray.current,
+			allSpellsArray.current,
+			MoveActionList,
+			setMoveList
+		);
+		setActionList(
+			2,
+			abilitiesArray.current,
+			allSpellsArray.current,
+			SwiftActionList,
+			setSwiftList
+		);
+		setActionList(
+			3,
+			abilitiesArray.current,
+			allSpellsArray.current,
+			FullActionList,
+			setFullList
+		);
+		setActionList(
+			4,
+			abilitiesArray.current,
+			allSpellsArray.current,
+			ReactionList,
+			setReactionsList
+		);
+		setActionList(
+			5,
+			abilitiesArray.current,
+			allSpellsArray.current,
+			OtherActionlist,
+			setOtherList
+		);
 	}
 
 	return (
@@ -156,7 +239,6 @@ function CombatOptions() {
 						<StandardActionComponent
 							standardList={standardList}
 							standardAvailable={standardAvailable}
-							setActionOption={setActionOption}
 							standardAction={standardAction}
 							setStandardAction={setStandardAction}
 							setFullAvailable={setFullAvailable}
@@ -168,7 +250,6 @@ function CombatOptions() {
 						<MoveActionComponent
 							moveList={moveList}
 							moveAvailable={moveAvailable}
-							setActionOption={setActionOption}
 							moveAction={moveAction}
 							setMoveAction={setMoveAction}
 							setFullAvailable={setFullAvailable}
@@ -180,7 +261,6 @@ function CombatOptions() {
 						<SwiftActionComponent
 							swiftList={swiftList}
 							swiftAvailable={swiftAvailable}
-							setActionOption={setActionOption}
 							swiftAction={swiftAction}
 							setSwiftAction={setSwiftAction}
 							setFullAvailable={setFullAvailable}
@@ -193,7 +273,6 @@ function CombatOptions() {
 						<FullActionComponent
 							fullList={fullList}
 							fullAvailable={fullAvailable}
-							setFullActionOption={setFullActionOption}
 							fullAction={fullAction}
 							setFullAction={setFullAction}
 							setStandardAvailable={setStandardAvailable}
@@ -204,21 +283,17 @@ function CombatOptions() {
 						/>
 						<ReactionComponent
 							reactionsList={reactionsList}
-							handleActionArrayOnClick={handleActionArrayOnClick}
 							reactionActions={reactionActions}
 							setReactionActions={setReactionActions}
 							handleMouseOverEvent={handleMouseOverEvent}
-							isInActionsArray={isInActionsArray}
 							isHover={isHover}
 						/>
 
 						<OtherActionComponent
 							otherList={otherList}
-							handleActionArrayOnClick={handleActionArrayOnClick}
 							otherActions={otherActions}
 							setOtherActions={setOtherActions}
 							handleMouseOverEvent={handleMouseOverEvent}
-							isInActionsArray={isInActionsArray}
 							isHover={isHover}
 						/>
 						<div className={styles.buttonsDiv}>
@@ -357,125 +432,6 @@ function expandCombat(
 	toggleButton.classList.toggle(styles.showCombatOptionsButtonShow);
 
 	toggleOptions.classList.toggle(styles.show);
-}
-
-// Get the list of given action based on the default lists and the abilities from storage.
-function setActionList(
-	type: number,
-	abilitiesArray: AbilityListTypes[],
-	defaultList: AbilityListTypes[],
-	setList: Dispatch<SetStateAction<AbilityListTypes[]>>
-) {
-	let tempList: AbilityListTypes[] = [];
-
-	abilitiesArray.forEach((ability) => {
-		if (ability.actionType[type]) {
-			tempList = [...tempList, ability];
-		}
-	});
-
-	setList([...defaultList, ...tempList]);
-}
-
-function setActionOption(
-	newAction: string,
-	newIndex: number,
-	rpUsage: number,
-	currentAction: string,
-	setActionFunction: Dispatch<SetStateAction<actionSavedType>>,
-	setUnavailable: Dispatch<SetStateAction<boolean>>,
-	firstAdditionalActionType: string,
-	secondAdditionalActionType: string
-) {
-	if (currentAction != newAction) {
-		rpUsage > 0
-			? setActionFunction({
-					action: `${newAction} (${rpUsage.toString()} RP)`,
-					index: newIndex,
-			  })
-			: setActionFunction({ action: newAction, index: newIndex });
-		setUnavailable(false);
-	} else {
-		setActionFunction({ action: '', index: 0 });
-		if (firstAdditionalActionType != '' || secondAdditionalActionType != '') {
-			setUnavailable(false);
-		} else {
-			setUnavailable(true);
-		}
-	}
-}
-
-function setFullActionOption(
-	newAction: string,
-	newIndex: number,
-	rpUsage: number,
-	currentAction: string,
-	setFullActionFunction: Dispatch<SetStateAction<actionSavedType>>,
-	setStandardUnavailable: Dispatch<SetStateAction<boolean>>,
-	setMoveUnavailable: Dispatch<SetStateAction<boolean>>,
-	setSwiftAvailable: Dispatch<SetStateAction<boolean>>
-) {
-	if (currentAction != newAction) {
-		rpUsage > 0
-			? setFullActionFunction({
-					action: `${newAction} (${rpUsage.toString()} RP)`,
-					index: newIndex,
-			  })
-			: setFullActionFunction({ action: newAction, index: newIndex });
-		setStandardUnavailable(false);
-		setMoveUnavailable(false);
-		setSwiftAvailable(false);
-	} else {
-		setFullActionFunction({ action: '', index: 0 });
-		setStandardUnavailable(true);
-		setMoveUnavailable(true);
-		setSwiftAvailable(true);
-	}
-}
-
-function isInActionsArray(
-	action: string,
-	index: number,
-	actionsArrayList: actionSavedType[]
-) {
-	let isAction: boolean = false;
-
-	actionsArrayList.forEach((swiftAction) => {
-		if (swiftAction.action === action && swiftAction.index === index) {
-			isAction = true;
-		}
-	});
-
-	return isAction;
-}
-
-function handleActionArrayOnClick(
-	actionsArray: actionSavedType[],
-	setActionsArray: Dispatch<SetStateAction<actionSavedType[]>>,
-	newAction: actionSavedType
-) {
-	let isInList: boolean = false;
-	let tempList: actionSavedType[] = actionsArray;
-
-	// If it's in the list, set the boolean to true and splice from temp list
-	actionsArray.forEach((swiftAction, index) => {
-		if (
-			swiftAction.action === newAction.action &&
-			swiftAction.index === newAction.index
-		) {
-			isInList = true;
-			tempList.splice(index, 1);
-		}
-	});
-
-	// If it's not in the list, add it.
-	if (!isInList) {
-		tempList.push(newAction);
-	}
-
-	tempList.sort((a, b) => a.index - b.index);
-
-	setActionsArray(tempList);
 }
 
 export default CombatOptions;

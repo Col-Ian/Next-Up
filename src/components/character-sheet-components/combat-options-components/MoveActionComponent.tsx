@@ -4,6 +4,7 @@ import SplitIntoParagraphs from '../../../utils/SplitIntoParagraphs';
 import ExpandComponent from '../ExpandComponent/ExpandComponent';
 import SheetLabel from '../labels/BlueLabel/SheetLabel';
 import styles from './CombatOptions/CombatOptions.module.css';
+import { setActionOption } from './functions/setActionOption';
 
 type actionSavedType = {
 	action: string;
@@ -13,16 +14,6 @@ type actionSavedType = {
 type MoveActionComponentProps = {
 	moveList: AbilityListTypes[];
 	moveAvailable: boolean;
-	setActionOption(
-		newAction: string,
-		newIndex: number,
-		rpUsage: number,
-		currentAction: string,
-		setActionFunction: Dispatch<SetStateAction<actionSavedType>>,
-		setUnavailable: Dispatch<SetStateAction<boolean>>,
-		firstAdditionalActionType: string,
-		secondAdditionalActionType: string
-	): void;
 	moveAction: actionSavedType;
 	setMoveAction: Dispatch<SetStateAction<actionSavedType>>;
 	setFullAvailable: Dispatch<SetStateAction<boolean>>;
@@ -35,7 +26,6 @@ type MoveActionComponentProps = {
 function MoveActionComponent({
 	moveList,
 	moveAvailable,
-	setActionOption,
 	moveAction,
 	setMoveAction,
 	setFullAvailable,

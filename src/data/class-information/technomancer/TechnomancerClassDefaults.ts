@@ -1,3 +1,5 @@
+import { technomancerAbilityList } from './abilities/technomancerAbilityList';
+
 const TechnomancerClassDefaults: ClassDefaultTypes = {
 	hitStaminaPoints: 5,
 
@@ -28,7 +30,7 @@ const TechnomancerClassDefaults: ClassDefaultTypes = {
 
 	badSavingThrows: ['Will'],
 
-	classAbilityList: {},
+	classAbilityList: technomancerAbilityList,
 };
 
 export default TechnomancerClassDefaults;

@@ -29,7 +29,7 @@ function AbilitiesBlock() {
 	});
 
 	useEffect(() => {
-		let defaultValues = {
+		const defaultValues = {
 			abilities: abilitiesArray,
 		};
 

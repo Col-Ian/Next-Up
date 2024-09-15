@@ -4,6 +4,8 @@ import SplitIntoParagraphs from '../../../utils/SplitIntoParagraphs';
 import ExpandComponent from '../ExpandComponent/ExpandComponent';
 import SheetLabel from '../labels/BlueLabel/SheetLabel';
 import styles from './CombatOptions/CombatOptions.module.css';
+import { handleActionArrayOnClick } from './functions/handleActionArrayOnClick';
+import { isInActionsArray } from './functions/isInActionsArray';
 
 type actionSavedType = {
 	action: string;
@@ -12,29 +14,17 @@ type actionSavedType = {
 
 type ReactionComponentProps = {
 	reactionsList: AbilityListTypes[];
-	handleActionArrayOnClick(
-		actionsArray: actionSavedType[],
-		setActionsArray: Dispatch<SetStateAction<actionSavedType[]>>,
-		newAction: actionSavedType
-	): void;
 	reactionActions: actionSavedType[];
 	setReactionActions: Dispatch<SetStateAction<actionSavedType[]>>;
 	handleMouseOverEvent(actionID: string): void;
-	isInActionsArray(
-		action: string,
-		index: number,
-		actionsArrayList: actionSavedType[]
-	): boolean;
 	isHover: string;
 };
 
 function ReactionComponent({
 	reactionsList,
-	handleActionArrayOnClick,
 	reactionActions,
 	setReactionActions,
 	handleMouseOverEvent,
-	isInActionsArray,
 	isHover,
 }: ReactionComponentProps) {
 	const { visible, setVisible, ref } = useDismissHandler(false);

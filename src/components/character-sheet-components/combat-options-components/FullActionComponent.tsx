@@ -4,6 +4,7 @@ import SplitIntoParagraphs from '../../../utils/SplitIntoParagraphs';
 import ExpandComponent from '../ExpandComponent/ExpandComponent';
 import SheetLabel from '../labels/BlueLabel/SheetLabel';
 import styles from './CombatOptions/CombatOptions.module.css';
+import { setFullActionOption } from './functions/setFullActionOption';
 
 type actionSavedType = {
 	action: string;
@@ -13,16 +14,6 @@ type actionSavedType = {
 type FullActionComponentProps = {
 	fullList: AbilityListTypes[];
 	fullAvailable: boolean;
-	setFullActionOption(
-		newAction: string,
-		newIndex: number,
-		rpUsage: number,
-		currentAction: string,
-		setFullActionFunction: Dispatch<SetStateAction<actionSavedType>>,
-		setStandardUnavailable: Dispatch<SetStateAction<boolean>>,
-		setMoveUnavailable: Dispatch<SetStateAction<boolean>>,
-		setSwiftAvailable: Dispatch<SetStateAction<boolean>>
-	): void;
 	fullAction: actionSavedType;
 	setFullAction: Dispatch<SetStateAction<actionSavedType>>;
 	setStandardAvailable: Dispatch<SetStateAction<boolean>>;
@@ -35,7 +26,6 @@ type FullActionComponentProps = {
 function FullActionComponent({
 	fullList,
 	fullAvailable,
-	setFullActionOption,
 	fullAction,
 	setFullAction,
 	setStandardAvailable,

@@ -1,13 +1,13 @@
 import AddRacialBonusToSkill from '../../../AddRacialBonusToSkill';
 import EditTempCharacterInfoValue from '../../../EditTempCharacterInfoValue';
 
-export default function drowAdjustments() {
+export function espraksaAdjustments() {
 	// Ability Score adjustments
-	// +2 to Dexterity and Charisma.
+	// +2 to Wisdom and Charisma.
 	// -2 to Constitution
 
-	// Dexterity
-	EditTempCharacterInfoValue(true, 2, 'Dexterity');
+	// Wisdom
+	EditTempCharacterInfoValue(true, 2, 'Wisdom');
 
 	// Charisma
 	EditTempCharacterInfoValue(true, 2, 'Charisma');
@@ -15,7 +15,7 @@ export default function drowAdjustments() {
 	// Constitution
 	EditTempCharacterInfoValue(false, 2, 'Constitution');
 
-	// FIX SO IT ADDS TO RACIAL
-	// +2 bonus to Perception from Keen Senses
-	AddRacialBonusToSkill(true, 2, 'Perception');
+	// +2 bonus to Diplomacy and Sense Motive from Empathic
+	AddRacialBonusToSkill(true, 2, 'Diplomacy');
+	AddRacialBonusToSkill(true, 2, 'Sense Motive');
 }
