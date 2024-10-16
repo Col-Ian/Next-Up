@@ -77,6 +77,10 @@
 	width: 36px;
 }
 
+.numberInput::-webkit-inner-spin-button {
+	display: none;
+}
+
 .ammoInput {
 	width: 23px;
 	font-size: 1em;

@@ -90,7 +90,8 @@
 	font-size: 1.4em;
 	border-top: 5px solid hsl(206, 61%, 80%);
 	border-radius: 8px;
-	text-decoration: line-through 3px solid black;
+	text-decoration: line-through 3px solid hsl(9, 77%, 44%);
+	color: hsl(9, 77%, 44%);
 }
 
 .selectedOption {

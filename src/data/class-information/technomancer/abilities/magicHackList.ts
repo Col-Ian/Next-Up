@@ -309,4 +309,285 @@ export const magicHackList: {
 			usesResolve: 0,
 		},
 	},
+	5: {
+		'': {
+			abilityName: '',
+			abilityDescription: '',
+			abilitySource: 'Technomancer (Magic Hack)',
+			actionType: [false, false, false, false, false, false],
+			usesResolve: 0,
+		},
+
+		'': {
+			abilityName: '',
+			abilityDescription: '',
+			abilitySource: 'Technomancer (Magic Hack)',
+			actionType: [false, false, false, false, false, false],
+			usesResolve: 0,
+		},
+
+		'': {
+			abilityName: '',
+			abilityDescription: '',
+			abilitySource: 'Technomancer (Magic Hack)',
+			actionType: [false, false, false, false, false, false],
+			usesResolve: 0,
+		},
+
+		'': {
+			abilityName: '',
+			abilityDescription: '',
+			abilitySource: 'Technomancer (Magic Hack)',
+			actionType: [false, false, false, false, false, false],
+			usesResolve: 0,
+		},
+
+		'': {
+			abilityName: '',
+			abilityDescription: '',
+			abilitySource: 'Technomancer (Magic Hack)',
+			actionType: [false, false, false, false, false, false],
+			usesResolve: 0,
+		},
+
+		'': {
+			abilityName: '',
+			abilityDescription: '',
+			abilitySource: 'Technomancer (Magic Hack)',
+			actionType: [false, false, false, false, false, false],
+			usesResolve: 0,
+		},
+
+		'': {
+			abilityName: '',
+			abilityDescription: '',
+			abilitySource: 'Technomancer (Magic Hack)',
+			actionType: [false, false, false, false, false, false],
+			usesResolve: 0,
+		},
+
+		'': {
+			abilityName: '',
+			abilityDescription: '',
+			abilitySource: 'Technomancer (Magic Hack)',
+			actionType: [false, false, false, false, false, false],
+			usesResolve: 0,
+		},
+
+		'': {
+			abilityName: '',
+			abilityDescription: '',
+			abilitySource: 'Technomancer (Magic Hack)',
+			actionType: [false, false, false, false, false, false],
+			usesResolve: 0,
+		},
+
+		'': {
+			abilityName: '',
+			abilityDescription: '',
+			abilitySource: 'Technomancer (Magic Hack)',
+			actionType: [false, false, false, false, false, false],
+			usesResolve: 0,
+		},
+
+		'': {
+			abilityName: '',
+			abilityDescription: '',
+			abilitySource: 'Technomancer (Magic Hack)',
+			actionType: [false, false, false, false, false, false],
+			usesResolve: 0,
+		},
+
+		'': {
+			abilityName: '',
+			abilityDescription: '',
+			abilitySource: 'Technomancer (Magic Hack)',
+			actionType: [false, false, false, false, false, false],
+			usesResolve: 0,
+		},
+
+		'': {
+			abilityName: '',
+			abilityDescription: '',
+			abilitySource: 'Technomancer (Magic Hack)',
+			actionType: [false, false, false, false, false, false],
+			usesResolve: 0,
+		},
+
+		'': {
+			abilityName: '',
+			abilityDescription: '',
+			abilitySource: 'Technomancer (Magic Hack)',
+			actionType: [false, false, false, false, false, false],
+			usesResolve: 0,
+		},
+
+		'': {
+			abilityName: '',
+			abilityDescription: '',
+			abilitySource: 'Technomancer (Magic Hack)',
+			actionType: [false, false, false, false, false, false],
+			usesResolve: 0,
+		},
+
+		'': {
+			abilityName: '',
+			abilityDescription: '',
+			abilitySource: 'Technomancer (Magic Hack)',
+			actionType: [false, false, false, false, false, false],
+			usesResolve: 0,
+		},
+
+		'': {
+			abilityName: '',
+			abilityDescription: '',
+			abilitySource: 'Technomancer (Magic Hack)',
+			actionType: [false, false, false, false, false, false],
+			usesResolve: 0,
+		},
+
+		'': {
+			abilityName: '',
+			abilityDescription: '',
+			abilitySource: 'Technomancer (Magic Hack)',
+			actionType: [false, false, false, false, false, false],
+			usesResolve: 0,
+		},
+
+		'': {
+			abilityName: '',
+			abilityDescription: '',
+			abilitySource: 'Technomancer (Magic Hack)',
+			actionType: [false, false, false, false, false, false],
+			usesResolve: 0,
+		},
+
+		'': {
+			abilityName: '',
+			abilityDescription: '',
+			abilitySource: 'Technomancer (Magic Hack)',
+			actionType: [false, false, false, false, false, false],
+			usesResolve: 0,
+		},
+
+		'': {
+			abilityName: '',
+			abilityDescription: '',
+			abilitySource: 'Technomancer (Magic Hack)',
+			actionType: [false, false, false, false, false, false],
+			usesResolve: 0,
+		},
+
+		'': {
+			abilityName: '',
+			abilityDescription: '',
+			abilitySource: 'Technomancer (Magic Hack)',
+			actionType: [false, false, false, false, false, false],
+			usesResolve: 0,
+		},
+
+		'': {
+			abilityName: '',
+			abilityDescription: '',
+			abilitySource: 'Technomancer (Magic Hack)',
+			actionType: [false, false, false, false, false, false],
+			usesResolve: 0,
+		},
+
+		'': {
+			abilityName: '',
+			abilityDescription: '',
+			abilitySource: 'Technomancer (Magic Hack)',
+			actionType: [false, false, false, false, false, false],
+			usesResolve: 0,
+		},
+
+		'': {
+			abilityName: '',
+			abilityDescription: '',
+			abilitySource: 'Technomancer (Magic Hack)',
+			actionType: [false, false, false, false, false, false],
+			usesResolve: 0,
+		},
+
+		'': {
+			abilityName: '',
+			abilityDescription: '',
+			abilitySource: 'Technomancer (Magic Hack)',
+			actionType: [false, false, false, false, false, false],
+			usesResolve: 0,
+		},
+
+		'': {
+			abilityName: '',
+			abilityDescription: '',
+			abilitySource: 'Technomancer (Magic Hack)',
+			actionType: [false, false, false, false, false, false],
+			usesResolve: 0,
+		},
+
+		'': {
+			abilityName: '',
+			abilityDescription: '',
+			abilitySource: 'Technomancer (Magic Hack)',
+			actionType: [false, false, false, false, false, false],
+			usesResolve: 0,
+		},
+
+		'': {
+			abilityName: '',
+			abilityDescription: '',
+			abilitySource: 'Technomancer (Magic Hack)',
+			actionType: [false, false, false, false, false, false],
+			usesResolve: 0,
+		},
+
+		'': {
+			abilityName: '',
+			abilityDescription: '',
+			abilitySource: 'Technomancer (Magic Hack)',
+			actionType: [false, false, false, false, false, false],
+			usesResolve: 0,
+		},
+
+		'': {
+			abilityName: '',
+			abilityDescription: '',
+			abilitySource: 'Technomancer (Magic Hack)',
+			actionType: [false, false, false, false, false, false],
+			usesResolve: 0,
+		},
+
+		'': {
+			abilityName: '',
+			abilityDescription: '',
+			abilitySource: 'Technomancer (Magic Hack)',
+			actionType: [false, false, false, false, false, false],
+			usesResolve: 0,
+		},
+
+		'': {
+			abilityName: '',
+			abilityDescription: '',
+			abilitySource: 'Technomancer (Magic Hack)',
+			actionType: [false, false, false, false, false, false],
+			usesResolve: 0,
+		},
+
+		'': {
+			abilityName: '',
+			abilityDescription: '',
+			abilitySource: 'Technomancer (Magic Hack)',
+			actionType: [false, false, false, false, false, false],
+			usesResolve: 0,
+		},
+
+		'': {
+			abilityName: '',
+			abilityDescription: '',
+			abilitySource: 'Technomancer (Magic Hack)',
+			actionType: [false, false, false, false, false, false],
+			usesResolve: 0,
+		},
+	},
 };

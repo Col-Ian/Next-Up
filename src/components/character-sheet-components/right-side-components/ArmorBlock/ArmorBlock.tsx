@@ -148,7 +148,6 @@ function ArmorBlock() {
 												className={styles.textInput}
 												spellCheck={false}
 												{...register(`armors.${index}.armorName`)}
-												// defaultValue={armor.armorName}
 											/>
 										</div>
 										<div className={styles.verticalBar} />
@@ -159,7 +158,6 @@ function ArmorBlock() {
 												className={styles.textInput}
 												spellCheck={false}
 												{...register(`armors.${index}.armorType`)}
-												// defaultValue={armor.armorType}
 											/>
 										</div>
 										<div className={styles.verticalBar} />
@@ -169,21 +167,15 @@ function ArmorBlock() {
 												type='number'
 												className={styles.numberInput}
 												{...register(`armors.${index}.armorLevel`)}
-												// defaultValue={armor.armorLevel}
 											/>
 										</div>
 									</div>
 									<div className={styles.bottomRow}>
 										<div className={styles.inputDivEquip}>
 											<div className={styles.inputLabel}>EQUIP</div>
-											{/* 
-											
-											Issue
-											*/}
 											<input
 												type='checkbox'
 												className={styles.checkboxInput}
-												// checked={armorArray[index].isEquipped ? true : false}
 												{...register(`armors.${index}.isEquipped`)}
 												onClick={() => handleEquip(index)}
 											/>
@@ -196,7 +188,6 @@ function ArmorBlock() {
 												{...register(`armors.${index}.armorEAC`, {
 													valueAsNumber: true,
 												})}
-												// defaultValue={armor.armorEAC}
 											/>
 										</div>
 										<div className={styles.inputDiv}>
@@ -207,7 +198,6 @@ function ArmorBlock() {
 												{...register(`armors.${index}.armorKAC`, {
 													valueAsNumber: true,
 												})}
-												// defaultValue={armor.armorKAC}
 											/>
 										</div>
 										<div className={styles.inputDiv}>
@@ -218,7 +208,6 @@ function ArmorBlock() {
 												{...register(`armors.${index}.maxDexBonus`, {
 													valueAsNumber: true,
 												})}
-												// defaultValue={armor.maxDexBonus}
 											/>
 										</div>
 										<div className={styles.inputDiv}>
@@ -228,7 +217,6 @@ function ArmorBlock() {
 												className={styles.textInput}
 												spellCheck={false}
 												{...register(`armors.${index}.armorProficiency`)}
-												// defaultValue={armor.armorProficiency}
 											/>
 										</div>
 									</div>
